@@ -1,4 +1,4 @@
-var NDC = require('../ndc');
+var NDC = require('../index');
 const ndc = new NDC({messageFormat: {}});
 var test = require('blue-tape');
 var emv = {
