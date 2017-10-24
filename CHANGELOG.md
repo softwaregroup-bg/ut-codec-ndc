@@ -1,3 +1,14 @@
+<a name="6.1.1"></a>
+## [6.1.1](https://github.com/softwaregroup-bg/ut-codec-ndc/compare/v6.1.0...v6.1.1) (2017-10-24)
+
+
+### Bug Fixes
+
+* allow easier updates till we go in production ([4ab3f15](https://github.com/softwaregroup-bg/ut-codec-ndc/commit/4ab3f15))
+* printers defaults to 0 ([#1](https://github.com/softwaregroup-bg/ut-codec-ndc/issues/1)) ([f957c5f](https://github.com/softwaregroup-bg/ut-codec-ndc/commit/f957c5f))
+
+
+
 <a name="6.1.0"></a>
 # 6.1.0 (2017-10-23)
 
