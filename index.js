@@ -481,6 +481,7 @@ NDC.prototype.decode = function(buffer, $meta, context) {
 
             switch ($meta.method) {
                 case 'solicitedStatus':
+                    tokens = tokens.map(token => token.replace(/[^\x20-\x7E]/g, ''));
                     if (tokens[3] != null && (tokens[3].length === 8 || tokens[3].length === 0)) { // mac is active
                         message.timeVariantNumber = tokens[3];
                         tokens.splice(3, 1);
