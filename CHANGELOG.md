@@ -1,3 +1,13 @@
+<a name="6.1.2"></a>
+## [6.1.2](https://github.com/softwaregroup-bg/ut-codec-ndc/compare/v6.1.1...v6.1.2) (2017-10-31)
+
+
+### Bug Fixes
+
+* expose raw emv tags data ([#2](https://github.com/softwaregroup-bg/ut-codec-ndc/issues/2)) ([62c8a07](https://github.com/softwaregroup-bg/ut-codec-ndc/commit/62c8a07))
+
+
+
 <a name="6.1.1"></a>
 ## [6.1.1](https://github.com/softwaregroup-bg/ut-codec-ndc/compare/v6.1.0...v6.1.1) (2017-10-24)
 
