@@ -1,3 +1,13 @@
+<a name="6.1.3"></a>
+## [6.1.3](https://github.com/softwaregroup-bg/ut-codec-ndc/compare/v6.1.2...v6.1.3) (2017-10-31)
+
+
+### Bug Fixes
+
+* cleanup unicode chars ([#3](https://github.com/softwaregroup-bg/ut-codec-ndc/issues/3)) ([9302b9b](https://github.com/softwaregroup-bg/ut-codec-ndc/commit/9302b9b))
+
+
+
 <a name="6.1.2"></a>
 ## [6.1.2](https://github.com/softwaregroup-bg/ut-codec-ndc/compare/v6.1.1...v6.1.2) (2017-10-31)
 
