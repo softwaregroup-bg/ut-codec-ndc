@@ -341,7 +341,7 @@ var parsers = {
         return Object.assign(
             {},
             (!camFlags.length ? {} : parsers.camFlagsDecode(camFlags)),
-            (!emvTags.length ? {} : {emvTags: emv.tagsDecode(emvTags, {})})
+            (!emvTags.length ? {} : {emvTagsRaw: emvTags, emvTags: emv.tagsDecode(emvTags, {})})
         );
     },
     camFlagsDecode: (buffer) => {
