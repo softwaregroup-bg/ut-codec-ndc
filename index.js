@@ -482,7 +482,15 @@ NDC.prototype.decode = function(buffer, $meta, context) {
             switch ($meta.method) {
                 case 'solicitedStatus':
                     tokens = tokens.map(token => token.replace(/[^\x20-\x7E]/g, ''));
-                    if (tokens[3] != null && (tokens[3].length === 8 || tokens[3].length === 0)) { // mac is active
+                    if (tokens[3] != null && (tokens[3].length === 8 || tokens[3].length === 0)) {
+                        if (tokens[3].length === 8) { // mac is active
+                            message.mac = tokens[tokens.length - 1].slice(0, 8);
+                            /**
+                             * TODO FS is not trasmitted unless Status Descriptor field contains ‘9’ or ‘B’.
+                             * TODO ETX??
+                             */
+                            message.raw = bufferString.replace(`${this.fieldSeparator}${message.mac}`, ''); // FS, mac, ETX???
+                        }
                         message.timeVariantNumber = tokens[3];
                         tokens.splice(3, 1);
                     };
@@ -515,6 +523,13 @@ NDC.prototype.decode = function(buffer, $meta, context) {
                     context.traceTransactionReady += 1;
                     break;
                 case 'aptra.transaction':
+                    if (tokens[3].length === 8) { // mac is active
+                        message.mac = tokens[tokens.length - 1].slice(0, 8);
+                        /**
+                         * TODO ETX??
+                         */
+                        message.raw = bufferString.replace(`${this.fieldSeparator}${message.mac}`, ''); // FS, mac, ETX???
+                    }
                     message.transactionTimeout = (context.session && context.session.transactionTimeout) || 55;
                     context.transactionReplyTime = hrtime()[0] + message.transactionTimeout;
                     message.transactionRequestId = context.transactionRequestId = (context.transactionRequestId || 0) + 1;

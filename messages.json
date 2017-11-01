@@ -5,7 +5,7 @@
             "messageClass": "1",
             "messageSubclass": "1"
         },
-        "fields": "messageClass,messageSubclass,FS,luno,FS,,FS,timeVariantNumber,FS,trtfMcn,FS,track2,FS,track3,FS,operationCode,FS,amountEntry,FS,pinBlock,FS,bufferB,FS,bufferC,FS,data"
+        "fields": "messageClass,messageSubclass,FS,luno,FS,,FS,timeVariantNumber,FS,trtfMcn,FS,track2,FS,track3,FS,operationCode,FS,amountEntry,FS,pinBlock,FS,bufferB,FS,bufferC,FS,data,FS,mac"
     },
     "unsolicitedStatus": {
         "mtid": "notification",
@@ -21,7 +21,7 @@
             "messageClass": "2",
             "messageSubclass": "2"
         },
-        "fields": "messageClass,messageSubclass,FS,luno,FS,,FS,statusDescriptor,FS,statusInformation1,FS,statusInformation2,FS,statusInformation3,FS,statusInformation4,FS,statusInformation5,FS,statusInformation6,FS,statusInformation7"
+        "fields": "messageClass,messageSubclass,FS,luno,FS,,FS,statusDescriptor,FS,statusInformation1,FS,statusInformation2,FS,statusInformation3,FS,statusInformation4,FS,statusInformation5,FS,statusInformation6,FS,statusInformation7,FS,mac"
     },
     "encryptorIniData": {
         "mtid": "response",
