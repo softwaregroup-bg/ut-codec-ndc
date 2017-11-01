@@ -523,7 +523,7 @@ NDC.prototype.decode = function(buffer, $meta, context) {
                     context.traceTransactionReady += 1;
                     break;
                 case 'aptra.transaction':
-                    if (tokens[3].length === 8) { // mac is active
+                    if (tokens[3] != null && tokens[3].length === 8) { // mac is active
                         message.mac = tokens[tokens.length - 1].slice(0, 8);
                         /**
                          * TODO ETX??
