@@ -1,3 +1,13 @@
+<a name="6.1.4"></a>
+## [6.1.4](https://github.com/softwaregroup-bg/ut-codec-ndc/compare/v6.1.3...v6.1.4) (2017-11-02)
+
+
+### Bug Fixes
+
+* assign mac to message ([5a6fb7b](https://github.com/softwaregroup-bg/ut-codec-ndc/commit/5a6fb7b))
+
+
+
 <a name="6.1.3"></a>
 ## [6.1.3](https://github.com/softwaregroup-bg/ut-codec-ndc/compare/v6.1.2...v6.1.3) (2017-10-31)
 
