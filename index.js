@@ -455,7 +455,8 @@ var parsers = {
 
 NDC.prototype.decode = function(buffer, $meta, context) {
     var message = {};
-    var bufferString = buffer.toString();
+    var bufferString = buffer.toString().replace(/[^\x20-\x7E]$/g, ''); // remove etx character
+
     if (buffer.length > 0) {
         var tokens = bufferString.split(this.fieldSeparator);
         var command;
@@ -481,8 +482,11 @@ NDC.prototype.decode = function(buffer, $meta, context) {
 
             switch ($meta.method) {
                 case 'solicitedStatus':
-                    tokens = tokens.map(token => token.replace(/[^\x20-\x7E]/g, ''));
-                    if (tokens[3] != null && (tokens[3].length === 8 || tokens[3].length === 0)) { // mac is active
+                    if (tokens[3] != null && (tokens[3].length === 8 || tokens[3].length === 0)) {
+                        if (tokens[3].length === 8) { // mac is active
+                            message.mac = tokens[tokens.length - 1].slice(0, 8);
+                            message.raw = bufferString.replace(`${this.fieldSeparator}${message.mac}`, '');
+                        }
                         message.timeVariantNumber = tokens[3];
                         tokens.splice(3, 1);
                     };
@@ -515,6 +519,10 @@ NDC.prototype.decode = function(buffer, $meta, context) {
                     context.traceTransactionReady += 1;
                     break;
                 case 'aptra.transaction':
+                    if (tokens[3] != null && tokens[3].length === 8) { // mac is active
+                        message.mac = tokens[tokens.length - 1].slice(0, 8);
+                        message.raw = bufferString.replace(`${this.fieldSeparator}${message.mac}`, '');
+                    }
                     message.transactionTimeout = (context.session && context.session.transactionTimeout) || 55;
                     context.transactionReplyTime = hrtime()[0] + message.transactionTimeout;
                     message.transactionRequestId = context.transactionRequestId = (context.transactionRequestId || 0) + 1;
