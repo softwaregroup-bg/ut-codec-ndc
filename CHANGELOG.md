@@ -1,3 +1,13 @@
+<a name="6.1.5"></a>
+## [6.1.5](https://github.com/softwaregroup-bg/ut-codec-ndc/compare/v6.1.4...v6.1.5) (2017-11-03)
+
+
+### Bug Fixes
+
+* properly parse solicitedStatus & remove cam data ([#5](https://github.com/softwaregroup-bg/ut-codec-ndc/issues/5)) ([3855e25](https://github.com/softwaregroup-bg/ut-codec-ndc/commit/3855e25))
+
+
+
 <a name="6.1.4"></a>
 ## [6.1.4](https://github.com/softwaregroup-bg/ut-codec-ndc/compare/v6.1.3...v6.1.4) (2017-11-02)
 
