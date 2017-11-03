@@ -455,7 +455,7 @@ var parsers = {
 
 NDC.prototype.decode = function(buffer, $meta, context) {
     var message = {};
-    var bufferString = buffer.toString().replace(/[^\x20-\x7E]$/g, ''); // remove etx character
+    var bufferString = buffer.toString().replace(/\u0003/g, ''); // remove END OF TEXT char (because of the ncr simulator)
 
     if (buffer.length > 0) {
         var tokens = bufferString.split(this.fieldSeparator);
@@ -490,17 +490,18 @@ NDC.prototype.decode = function(buffer, $meta, context) {
                         message.timeVariantNumber = tokens[3];
                         tokens.splice(3, 1);
                     };
-                    if (tokens[3] === 'B' || tokens[3] === '8') {
+                    if (tokens[3].startsWith('B') || tokens[3].startsWith('8')) {
                         context.traceTransactionReady = context.traceTransactionReady || 1;
                         $meta.trace = 'trn:' + context.traceTransactionReady;
                         context.traceTransactionReady += 1;
                         context.traceTerminal = 1;
                         context.traceCentral = 1;
-                        if (tokens[3] === '8') {
+                        if (tokens[3].startsWith('8')) {
                             message.transactionTimeout = (context.session && context.session.transactionTimeout) || 55;
                             context.transactionReplyTime = hrtime()[0] + message.transactionTimeout;
                             message.transactionRequestId = context.transactionRequestId = (context.transactionRequestId || 0) + 1;
                         }
+                        tokens[3] = tokens[3].split(this.groupSeparator)[0]; // ignore cam data
                     } else {
                         context.traceTerminal = context.traceTerminal || 1;
                         $meta.trace = 'req:' + context.traceTerminal;
