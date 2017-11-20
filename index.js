@@ -24,17 +24,42 @@ function packSmartCardData(camFlags, emvTags) {
     return result;
 }
 
-function NDC(config, validator, logger) {
+function bufferLog(buffer, direction) {
+    var result = (buffer || [])
+    .reduce((a, hex, idx) => {
+        var curIdx = Math.floor(idx / 16);
+        var buf = Buffer.from([hex])
+        a[curIdx] = (a[curIdx] || {hex: [], str: []});
+        a[curIdx].hex.push(buf.toString('hex'))
+        a[curIdx].str.push(buf.toString('ascii'))
+        return a;
+    }, [])
+    .reduce((a, cur) => {
+        var hex = cur.hex.concat((new Array(16)).fill('  ')).slice(0, 16).join(' ');
+        var str = cur.str.join('');
+        a.push(`${hex}|${str}`);
+        return a;
+    }, [])
+    .join('\n');
+    this.info({direction, 'hex|ascii': result})
+}
+
+function NDC(config, validator, log) {
     this.fieldSeparator = config.fieldSeparator || '\u001c';
     this.groupSeparator = config.groupSeparator || '\u001d';
     this.val = validator || null;
-    this.log = logger || {};
+    this.logFactory = log;
+    this.log = {};
     this.codes = {};
     this.init(config);
     return this;
 }
 
 NDC.prototype.init = function(config) {
+    this.logFactory && (this.log = this.logFactory.createLog(config.logLevel, {
+        name: config.id,
+        context: 'NDC codec'
+    }));
     this.messageFormat = merge({}, defaultFormat, config.messageFormat);
     Object.keys(this.messageFormat).forEach((name) => {
         var mf = this.messageFormat[name];
@@ -452,8 +477,8 @@ var parsers = {
     ejOptions: () => ({}), // sim
     ejAck: () => ({}) // sim
 };
-
 NDC.prototype.decode = function(buffer, $meta, context) {
+    this.log && this.log.info && bufferLog.call(this.log, buffer, 'in');
     var message = {};
     var bufferString = buffer.toString().replace(/\u0003/g, ''); // remove END OF TEXT char (because of the ncr simulator)
 
@@ -643,7 +668,9 @@ NDC.prototype.encode = function(message, $meta, context) {
         if (message.mac) {
             bufferString += this.fieldSeparator + message.mac;
         }
-        return new Buffer(bufferString);
+        var buf = new Buffer(bufferString);
+        this.log && this.log.info && bufferLog.call(this.log, buf, 'out');
+        return buf;
     }
 };
 
