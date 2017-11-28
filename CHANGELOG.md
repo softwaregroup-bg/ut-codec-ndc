@@ -1,3 +1,13 @@
+<a name="6.1.8"></a>
+## [6.1.8](https://github.com/softwaregroup-bg/ut-codec-ndc/compare/v6.1.7...v6.1.8) (2017-11-28)
+
+
+### Bug Fixes
+
+* identation ([bdfe824](https://github.com/softwaregroup-bg/ut-codec-ndc/commit/bdfe824))
+
+
+
 <a name="6.1.7"></a>
 ## [6.1.7](https://github.com/softwaregroup-bg/ut-codec-ndc/compare/v6.1.6...v6.1.7) (2017-11-28)
 
