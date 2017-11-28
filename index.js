@@ -493,7 +493,7 @@ NDC.prototype.decode = function(buffer, $meta, context) {
                     if (tokens[3].startsWith('B') || tokens[3].startsWith('8')) {
                         if ((tokens.length === 7 && (tokens[6].startsWith('CAM'))
                         || tokens[6].startsWith('S&S'))) { // TODO: emv application error on transactionRequest
-                            tokens[6] = tokens[6].split(this.groupSeparator);
+                            tokens[6] = tokens[6].split(this.groupSeparator).join('.');
                         }
                         context.traceTransactionReady = context.traceTransactionReady || 1;
                         $meta.trace = 'trn:' + context.traceTransactionReady;
