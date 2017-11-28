@@ -1,3 +1,16 @@
+<a name="6.1.7"></a>
+## [6.1.7](https://github.com/softwaregroup-bg/ut-codec-ndc/compare/v6.1.6...v6.1.7) (2017-11-28)
+
+
+### Bug Fixes
+
+* clarification ([779e3a8](https://github.com/softwaregroup-bg/ut-codec-ndc/commit/779e3a8))
+* emv application error ([e59ddd8](https://github.com/softwaregroup-bg/ut-codec-ndc/commit/e59ddd8))
+* emv application error ([641b556](https://github.com/softwaregroup-bg/ut-codec-ndc/commit/641b556))
+* typo ([ac19049](https://github.com/softwaregroup-bg/ut-codec-ndc/commit/ac19049))
+
+
+
 <a name="6.1.6"></a>
 ## [6.1.6](https://github.com/softwaregroup-bg/ut-codec-ndc/compare/v6.1.5...v6.1.6) (2017-11-18)
 
