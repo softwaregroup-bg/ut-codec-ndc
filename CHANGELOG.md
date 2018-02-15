@@ -1,3 +1,13 @@
+<a name="6.1.9"></a>
+## [6.1.9](https://github.com/softwaregroup-bg/ut-codec-ndc/compare/v6.1.8...v6.1.9) (2018-02-15)
+
+
+### Bug Fixes
+
+* dependencies ([dd34e9f](https://github.com/softwaregroup-bg/ut-codec-ndc/commit/dd34e9f))
+
+
+
 <a name="6.1.8"></a>
 ## [6.1.8](https://github.com/softwaregroup-bg/ut-codec-ndc/compare/v6.1.7...v6.1.8) (2017-11-28)
 
