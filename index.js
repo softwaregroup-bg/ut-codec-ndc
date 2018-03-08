@@ -1,6 +1,5 @@
 var merge = require('lodash.merge');
 var map = require('./map');
-var errors = require('./errors');
 var defaultFormat = require('./messages');
 var hrtime = require('browser-process-hrtime');
 var emv = require('ut-emv');
@@ -26,6 +25,7 @@ function packSmartCardData(camFlags, emvTags) {
 }
 
 function NDC(config, validator, logger) {
+    this.errors = require('./errors')(config.defineError);
     this.fieldSeparator = config.fieldSeparator || '\u001c';
     this.groupSeparator = config.groupSeparator || '\u001d';
     this.val = validator || null;
@@ -53,10 +53,10 @@ var parsers = {
         transactionData
     }),
     specificReject: (status) => {
-        throw errors.customReject(status);
+        throw this.errors.customReject(status);
     },
     reject: () => {
-        throw errors.commandReject();
+        throw this.errors.commandReject();
     },
     fault: (deviceIdentifierAndStatus, severities, diagnosticStatus, suppliesStatus) => {
         var deviceStatus = deviceIdentifierAndStatus && deviceIdentifierAndStatus.substring && deviceIdentifierAndStatus.substring(1);
@@ -534,12 +534,12 @@ NDC.prototype.decode = function(buffer, $meta, context) {
             if (typeof fn === 'function') {
                 merge(message, fn.apply(parsers, tokens));
             } else {
-                throw errors.decode({'command.method': command.method});
+                throw this.errors.decode({'command.method': command.method});
             }
             message.tokens = tokens;
         } else {
             $meta.mtid = 'error';
-            throw errors.unknownMessageClass({'message class': tokens[0]});
+            throw this.errors.unknownMessageClass({'message class': tokens[0]});
         }
     }
 
@@ -602,7 +602,7 @@ NDC.prototype.encode = function(message, $meta, context) {
                 $meta.trace = 'trn:' + context.traceTransaction;
                 context.traceTransaction += 1;
             } else {
-                throw errors.timeout();
+                throw this.errors.timeout();
             }
             break;
     }
