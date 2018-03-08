@@ -1,5 +1,6 @@
 var merge = require('lodash.merge');
 var map = require('./map');
+var errors = require('./errors');
 var defaultFormat = require('./messages');
 var hrtime = require('browser-process-hrtime');
 var emv = require('ut-emv');
@@ -52,14 +53,10 @@ var parsers = {
         transactionData
     }),
     specificReject: (status) => {
-        var e = new Error(map.specificErrors[status] || 'Specific command reject');
-        e.type = 'aptra.commandReject.' + status;
-        throw e;
+        throw errors.customReject(status);
     },
     reject: () => {
-        var e = new Error('Command reject');
-        e.type = 'aptra.commandReject';
-        throw e;
+        throw errors.commandReject();
     },
     fault: (deviceIdentifierAndStatus, severities, diagnosticStatus, suppliesStatus) => {
         var deviceStatus = deviceIdentifierAndStatus && deviceIdentifierAndStatus.substring && deviceIdentifierAndStatus.substring(1);
@@ -537,15 +534,12 @@ NDC.prototype.decode = function(buffer, $meta, context) {
             if (typeof fn === 'function') {
                 merge(message, fn.apply(parsers, tokens));
             } else {
-                var e = new Error('No parser found for message: ' + command.method);
-                e.type = 'aptra.decode';
-                throw e;
+                throw errors.decode({'command.method': command.method});
             }
             message.tokens = tokens;
         } else {
             $meta.mtid = 'error';
-            message.type = 'aptra.unknownMessageClass';
-            message.message = 'Received unknown message class: ' + tokens[0];
+            throw errors.unknownMessageClass({'message class': tokens[0]});
         }
     }
 
@@ -608,9 +602,7 @@ NDC.prototype.encode = function(message, $meta, context) {
                 $meta.trace = 'trn:' + context.traceTransaction;
                 context.traceTransaction += 1;
             } else {
-                var e = new Error('Transaction timed out');
-                e.type = 'aptra.timeout';
-                throw e;
+                throw errors.timeout();
             }
             break;
     }
