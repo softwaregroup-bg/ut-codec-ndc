@@ -25,6 +25,7 @@ function packSmartCardData(camFlags, emvTags) {
 }
 
 function NDC(config, validator, logger) {
+    this.errors = require('./errors')(config.defineError);
     this.fieldSeparator = config.fieldSeparator || '\u001c';
     this.groupSeparator = config.groupSeparator || '\u001d';
     this.val = validator || null;
@@ -52,14 +53,10 @@ var parsers = {
         transactionData
     }),
     specificReject: (status) => {
-        var e = new Error(map.specificErrors[status] || 'Specific command reject');
-        e.type = 'aptra.commandReject.' + status;
-        throw e;
+        throw this.errors.customReject(status);
     },
     reject: () => {
-        var e = new Error('Command reject');
-        e.type = 'aptra.commandReject';
-        throw e;
+        throw this.errors.commandReject();
     },
     fault: (deviceIdentifierAndStatus, severities, diagnosticStatus, suppliesStatus) => {
         var deviceStatus = deviceIdentifierAndStatus && deviceIdentifierAndStatus.substring && deviceIdentifierAndStatus.substring(1);
@@ -537,15 +534,12 @@ NDC.prototype.decode = function(buffer, $meta, context) {
             if (typeof fn === 'function') {
                 merge(message, fn.apply(parsers, tokens));
             } else {
-                var e = new Error('No parser found for message: ' + command.method);
-                e.type = 'aptra.decode';
-                throw e;
+                throw this.errors.decode({'command.method': command.method});
             }
             message.tokens = tokens;
         } else {
             $meta.mtid = 'error';
-            message.type = 'aptra.unknownMessageClass';
-            message.message = 'Received unknown message class: ' + tokens[0];
+            throw this.errors.unknownMessageClass({'message class': tokens[0]});
         }
     }
 
@@ -608,9 +602,7 @@ NDC.prototype.encode = function(message, $meta, context) {
                 $meta.trace = 'trn:' + context.traceTransaction;
                 context.traceTransaction += 1;
             } else {
-                var e = new Error('Transaction timed out');
-                e.type = 'aptra.timeout';
-                throw e;
+                throw this.errors.timeout();
             }
             break;
     }

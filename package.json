@@ -1,6 +1,6 @@
 {
   "name": "ut-codec-ndc",
-  "version": "6.1.9",
+  "version": "6.2.0-rc-cubalibre.1",
   "main": "./index.js",
   "dependencies": {
     "browser-process-hrtime": "0.1.2",
@@ -24,6 +24,7 @@
     "prepublish": "ut-prepublish",
     "prepush": "ut-prepush",
     "pretest": "ut-pretest",
+    "precover": "ut-precover",
     "preversion": "ut-preversion",
     "test": "ut-test",
     "version": "ut-version",
