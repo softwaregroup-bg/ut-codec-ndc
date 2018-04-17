@@ -1,6 +1,6 @@
 {
   "name": "ut-codec-ndc",
-  "version": "6.2.0-rc-cubalibre.1",
+  "version": "6.2.0",
   "main": "./index.js",
   "dependencies": {
     "browser-process-hrtime": "0.1.2",

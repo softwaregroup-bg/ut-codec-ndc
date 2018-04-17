@@ -1,3 +1,13 @@
+<a name="6.2.0"></a>
+# [6.2.0](https://github.com/softwaregroup-bg/ut-codec-ndc/compare/v6.1.9...v6.2.0) (2018-04-17)
+
+
+### Bug Fixes
+
+* refactor errors ([c83afcf](https://github.com/softwaregroup-bg/ut-codec-ndc/commit/c83afcf))
+
+
+
 <a name="6.1.9"></a>
 ## [6.1.9](https://github.com/softwaregroup-bg/ut-codec-ndc/compare/v6.1.8...v6.1.9) (2018-02-15)
 
