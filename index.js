@@ -561,8 +561,10 @@ NDC.prototype.decode = function(buffer, $meta, context, log) {
             throw this.errors.unknownMessageClass({'message class': tokens[0]});
         }
     }
-    let bufferMasked = decodeBufferMask(buffer, message);
-    log && log.trace && log.trace({$meta: {mtid: 'frame', opcode: 'in'}, message: bufferMasked, log: context && context.session && context.session.log});
+    if (log && log.trace) {
+        let bufferMasked = decodeBufferMask(buffer, message);
+        log.trace({$meta: {mtid: 'frame', opcode: 'in'}, message: bufferMasked, log: context && context.session && context.session.log});
+    }
     return message;
 };
 
@@ -659,8 +661,10 @@ NDC.prototype.encode = function(message, $meta, context, log) {
             bufferString += this.fieldSeparator + message.mac;
         }
         let buffer = Buffer.from(bufferString, 'ascii');
-        let bufferMasked = encodeBufferMask(buffer, message);
-        log && log.trace && log.trace({$meta: {mtid: 'frame', opcode: 'out'}, message: bufferMasked, log: context && context.session && context.session.log});
+        if (log && log.trace) {
+            let bufferMasked = encodeBufferMask(buffer, message);
+            log.trace({$meta: {mtid: 'frame', opcode: 'out'}, message: bufferMasked, log: context && context.session && context.session.log});
+        }
         return buffer;
     }
 };
