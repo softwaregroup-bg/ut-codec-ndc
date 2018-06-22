@@ -40,7 +40,7 @@ const decodeBufferMask = (maskFields) => (buffer, messageParsed) => {
 
     if (maskList.length) {
         var newBuffer = maskList.reduce((a, cur) => {
-            return a.split(cur).join((new Array(cur.length)).fill(maskSymbol).join(''));
+            return a.split(cur).join((new Array(cur.length / 2)).fill(maskSymbol).join(''));
         }, buffer.toString('hex'));
 
         return Buffer.from(newBuffer, 'hex');
@@ -59,7 +59,7 @@ function NDC(config, validator, logger) {
     this.val = validator || null;
     this.log = logger || {};
     this.codes = {};
-    this.decodeBufferMask = decodeBufferMask(['track2', 'track2Clean']);
+    this.decodeBufferMask = decodeBufferMask(['track2', 'track2Clean', 'pinBlockRaw']);
     this.encodeBufferMask = encodeBufferMask(['track2', 'track2Clean']);
     this.init(config);
     return this;
@@ -427,6 +427,7 @@ var parsers = {
             opcode: opcode && opcode.split && opcode.split(''),
             amount,
             pinBlock: parsers.pinBlock(pinBlock),
+            pinBlockRaw: pinBlock,
             pinBlockNew: parsers.pinBlockNew(args1),
             bufferB,
             bufferC,
