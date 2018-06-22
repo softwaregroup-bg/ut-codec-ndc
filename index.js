@@ -4,6 +4,8 @@ var defaultFormat = require('./messages');
 var hrtime = require('browser-process-hrtime');
 var emv = require('ut-emv');
 
+const maskSymbol = Buffer.from('*', 'ascii').toString('hex');
+
 function packCamFlags(data) {
     return data.reduce((buf, byte, idx) => {
         buf[idx] = byte.reduce((b, bit, idx) => {
@@ -24,14 +26,21 @@ function packSmartCardData(camFlags, emvTags) {
     return result;
 }
 
-const decodeBufferMask = (buffer, messageParsed) => {
-    if (messageParsed && messageParsed.track2) {
-        var maskList = [
-            Buffer.from(messageParsed.track2, 'ascii').toString('hex'),
-            Buffer.from(messageParsed.track2.split(';').join('').split('=').shift(), 'ascii').toString('hex')
-        ];
+const getMaskList = (arr, objArr) => {
+    return arr
+        .filter((v) => objArr[v])
+        .map((v) =>
+            Buffer.from(objArr[v], 'ascii')
+            .toString('hex')
+        );
+};
+
+const decodeBufferMask = (maskFields) => (buffer, messageParsed) => {
+    var maskList = getMaskList(maskFields, messageParsed);
+
+    if (maskList.length) {
         var newBuffer = maskList.reduce((a, cur) => {
-            return a.split(cur).join((new Array(cur.length)).fill('*').join(''));
+            return a.split(cur).join((new Array(cur.length)).fill(maskSymbol).join(''));
         }, buffer.toString('hex'));
 
         return Buffer.from(newBuffer, 'hex');
@@ -39,7 +48,7 @@ const decodeBufferMask = (buffer, messageParsed) => {
     return buffer;
 };
 
-const encodeBufferMask = (buffer, message) => {
+const encodeBufferMask = (maskFields) => (buffer, message) => {
     return buffer;
 };
 
@@ -50,6 +59,8 @@ function NDC(config, validator, logger) {
     this.val = validator || null;
     this.log = logger || {};
     this.codes = {};
+    this.decodeBufferMask = decodeBufferMask(['track2', 'track2Clean']);
+    this.encodeBufferMask = encodeBufferMask(['track2', 'track2Clean']);
     this.init(config);
     return this;
 }
@@ -562,7 +573,7 @@ NDC.prototype.decode = function(buffer, $meta, context, log) {
         }
     }
     if (log && log.trace) {
-        let bufferMasked = decodeBufferMask(buffer, message);
+        let bufferMasked = this.decodeBufferMask(buffer, Object.assign({}, message, {track2Clean: message.track2 && message.track2.split(';').join('').split('=').shift()}));
         log.trace({$meta: {mtid: 'frame', opcode: 'in'}, message: bufferMasked, log: context && context.session && context.session.log});
     }
     return message;
@@ -662,7 +673,7 @@ NDC.prototype.encode = function(message, $meta, context, log) {
         }
         let buffer = Buffer.from(bufferString, 'ascii');
         if (log && log.trace) {
-            let bufferMasked = encodeBufferMask(buffer, message);
+            let bufferMasked = this.encodeBufferMask(buffer, Object.assign({}, message, {track2Clean: message.track2 && message.track2.split(';').join('').split('=').shift()}));
             log.trace({$meta: {mtid: 'frame', opcode: 'out'}, message: bufferMasked, log: context && context.session && context.session.log});
         }
         return buffer;
