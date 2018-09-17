@@ -1,3 +1,8 @@
+<a name="6.3.0"></a>
+# [6.3.0](https://github.com/softwaregroup-bg/ut-codec-ndc/compare/v6.3.0-rc-einstein.4...v6.3.0) (2018-09-17)
+
+
+
 <a name="6.2.0"></a>
 # [6.2.0](https://github.com/softwaregroup-bg/ut-codec-ndc/compare/v6.1.9...v6.2.0) (2018-04-17)
 
