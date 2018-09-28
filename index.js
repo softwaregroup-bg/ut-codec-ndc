@@ -575,7 +575,7 @@ NDC.prototype.decode = function(buffer, $meta, context, log) {
     }
     if (log && log.trace) {
         let bufferMasked = this.decodeBufferMask(buffer, Object.assign({}, message, {track2Clean: message.track2 && message.track2.split(';').join('').split('=').shift()}));
-        log.trace({$meta: {mtid: 'frame', opcode: 'in'}, message: bufferMasked, log: context && context.session && context.session.log});
+        log.trace({$meta: {mtid: 'frame', method: 'ndc.decode'}, message: bufferMasked, log: context && context.session && context.session.log});
     }
     return message;
 };
@@ -675,7 +675,7 @@ NDC.prototype.encode = function(message, $meta, context, log) {
         let buffer = Buffer.from(bufferString, 'ascii');
         if (log && log.trace) {
             let bufferMasked = this.encodeBufferMask(buffer, Object.assign({}, message, {track2Clean: message.track2 && message.track2.split(';').join('').split('=').shift()}));
-            log.trace({$meta: {mtid: 'frame', opcode: 'out'}, message: bufferMasked, log: context && context.session && context.session.log});
+            log.trace({$meta: {mtid: 'frame', method: 'ndc.encode'}, message: bufferMasked, log: context && context.session && context.session.log});
         }
         return buffer;
     }
