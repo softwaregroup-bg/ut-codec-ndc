@@ -1,23 +1,25 @@
-var specificErrors = require('./map').specificErrors;
+const { specificErrors } = require('./map');
 
-module.exports = (defineError) => {
-    const Aptra = defineError('aptra');
-    const CommandReject = defineError('commandReject', Aptra, 'Command reject');
-    const Timeout = defineError('timeout', Aptra, 'Transaction timed out');
-    const Decode = defineError('decode', Aptra, 'No parser found');
-    const UnknownMessageClass = defineError('unknownMessageClass', Aptra, 'Received unknown message class');
+module.exports = ({defineError, getError, fetchErrors}) => {
+    if (!getError('aptra')) {
+        const Aptra = defineError('aptra', null, 'Aptra generic');
+        const CommandReject = defineError('commandReject', Aptra, 'Command reject');
 
-    var errors = {
-        aptra: Aptra,
-        commandReject: CommandReject,
-        decode: Decode,
-        timeout: Timeout,
-        unknownMessageClass: UnknownMessageClass,
-        customReject: (status) => ((errors[status] || defineError(status, CommandReject, 'Specific command reject'))())
+        defineError('timeout', Aptra, 'Transaction timed out');
+        defineError('decode', Aptra, 'No parser found');
+        defineError('unknownMessageClass', Aptra, 'Received unknown message class');
+
+        Object.keys(specificErrors).forEach(key => {
+            defineError(key, CommandReject, specificErrors[key]);
+        });
+    }
+
+    const CommandReject = getError('aptra.commandReject');
+    const customReject = status => {
+        return (getError(`aptra.commandReject.${status}`) || defineError(status, CommandReject, 'Specific command reject'))({});
     };
 
-    return Object.keys(specificErrors).reduce((a, c) => {
-        a[c] = defineError(c, CommandReject, specificErrors[c]);
-        return a;
-    }, errors);
+    return Object.assign({
+        'aptra.customReject': customReject
+    }, fetchErrors('aptra'));
 };

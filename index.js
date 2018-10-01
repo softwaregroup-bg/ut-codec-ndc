@@ -53,7 +53,7 @@ const encodeBufferMask = (maskFields) => (buffer, message) => {
 };
 
 function NDC(config, validator, logger) {
-    this.errors = require('./errors')(config.defineError);
+    this.errors = require('./errors')(config);
     this.fieldSeparator = config.fieldSeparator || '\u001c';
     this.groupSeparator = config.groupSeparator || '\u001d';
     this.val = validator || null;
@@ -83,10 +83,10 @@ var parsers = {
         transactionData
     }),
     specificReject: (status) => {
-        throw this.errors.customReject(status);
+        throw this.errors['aptra.customReject'](status);
     },
     reject: () => {
-        throw this.errors.commandReject();
+        throw this.errors['aptra.commandReject']({});
     },
     fault: (deviceIdentifierAndStatus, severities, diagnosticStatus, suppliesStatus) => {
         var deviceStatus = deviceIdentifierAndStatus && deviceIdentifierAndStatus.substring && deviceIdentifierAndStatus.substring(1);
@@ -565,12 +565,12 @@ NDC.prototype.decode = function(buffer, $meta, context, log) {
             if (typeof fn === 'function') {
                 merge(message, fn.apply(parsers, tokens));
             } else {
-                throw this.errors.decode({'command.method': command.method});
+                throw this.errors['aptra.decode']({'command.method': command.method});
             }
             message.tokens = tokens;
         } else {
             $meta.mtid = 'error';
-            throw this.errors.unknownMessageClass({'message class': tokens[0]});
+            throw this.errors['aptra.unknownMessageClass']({'message class': tokens[0]});
         }
     }
     if (log && log.trace) {
@@ -636,7 +636,7 @@ NDC.prototype.encode = function(message, $meta, context, log) {
                 $meta.trace = 'trn:' + context.traceTransaction;
                 context.traceTransaction += 1;
             } else {
-                throw this.errors.timeout();
+                throw this.errors['aptra.timeout']({});
             }
             break;
     }
