@@ -13,8 +13,9 @@ module.exports = ({defineError, getError, fetchErrors}) => {
             defineError(key, CommandReject, specificErrors[key]);
         });
     }
+
+    const CommandReject = getError('aptra.commandReject');
     const customReject = status => {
-        const CommandReject = getError('aptra.commandReject');
         return (getError(`aptra.commandReject.${status}`) || defineError(status, CommandReject, 'Specific command reject'))({});
     };
 
