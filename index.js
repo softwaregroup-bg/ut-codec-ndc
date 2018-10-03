@@ -82,10 +82,10 @@ var parsers = {
         transactionSerialNumber,
         transactionData
     }),
-    specificReject: (status) => {
+    specificReject: function(status) {
         throw this.errors.customReject(status);
     },
-    reject: () => {
+    reject: function() {
         throw this.errors.commandReject();
     },
     fault: (deviceIdentifierAndStatus, severities, diagnosticStatus, suppliesStatus) => {
