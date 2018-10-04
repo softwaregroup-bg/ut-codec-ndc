@@ -109,7 +109,7 @@ var parsers = {
     ready: () => ({}),
     state: function(status) { // do not change to arrow function as proper this and arguments are needed
         var g1 = status.substring(0, 1);
-        var fn = g1 && map.statuses[g1] && this[map.statuses[g1]];
+        var fn = g1 && map.statuses[g1] && parsers[map.statuses[g1]];
         if (typeof fn === 'function') {
             return merge({
                 statusType: map.statuses[g1]
@@ -318,10 +318,10 @@ var parsers = {
 
     // message classes
     unsolicitedStatus: function(type, luno, reserved, deviceIdentifierAndStatus, errorSeverity, diagnosticStatus, suppliesStatus) {
-        return this.fault(deviceIdentifierAndStatus, errorSeverity, diagnosticStatus, suppliesStatus);
+        return parsers.fault(deviceIdentifierAndStatus, errorSeverity, diagnosticStatus, suppliesStatus);
     },
     solicitedStatus: function(type, luno, reserved, descriptor, status) {
-        var fn = descriptor && map.descriptors[descriptor] && this[map.descriptors[descriptor]];
+        var fn = descriptor && map.descriptors[descriptor] && parsers[map.descriptors[descriptor]];
         if (typeof fn === 'function') {
             return merge({
                 luno,
@@ -563,7 +563,7 @@ NDC.prototype.decode = function(buffer, $meta, context, log) {
 
             var fn = parsers[command.method];
             if (typeof fn === 'function') {
-                merge(message, fn.apply(parsers, tokens));
+                merge(message, fn.apply(this, tokens));
             } else {
                 throw this.errors.decode({'command.method': command.method});
             }
