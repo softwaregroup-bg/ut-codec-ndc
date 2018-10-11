@@ -7,7 +7,7 @@ module.exports = ({defineError, getError, fetchErrors}) => {
 
         defineError('timeout', Aptra, 'Transaction timed out');
         defineError('decode', Aptra, 'No parser found');
-        defineError('unknownMessageClass', Aptra, 'Received unknown message class');
+        defineError('unknownMessageClass', Aptra, 'Received unknown message class: {message class}');
 
         Object.keys(specificErrors).forEach(key => {
             defineError(key, CommandReject, specificErrors[key]);
