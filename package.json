@@ -9,7 +9,9 @@
   },
   "devDependencies": {
     "blue-tape": "1.0.0",
-    "ut-tools": "^5.29.14"
+    "ut-tools": "^5.29.14",
+    "ut-error": "^5.4.9",
+    "tap": "10.7.3"
   },
   "scripts": {
     "lint": "ut-lint .",
