@@ -5,8 +5,7 @@ const errors = require('../../errors')(errorApi);
 const config = require('./config/test')(errors);
 
 const lib = require('./lib')({
-    errors,
-    errorApi,
+    errors: {...errors, ...errorApi},
     config,
     mainLib: {NDC: new NDC({messageFormat: config.messageFormat, defineError: define, getError: get, fetchErrors: fetch})}
 });

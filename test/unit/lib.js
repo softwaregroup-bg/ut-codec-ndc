@@ -1,4 +1,4 @@
-module.exports = ({busConfig, errors, errorApi, config, mainLib}) => {
+module.exports = ({busConfig, errors, config, mainLib}) => {
     const busConfigGlobal = busConfig;
     const configGlobal = config;
     const errorsGlobal = errors;
@@ -6,7 +6,6 @@ module.exports = ({busConfig, errors, errorApi, config, mainLib}) => {
     const init = ({busConfig, config, errors}) => Object.assign(
         {[`_id_${Math.random()}`]: 'id'},
         mainLib,
-        errorApi,
         {config},
         {errors},
         {
