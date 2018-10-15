@@ -378,6 +378,90 @@ module.exports = (errors) => ({
             solicitedBufferSpecificRejectA02: Buffer.from('32321C3030313030303030311C1C1C431C413032', 'hex'), // "22001000001CA02"
             solicitedBufferSpecificRejectC03: Buffer.from('32321C3030313030303030311C1C1C431C433033', 'hex'), // "22001000001CC03"
             solicitedBufferFault: Buffer.from('32321c3030313030303030311c1c381c453230303030303030301c303030301c1c3130303030', 'hex'), // Buffer.from('220010000018E200000000000010000', 'ascii').toString('hex')
+            solicitedConfigCartEmpty: Buffer.from('32321c3030313030303030311c1c461c311c303030303030303030303030303032323030303030301c31353746303031313031303030313031303030303030303130303030303130313031303031303746374630301c303030313130313130303030303031333030303030301c303030303030303131303030', 'hex'), // Buffer.from('22001000001F10000000000000022000000157F00110100010100000001000001010100107F7F000001101100000013000000000000011000', 'ascii').toString('hex')
+            solicitedConfigCartEmptyMessage: {
+                session: {
+                    cassettes: [
+                        {sensor: true, fitness: 'warning', supplies: 'mediaOut'},
+                        {sensor: false, fitness: 'noError', supplies: 'notConfigured'},
+                        {sensor: false, fitness: 'noError', supplies: 'notConfigured'},
+                        {sensor: false, fitness: 'noError', supplies: 'notConfigured'}
+                    ]
+                },
+                luno: '001000001',
+                descriptor: 'state',
+                statusType: 'configuration',
+                cofigId: '',
+                fitness: {
+                    clock: 'noError', comms: 'noError', disk: 'noError', cardReader: 'noError', cashHandler: 'noError', depository: 'noError', receiptPrinter: 'noError', journalPrinter: 'noError', nightDepository: 'noError', encryptor: 'noError', camera: 'noError', doorAccess: 'noError', flexDisk: 'warning', cassette1: 'warning', cassette2: 'noError', cassette3: 'noError', cassette4: 'noError', statementPrinter: 'noError', signageDisplay: null, systemDisplay: null, mediaEntry: null, envelopeDispenser: null, documentProcessing: null, coinDispenser: null, voiceGuidance: null, noteAcceptor: null, chequeProcessor: null
+                },
+                hwConfig: '157F00110100010100000001000001010100107F7F00',
+                supplyStatus: {
+                    cardReader: 'good', depository: 'notConfigured', receiptPrinter: 'good', journalPrinter: 'good', rejectBin: 'good', cassette1: 'mediaOut', cassette2: 'notConfigured', cassette3: 'notConfigured', cassette4: 'notConfigured'
+                },
+                sensors: {
+                    deviceStatusDescription: null, supervisorMode: false, vibration: false, door: false, silentSignal: false, electronicsEnclosure: false, depositBin: false, cardBin: false, rejectBin: true, cassette1: true, cassette2: false, cassette3: false, cassette4: false, session: null, coinDispenser: null, coinHopper1: null, coinHopper2: null, coinHopper3: null, coinHopper4: null, cpmPockets: null
+                },
+                release: null,
+                softwareId: null,
+                tokens: ['22', '001000001', '', 'F', '1', '0000000000000022000000', '157F00110100010100000001000001010100107F7F00', '0001101100000013000000', '000000011000']
+            },
+            solicitedConfigCartOk: Buffer.from('32321c3030313030303030311c1c461c311c303030303030303030303030303030303030303030301c31353746303031313031303030313031303030303030303130303030303130313031303031303746374630301c303030313130313130303030303031313030303030301c303030303030303131303030', 'hex'), // Buffer.from('22001000001F10000000000000000000000157F00110100010100000001000001010100107F7F000001101100000011000000000000011000', 'ascii').toString('hex')
+            solicitedConfigCartOkMessage: {
+                session: {
+                    cassettes: [
+                        {sensor: true, fitness: 'noError', supplies: 'good'},
+                        {sensor: false, fitness: 'noError', supplies: 'notConfigured'},
+                        {sensor: false, fitness: 'noError', supplies: 'notConfigured'},
+                        {sensor: false, fitness: 'noError', supplies: 'notConfigured'}
+                    ]
+                },
+                luno: '001000001',
+                descriptor: 'state',
+                statusType: 'configuration',
+                cofigId: '',
+                fitness: {
+                    clock: 'noError', comms: 'noError', disk: 'noError', cardReader: 'noError', cashHandler: 'noError', depository: 'noError', receiptPrinter: 'noError', journalPrinter: 'noError', nightDepository: 'noError', encryptor: 'noError', camera: 'noError', doorAccess: 'noError', flexDisk: 'noError', cassette1: 'noError', cassette2: 'noError', cassette3: 'noError', cassette4: 'noError', statementPrinter: 'noError', signageDisplay: null, systemDisplay: null, mediaEntry: null, envelopeDispenser: null, documentProcessing: null, coinDispenser: null, voiceGuidance: null, noteAcceptor: null, chequeProcessor: null
+                },
+                hwConfig: '157F00110100010100000001000001010100107F7F00',
+                supplyStatus: {
+                    cardReader: 'good', depository: 'notConfigured', receiptPrinter: 'good', journalPrinter: 'good', rejectBin: 'good', cassette1: 'good', cassette2: 'notConfigured', cassette3: 'notConfigured', cassette4: 'notConfigured'
+                },
+                sensors: {
+                    deviceStatusDescription: null, supervisorMode: false, vibration: false, door: false, silentSignal: false, electronicsEnclosure: false, depositBin: false, cardBin: false, rejectBin: true, cassette1: true, cassette2: false, cassette3: false, cassette4: false, session: null, coinDispenser: null, coinHopper1: null, coinHopper2: null, coinHopper3: null, coinHopper4: null, cpmPockets: null
+                },
+                release: null,
+                softwareId: null,
+                tokens: ['22', '001000001', '', 'F', '1', '0000000000000000000000', '157F00110100010100000001000001010100107F7F00', '0001101100000011000000', '000000011000']
+            },
+            solicitedPrinterOutOfPaper: Buffer.from('32321c3030313030303030311c1c461c311c303030303030303030303030303030303030303030301c31353746303031313031303030313031303030303030303130303030303130313031303031303746374630301c303030313130333130303030303031313030303030301c303030303030303131303030', 'hex'), // Buffer.from('22001000001F10000000000000000000000157F00110100010100000001000001010100107F7F000001103100000011000000000000011000', 'ascii').toString('hex')
+            solicitedPrinterOutOfPaperMessage: {
+                session: {
+                    cassettes: [
+                        {sensor: true, fitness: 'noError', supplies: 'good'},
+                        {sensor: false, fitness: 'noError', supplies: 'notConfigured'},
+                        {sensor: false, fitness: 'noError', supplies: 'notConfigured'},
+                        {sensor: false, fitness: 'noError', supplies: 'notConfigured'}
+                    ]
+                },
+                luno: '001000001',
+                descriptor: 'state',
+                statusType: 'configuration',
+                cofigId: '',
+                fitness: {
+                    clock: 'noError', comms: 'noError', disk: 'noError', cardReader: 'noError', cashHandler: 'noError', depository: 'noError', receiptPrinter: 'noError', journalPrinter: 'noError', nightDepository: 'noError', encryptor: 'noError', camera: 'noError', doorAccess: 'noError', flexDisk: 'noError', cassette1: 'noError', cassette2: 'noError', cassette3: 'noError', cassette4: 'noError', statementPrinter: 'noError', signageDisplay: null, systemDisplay: null, mediaEntry: null, envelopeDispenser: null, documentProcessing: null, coinDispenser: null, voiceGuidance: null, noteAcceptor: null, chequeProcessor: null
+                },
+                hwConfig: '157F00110100010100000001000001010100107F7F00',
+                supplyStatus: {
+                    cardReader: 'good', depository: 'notConfigured', receiptPrinter: 'mediaOut', journalPrinter: 'good', rejectBin: 'good', cassette1: 'good', cassette2: 'notConfigured', cassette3: 'notConfigured', cassette4: 'notConfigured'
+                },
+                sensors: {
+                    deviceStatusDescription: null, supervisorMode: false, vibration: false, door: false, silentSignal: false, electronicsEnclosure: false, depositBin: false, cardBin: false, rejectBin: true, cassette1: true, cassette2: false, cassette3: false, cassette4: false, session: null, coinDispenser: null, coinHopper1: null, coinHopper2: null, coinHopper3: null, coinHopper4: null, cpmPockets: null
+                },
+                release: null,
+                softwareId: null,
+                tokens: ['22', '001000001', '', 'F', '1', '0000000000000000000000', '157F00110100010100000001000001010100107F7F00', '0001103100000011000000', '000000011000']
+            },
             solicitedResponse: {
                 luno: '001000001',
                 session: undefined,
@@ -414,6 +498,147 @@ module.exports = (errors) => ({
                 tokens: ['22', '001000001', '', '8', 'E200000000', '0000', '', '10000']
             },
             solicitedError: new Buffer([0x30, 0x32, 0x1c, 0x30, 0x30, 0x31, 0x30, 0x30, 0x30, 0x30, 0x30, 0x31, 0x1c, 0x1c, 0x39])
+        },
+        unsolicited: {
+            unsolicitedSupervisorMode: Buffer.from('31321C3030313030303030311C1C523039', 'hex'), // 12 001000001  R09
+            unsolicitedSupervisorModeMessage: {
+                session: null,
+                device: 'supervisorKeys',
+                deviceStatus: '09',
+                severities: null,
+                diagnosticStatus: null,
+                supplies: null,
+                menu: '09',
+                tokens: ['12', '001000001', '', 'R09']
+            },
+            unsolicitedSupervisorModeEnter: Buffer.from('31321C3030313030303030311C1C503231', 'hex'), // 12 001000001  P21
+            unsolicitedSupervisorModeEnterMessage: {
+                session: { cassettes: [ {sensor: null}, {sensor: null}, {sensor: null}, {sensor: null} ] },
+                device: 'sensors',
+                deviceStatus: '21',
+                severities: null,
+                diagnosticStatus: null,
+                supplies: null,
+                deviceStatusDescription: 'Mode change',
+                supervisorMode: true,
+                vibration: false,
+                door: null,
+                silentSignal: null,
+                electronicsEnclosure: null,
+                depositBin: null,
+                cardBin: null,
+                rejectBin: null,
+                cassette1: null,
+                cassette2: null,
+                cassette3: null,
+                cassette4: null,
+                coinDispenser: null,
+                coinHopper1: null,
+                coinHopper2: null,
+                coinHopper3: null,
+                coinHopper4: null,
+                cpmPockets: null,
+                tokens: ['12', '001000001', '', 'P21']
+            },
+            unsolicitedSupervisorModeExit: Buffer.from('31321C3030313030303030311C1C503230', 'hex'), // 12 001000001  P20
+            unsolicitedSupervisorModeExitMessage: {
+                session: { cassettes: [ {sensor: null}, {sensor: null}, {sensor: null}, {sensor: null} ] },
+                device: 'sensors',
+                deviceStatus: '20',
+                severities: null,
+                diagnosticStatus: null,
+                supplies: null,
+                deviceStatusDescription: 'Mode change',
+                supervisorMode: false,
+                vibration: false,
+                door: null,
+                silentSignal: null,
+                electronicsEnclosure: null,
+                depositBin: null,
+                cardBin: null,
+                rejectBin: null,
+                cassette1: null,
+                cassette2: null,
+                cassette3: null,
+                cassette4: null,
+                coinDispenser: null,
+                coinHopper1: null,
+                coinHopper2: null,
+                coinHopper3: null,
+                coinHopper4: null,
+                cpmPockets: null,
+                tokens: ['12', '001000001', '', 'P20']
+            },
+            unsolicitedCardNotTakenBuffer: Buffer.from('31321c3030313030303030311c1c44311c301c303030363030303030301c30', 'hex'), //  Buffer.from('12001000001D1000060000000', 'ascii').toString('hex')
+            unsolicitedCardNotTakenMessage: {
+                session: null,
+                device: 'cardReader',
+                deviceStatus: '1',
+                severities: ['noError'],
+                diagnosticStatus: '0006000000',
+                supplies: ['unchanged'],
+                deviceStatusDescription: 'The cardholder did not take his card within the allowed time and it was captured or jammed',
+                tokens: ['12', '001000001', '', 'D1', '0', '0006000000', '0']
+            },
+            unsolicitedCashRetractedBuffer: Buffer.from('31321c3030313030303030311c1c453530303030303030301c30303030301c30301c3131303030', 'hex'), //  Buffer.from('12001000001E500000000000000011000', 'ascii').toString('hex')
+            unsolicitedCashRetractedMessage: {
+                session: undefined,
+                device: 'cashHandler',
+                deviceStatus: '500000000',
+                severities: ['noError', 'noError', 'noError', 'noError', 'noError'],
+                diagnosticStatus: '00',
+                supplies: ['good', 'good', 'unchanged', 'unchanged', 'unchanged'],
+                deviceStatusDescription: 'Some notes have been retracted when the notes were not taken following a Present time-out. The number of notes retracted is unknown',
+                dispensed1: '00',
+                dispensed2: '00',
+                dispensed3: '00',
+                dispensed4: '00',
+                tokens: ['12', '001000001', '', 'E500000000', '00000', '00', '11000']
+            },
+            unsolicitedJournalPaperBuffer: Buffer.from('31321c3030313030303030311c1c48311c301c3035343a3030303030301c33313131', 'hex'), // Buffer.from('12001000001H10054:0000003111', 'ascii').toString('hex')
+            unsolicitedJournalPaperMessage: {
+                session: undefined,
+                device: 'journalPrinter',
+                deviceStatus: '1',
+                severities: ['noError'],
+                diagnosticStatus: '054:000000',
+                supplies: ['mediaOut', 'good', 'good', 'good'],
+                deviceStatusDescription: 'Print operation not successfully completed',
+                tokens: ['12', '001000001', '', 'H1', '0', '054:000000', '3111']
+            },
+            unsolicitedReceiptPaper: Buffer.from('31321c3030313030303030311c1c47311c301c3035343a3030303030301c33313131', 'hex'), // Buffer.from('12001000001G10054:0000003111', 'ascii').toString('hex')
+            unsolicitedMessageReceiptPaperMessage: {
+                session: undefined,
+                device: 'receiptPrinter',
+                deviceStatus: '1',
+                severities: ['noError'],
+                diagnosticStatus: '054:000000',
+                supplies: ['mediaOut', 'good', 'good', 'good'],
+                deviceStatusDescription: 'Print operation not successfully completed',
+                tokens: ['12', '001000001', '', 'G1', '0', '054:000000', '3111']
+            },
+            unsolicitedReceiptPaperLow: Buffer.from('31321c3030313030303030311c1c47301c301c303034323030303030301c32313131', 'hex'), // Buffer.from('12001000001G0000420000002111', 'ascii').toString('hex')
+            unsolicitedMessageReceiptPaperLowMessage: {
+                session: undefined,
+                device: 'receiptPrinter',
+                deviceStatus: '0',
+                severities: ['noError'],
+                diagnosticStatus: '0042000000',
+                supplies: ['mediaLow', 'good', 'good', 'good'],
+                deviceStatusDescription: 'Successful print',
+                tokens: ['12', '001000001', '', 'G0', '0', '0042000000', '2111']
+            },
+            unsolicitedEjectCard: Buffer.from('31321c3030313030303030311c1c44321c321c313230353030313030301c30', 'hex'), // Buffer.from('12001000001D2212050010000', 'ascii').toString('hex')
+            unsolicitedEjectCardMessage: {
+                session: undefined,
+                device: 'cardReader',
+                deviceStatus: '2',
+                severities: ['warning'],
+                diagnosticStatus: '1205001000',
+                supplies: ['unchanged'],
+                deviceStatusDescription: 'The mechanism failed to eject the card, which was either captured or jammed',
+                tokens: ['12', '001000001', '', 'D2', '2', '1205001000', '0']
+            }
         }
     }
 });
