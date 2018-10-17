@@ -15,3 +15,5 @@ require('./cases/solicited')(lib);
 require('./cases/unsolicited')(lib);
 require('./cases/balance')(lib);
 require('./cases/withdraw')(lib);
+require('./cases/changePin')(lib);
+require('./cases/transfer')(lib);
