@@ -6,7 +6,6 @@ module.exports = (lib) => {
 
     tap.test('withdraw', (t) => {
         t.same(instance.NDC.decode(withdraw.transactionBuffer, {}, {}), withdraw.transactionMessage, 'test transaction request');
-        t.throws(() => instance.NDC.decode(withdraw.transactionBufferError, {}, {}), instance.NDC.errors['aptra.unknownMessageClass']({params: {'message class': '1'}}), 'should fail - unknown message class');
         t.same(instance.NDC.encode(withdraw.transactionReply, {opcode: 'transactionReply'}, {transactionRequestId: 2, transactionReplyTime: process.hrtime()[0] + 1000}), withdraw.transactionReplyBuffer, 'test transaction reply');
         t.same(instance.NDC.decode(withdraw.solicitedBuffer, {}, {}), withdraw.solicitedMessage, 'test solicited status transaction ready');
         t.same(instance.NDC.decode(withdraw.unsolicitedBuffer, {}, {}), withdraw.unsolicitedMessage, 'test unsolicited status');
@@ -21,6 +20,7 @@ module.exports = (lib) => {
         t.same(instance.NDC.decode(withdraw.sendSupplyCountersResBuffer, {}, {}), withdraw.sendSupplyCountersRes, 'test sendSupplyCounters reply');
         t.same(instance.NDC.encode(withdraw.goInService, {opcode: 'goInService'}, {}), withdraw.goInServiceBuffer, 'test goInService');
         t.same(instance.NDC.decode(withdraw.solicitedStatus, {}, {}), withdraw.solicitedStatusMessage, 'test solicited status ready');
+        t.throws(() => instance.NDC.decode(withdraw.transactionBufferError, {}, {}), instance.NDC.errors['aptra.unknownMessageClass']({params: {'message class': '1'}}), 'should fail - unknown message class');
         t.end();
     });
 };

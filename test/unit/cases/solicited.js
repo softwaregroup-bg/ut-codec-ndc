@@ -3,28 +3,19 @@ const tap = require('tap');
 module.exports = (lib) => {
     const instance = lib.init();
     const solicited = instance.config.test.solicited;
+    const customisation = instance.config.test.customisation;
 
     tap.test('Solicited Status Messages', (t) => {
         t.same(instance.NDC.decode(solicited.solicited, {}, {}), solicited.solicitedResponse, 'test status descriptor - Ready');
-        t.same(instance.NDC.encode(solicited.currencyMappingLoad, {opcode: 'currencyMappingLoad'}, {}), solicited.currencyMappingLoadBuffer, 'test send currencyMappingLoad');
-        t.same(instance.NDC.decode(solicited.currencyMappingLoadBufferOK, {}, {}), solicited.currencyMappingLoadOk, 'test currencyMappingLoad');
-        t.same(instance.NDC.encode(solicited.sendConfigurationId, {opcode: 'sendConfigurationId'}, {}), solicited.sendConfigurationIdBuffer, 'test send sendConfigurationId');
-        t.same(instance.NDC.decode(solicited.sendConfigurationIdBufferOk, {}, {}), solicited.sendConfigurationIdOk, 'test sendConfigurationId');
-        t.same(instance.NDC.encode(solicited.paramsLoadEnhanced, {opcode: 'paramsLoadEnhanced'}, {}), solicited.paramsLoadEnhancedBuffer, 'test send paramsLoadEnhanced');
-        t.same(instance.NDC.encode(solicited.configIdLoad, {opcode: 'configIdLoad'}, {}), solicited.configIdLoadBuffer, 'test send configIdLoad');
-        t.same(instance.NDC.encode(solicited.sendConfigurationHardware, {opcode: 'sendConfigurationHardware'}, {}), solicited.sendConfigurationHardwareBuffer, 'test send sendConfigurationHardware');
-        t.same(instance.NDC.decode(solicited.sendConfigurationHardwareBufferOk, {}, {}), solicited.sendConfigurationHardwareOk, 'test sendConfigurationHardware');
-        t.same(instance.NDC.encode(solicited.sendConfigurationSuplies, {opcode: 'sendConfigurationSuplies'}, {}), solicited.sendConfigurationSupliesBuffer, 'test send sendConfigurationSuplies');
-        t.same(instance.NDC.decode(solicited.sendConfigurationSupliesBufferOk, {}, {}), solicited.sendConfigurationSupliesOk, 'test sendConfigurationSuplies');
-        t.same(instance.NDC.encode(solicited.sendConfigurationFitness, {opcode: 'sendConfigurationFitness'}, {}), solicited.sendConfigurationFitnessBuffer, 'test send sendConfigurationFitness');
-        t.same(instance.NDC.decode(solicited.sendConfigurationFitnessBufferOk, {}, {}), solicited.sendConfigurationFitnessOk, 'test sendConfigurationFitness');
-        t.same(instance.NDC.encode(solicited.sendConfigurationSensor, {opcode: 'sendConfigurationSensor'}, {}), solicited.sendConfigurationSensorBuffer, 'test send sendConfigurationSensor');
-        t.same(instance.NDC.decode(solicited.sendConfigurationSensorBufferOk, {}, {}), solicited.sendConfigurationSensorOk, 'test sendConfigurationSensor');
-        t.same(instance.NDC.encode(solicited.sendConfigurationOptionDigits, {opcode: 'sendConfigurationOptionDigits'}, {}), solicited.sendConfigurationOptionDigitsBuffer, 'test send sendConfigurationOptionDigits');
-        t.same(instance.NDC.decode(solicited.sendConfigurationOptionDigitsBufferOk, {}, {}), solicited.sendConfigurationOptionDigitsOk, 'test sendConfigurationOptionDigits');
         t.throws(() => instance.NDC.decode(solicited.solicitedError, {}, {}), instance.errors['aptra.unknownMessageClass']({params: {'message class': '02'}}), {}, 'should fail - unknown message class');
         t.throws(() => instance.NDC.decode(solicited.solicitedBufferDecode, {}, {}), instance.errors['aptra.decode']({'command.method': 'solicitedFault'}), 'should fail - no parser found');
         tap.test('Solicited Terminal State', (t) => {
+            t.same(instance.NDC.decode(customisation.sendConfigurationIdBufferOk, {}, {}), customisation.sendConfigurationIdOk, 'test status descriptor - State - sendConfigurationId');
+            t.same(instance.NDC.decode(customisation.sendConfigurationHardwareBufferOk, {}, {}), customisation.sendConfigurationHardwareOk, 'test status descriptor - State - sendConfigurationHardware');
+            t.same(instance.NDC.decode(customisation.sendConfigurationSupliesBufferOk, {}, {}), customisation.sendConfigurationSupliesOk, 'test status descriptor - State - sendConfigurationSuplies');
+            t.same(instance.NDC.decode(customisation.sendConfigurationFitnessBufferOk, {}, {}), customisation.sendConfigurationFitnessOk, 'test status descriptor - State - sendConfigurationFitness');
+            t.same(instance.NDC.decode(customisation.sendConfigurationSensorBufferOk, {}, {}), customisation.sendConfigurationSensorOk, 'test status descriptor - State - sendConfigurationSensor');
+            t.same(instance.NDC.decode(customisation.sendConfigurationOptionDigitsBufferOk, {}, {}), customisation.sendConfigurationOptionDigitsOk, 'test status descriptor - State - sendConfigurationOptionDigits');
             t.same(instance.NDC.decode(solicited.solicitedPrinterOutOfPaper, {}, {}), solicited.solicitedPrinterOutOfPaperMessage, 'test status descriptor - State - printer out of paper');
             t.same(instance.NDC.decode(solicited.solicitedConfigCartEmpty, {}, {}), solicited.solicitedConfigCartEmptyMessage, 'test status descriptor - State - cassette 1 empty');
             t.same(instance.NDC.decode(solicited.solicitedConfigCartOk, {}, {}), solicited.solicitedConfigCartOkMessage, 'test status descriptor - State - cassette 1 ok');
@@ -38,7 +29,6 @@ module.exports = (lib) => {
             t.end();
         });
         tap.test('Solicited Device Fault Status', (t) => {
-            t.same(instance.NDC.decode(solicited.solicitedBufferFault, {}, {}), solicited.solicitedFault, 'test status descriptor - Device Fault');
             t.same(instance.NDC.decode(solicited.solicitedReceiptlow, {}, {}), solicited.solicitedReceiptlowMessage, 'test status descriptor Fault - Receipt printer low');
             t.same(instance.NDC.decode(solicited.solicitedPreventCardEjection, {}, {}), solicited.solicitedPreventCardEjectionMessage, 'test status descriptor Fault - Prevent card ejection');
             t.same(instance.NDC.decode(solicited.solicitedCardNotEjected, {}, {}), solicited.solicitedCardNotEjectedMessage, 'test status descriptor Fault - Card not ejected');
@@ -53,8 +43,8 @@ module.exports = (lib) => {
             t.end();
         });
         tap.test('Other Solicited Messages', (t) => {
-            t.same(instance.NDC.encode(solicited.keyChangeTpk, {opcode: 'keyChangeTpk'}, {}), solicited.keyChangeTpkBuffer, 'test send Key Change Tpk');
             t.same(instance.NDC.decode(solicited.encryptorIniDataBuffer, {}, {}), solicited.encryptorIniData, 'test EncryptorIniData');
+            t.same(instance.NDC.decode(solicited.uploadEjDataBuffer, {}, {}), solicited.uploadEjData, 'test UploadEjData');
             t.end();
         });
         t.end();
