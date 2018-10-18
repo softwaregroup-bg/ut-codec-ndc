@@ -5,7 +5,8 @@
   "dependencies": {
     "browser-process-hrtime": "0.1.2",
     "lodash.merge": "4.6.0",
-    "ut-emv": "^6.1.2"
+    "ut-emv": "^6.1.2",
+    "uuid": "3.3.2"
   },
   "devDependencies": {
     "blue-tape": "1.0.0",
