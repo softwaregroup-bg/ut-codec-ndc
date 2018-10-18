@@ -1,3 +1,4 @@
+const uuid = require('uuid/v4');
 var merge = require('lodash.merge');
 var map = require('./map');
 var defaultFormat = require('./messages');
@@ -12,7 +13,7 @@ function packCamFlags(data) {
             return (b << 1) | bit;
         }, buf[idx]);
         return buf;
-    }, new Buffer([0, 0])).toString('hex');
+    }, Buffer.from([0, 0])).toString('hex');
 }
 
 function packSmartCardData(camFlags, emvTags) {
@@ -31,7 +32,7 @@ const getMaskList = (arr, objArr) => {
         .filter((v) => objArr[v])
         .map((v) =>
             Buffer.from(objArr[v], 'ascii')
-            .toString('hex')
+                .toString('hex')
         );
 };
 
@@ -363,7 +364,7 @@ var parsers = {
         // There are 16 available CAM flags.These are encoded as the bits in two bytes, and are converted to ASCII hex(four bytes) for transmission. Each can have the value 0x0 or 0x1
         var smartCardData = fields.find(field => field.substring(0, 4) === '5CAM');
         smartCardData = (smartCardData && smartCardData.substring(4)) || '';
-        var camFlags = new Buffer(smartCardData.substring(0, 4), 'hex');
+        var camFlags = Buffer.from(smartCardData.substring(0, 4), 'hex');
         var emvTags = smartCardData.substring(4);
         return Object.assign(
             {},
@@ -566,6 +567,20 @@ NDC.prototype.decode = function(buffer, $meta, context, log) {
                 merge(message, fn.apply(this, tokens));
             } else {
                 throw this.errors['aptra.decode']({'command.method': command.method});
+            }
+            switch ($meta.method) {
+                case 'aptra.transaction':
+                    $meta.forward = $meta.forward || {};
+                    $meta.forward['x-client-trace-id'] = message.luno + '/tx-' + message.transactionRequestId + '/' + uuid();
+                    break;
+                case 'aptra.unsolicitedStatus':
+                    $meta.forward = $meta.forward || {};
+                    $meta.forward['x-client-trace-id'] = message.luno + '/us/' + uuid();
+                    break;
+                case 'aptra.uploadEjData':
+                    $meta.forward = $meta.forward || {};
+                    $meta.forward['x-client-trace-id'] = message.luno + '/ej/' + uuid();
+                    break;
             }
             message.tokens = tokens;
         } else {
