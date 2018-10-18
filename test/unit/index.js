@@ -12,6 +12,7 @@ const lib = require('./lib')({
 
 // test cases
 require('./cases/solicited')(lib);
+require('./cases/customisation')(lib);
 require('./cases/unsolicited')(lib);
 require('./cases/balance')(lib);
 require('./cases/withdraw')(lib);

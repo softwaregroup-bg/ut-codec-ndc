@@ -5,6 +5,8 @@ module.exports = (lib) => {
     const unsolicited = instance.config.test.unsolicited;
 
     tap.test('unsolicited', (t) => {
+        t.same(instance.NDC.decode(unsolicited.unsolicitedTimeOfDayClock, {}, {}), unsolicited.unsolicitedTimeOfDayClockMessage, 'test unsolicited - Time of day clock');
+        t.same(instance.NDC.decode(unsolicited.unsolicitedPowerFailure, {}, {}), unsolicited.unsolicitedPowerFailureMessage, 'test unsolicited - Power failure');
         t.same(instance.NDC.decode(unsolicited.unsolicitedSupervisorModeEnter, {}, {}), unsolicited.unsolicitedSupervisorModeEnterMessage, 'test unsolicited - Supervisor mode enter');
         t.same(instance.NDC.decode(unsolicited.unsolicitedSupervisorMode, {}, {}), unsolicited.unsolicitedSupervisorModeMessage, 'test unsolicited - Supervisor mode keys');
         t.same(instance.NDC.decode(unsolicited.unsolicitedSupervisorModeExit, {}, {}), unsolicited.unsolicitedSupervisorModeExitMessage, 'test unsolicited - Supervisor mode exit');
