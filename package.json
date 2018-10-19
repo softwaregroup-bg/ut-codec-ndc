@@ -29,7 +29,7 @@
     "pretest": "ut-pretest",
     "precover": "ut-precover",
     "preversion": "ut-preversion",
-    "test": "ut-test",
+    "test": "ut-test-parallel",
     "version": "ut-version",
     "jenkins": "ut-jenkins",
     "gitlab": "ut-gitlab"
