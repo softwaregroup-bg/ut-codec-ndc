@@ -416,35 +416,35 @@ module.exports = (errors) => ({
                         transactionDate: {tag: '9A', idx: 5, len: 3, val: ''},
                         transactionType: {tag: '9C', idx: 6, len: 1, val: ''},
                         unpredictableNumber: {tag: '9F37', idx: 7, len: 4, val: ''}}},
-                    amountAuthorised: {tag: '9F02', len: 6, val: '000000005000'},
-                    amountOther: {tag: '9F03', len: 6, val: '000000000000'},
-                    applicationInterchangeProfile: {tag: '82', len: 2, val: '1800'},
-                    pan: {tag: '5A', len: 9, val: '502265400089000092'},
-                    panSeqNum: {tag: '5F34', len: 1, val: '01'},
-                    atc: {tag: '9F36', len: 2, val: '09D3'},
-                    applicationCryptogram: {tag: '9F26', len: 8, val: 'CE319347519E0604'},
-                    cvmResults: {tag: '9F34', len: 3, val: '020000'},
-                    cryptogramInformationData: {tag: '9F27', len: 1, val: '80'},
-                    interfaceDeviceIFDSerialNumber: {tag: '9F1E', len: 8, val: '3030303030303031'},
-                    issuerApplicationData: {tag: '9F10', len: 7, val: '06010A03A02000'},
-                    terminalApplicationVersionNumber: {tag: '9F09', len: 2, val: '0096'},
-                    terminalCapabilities: {tag: '9F33', len: 3, val: '6040E8'},
-                    terminalCountryCode: {tag: '9F1A', len: 2, val: '0608'},
-                    terminalType: {tag: '9F35', len: 1, val: '14'},
-                    terminalVerificationResults: {tag: '95', len: 5, val: '8000040000'},
-                    track2EquivalentData: {tag: '57', len: 15, val: '502265400089000092D2708620951F'},
-                    transactionCurrencyCode: {tag: '5F2A', len: 2, val: '0608'},
-                    applicationVersionNumber: {tag: '9F08', len: 2, val: '0096'},
-                    transactionDate: {tag: '9A', len: 3, val: '181017'},
-                    transactionSequenceCounter: {tag: '9F41', len: 4, val: '00003846'},
-                    transactionStatusInformation: {tag: '9B', len: 2, val: '6000'},
-                    transactionType: {tag: '9C', len: 1, val: '40'},
-                    unpredictableNumber: {tag: '9F37', len: 4, val: '12A528A7'},
-                    '9F53': {tag: '9F53', len: 1, val: '5A'},
-                    applicationIdentifierAIDTerminal: {tag: '9F06', len: 7, val: 'A0000006351010'},
-                    applicationLabel: {tag: '50', len: 16, val: '5068696C697070696E65204465626974'},
-                    cardholderName: {tag: '5F20', len: 26, val: '4544204241524741444F2F202020202020202020202020202020'},
-                    applicationExpirationDate: {tag: '5F24', len: 3, val: '270831'}},
+                amountAuthorised: {tag: '9F02', len: 6, val: '000000005000'},
+                amountOther: {tag: '9F03', len: 6, val: '000000000000'},
+                applicationInterchangeProfile: {tag: '82', len: 2, val: '1800'},
+                pan: {tag: '5A', len: 9, val: '502265400089000092'},
+                panSeqNum: {tag: '5F34', len: 1, val: '01'},
+                atc: {tag: '9F36', len: 2, val: '09D3'},
+                applicationCryptogram: {tag: '9F26', len: 8, val: 'CE319347519E0604'},
+                cvmResults: {tag: '9F34', len: 3, val: '020000'},
+                cryptogramInformationData: {tag: '9F27', len: 1, val: '80'},
+                interfaceDeviceIFDSerialNumber: {tag: '9F1E', len: 8, val: '3030303030303031'},
+                issuerApplicationData: {tag: '9F10', len: 7, val: '06010A03A02000'},
+                terminalApplicationVersionNumber: {tag: '9F09', len: 2, val: '0096'},
+                terminalCapabilities: {tag: '9F33', len: 3, val: '6040E8'},
+                terminalCountryCode: {tag: '9F1A', len: 2, val: '0608'},
+                terminalType: {tag: '9F35', len: 1, val: '14'},
+                terminalVerificationResults: {tag: '95', len: 5, val: '8000040000'},
+                track2EquivalentData: {tag: '57', len: 15, val: '502265400089000092D2708620951F'},
+                transactionCurrencyCode: {tag: '5F2A', len: 2, val: '0608'},
+                applicationVersionNumber: {tag: '9F08', len: 2, val: '0096'},
+                transactionDate: {tag: '9A', len: 3, val: '181017'},
+                transactionSequenceCounter: {tag: '9F41', len: 4, val: '00003846'},
+                transactionStatusInformation: {tag: '9B', len: 2, val: '6000'},
+                transactionType: {tag: '9C', len: 1, val: '40'},
+                unpredictableNumber: {tag: '9F37', len: 4, val: '12A528A7'},
+                '9F53': {tag: '9F53', len: 1, val: '5A'},
+                applicationIdentifierAIDTerminal: {tag: '9F06', len: 7, val: 'A0000006351010'},
+                applicationLabel: {tag: '50', len: 16, val: '5068696C697070696E65204465626974'},
+                cardholderName: {tag: '5F20', len: 26, val: '4544204241524741444F2F202020202020202020202020202020'},
+                applicationExpirationDate: {tag: '5F24', len: 3, val: '270831'}},
                 tokens: ['11', '001000001', '', '01BAFD8F', '15', ';502265400089000092=2708620951?', '', 'CDI   AD', '000000005000', '8:6;0787252;<=?<', '11400420000001904', '', '', '21656100000000000000000000\x1DCAM\x1D9B026000', 'U', '5CAM00008C159F02069F03069F1A0295055F2A029A039C019F37049F02060000000050009F0306000000000000820218005A095022654000890000925F3401019F360209D39F2608CE319347519E06049F34030200009F2701809F1E0830303030303030319F100706010A03A020009F090200969F33036040E89F1A0206089F35011495058000040000570F502265400089000092D2708620951F5F2A0206089F080200969A031810179F4104000038469B0260009C01409F370412A528A79F53015A9F0607A000000635101050105068696C697070696E652044656269745F201A4544204241524741444F2F2020202020202020202020202020205F2403270831', '3FB4D6AE']
             },
             transactionReplyTransfer: {
@@ -553,7 +553,7 @@ module.exports = (errors) => ({
             transactionReplyChangePinBuffer: Buffer.from('341C3030313030303030311C30314241464331341C3037331C30303030303030301C31363535351C3330310A202A2A2A2A2A53544152542A2A2A2A2A0A20444154452F54494D45203A20323031382D31302D31372030383A34363A35350A20534551204E4F202020203A20323635350A20545241434520202020203A203032343831360A2043415244204E4F2020203A203530323236352A2A2A2A303039320A20465220414343542020203A202A2A2A2A2A2A2A2A2A2A2A2A2A2A2A2A2A0A205245535020434F4445203A203030200A2054524E205459504520203A2041544D204348414E474550494E0A20414D54204155544820203A20300A20535743542044415445203A20323031382D31302D31370A200A202A2A2A2A2A454E442A2A2A2A2A0A0A1C3543414D39313041393346303145453933313043384442443330333038413032333033301C4433334338374233', 'hex')
         },
         solicited: {
-            solicited: new Buffer([0x32, 0x32, 0x1c, 0x30, 0x30, 0x31, 0x30, 0x30, 0x30, 0x30, 0x30, 0x31, 0x1c, 0x1c, 0x39]), // Buffer.from('220010000019', 'ascii')
+            solicited: Buffer.from([0x32, 0x32, 0x1c, 0x30, 0x30, 0x31, 0x30, 0x30, 0x30, 0x30, 0x30, 0x31, 0x1c, 0x1c, 0x39]), // Buffer.from('220010000019', 'ascii')
             solicitedBufferDecode: Buffer.from('35321C3030313030303030311C1C09', 'hex'), // "520010000019"
             solicitedBufferReject: Buffer.from('32321C3030313030303030311C1C1C411C413031', 'hex'), // "22001000001AA01"
             solicitedBufferSpecificRejectB09: Buffer.from('32321C3030313030303030311C1C1C431C423039', 'hex'), // "22001000001CB09"
@@ -678,7 +678,7 @@ module.exports = (errors) => ({
                 dispensed4: '00',
                 tokens: ['22', '001000001', '', '8', 'E200000000', '0000', '', '10000']
             },
-            solicitedError: new Buffer([0x30, 0x32, 0x1c, 0x30, 0x30, 0x31, 0x30, 0x30, 0x30, 0x30, 0x30, 0x31, 0x1c, 0x1c, 0x39]),
+            solicitedError: Buffer.from([0x30, 0x32, 0x1c, 0x30, 0x30, 0x31, 0x30, 0x30, 0x30, 0x30, 0x30, 0x31, 0x1c, 0x1c, 0x39]),
             solicitedReceiptlow: Buffer.from('32321c3030301c1c381c47301c301c303030323030303030301c32313131', 'hex'), // Buffer.from('220008G0000020000002111', 'ascii').toString('hex')
             solicitedReceiptlowMessage: {
                 session: null,

@@ -484,7 +484,7 @@ var parsers = {
 
 NDC.prototype.decode = function(buffer, $meta, context, log) {
     var message = {};
-    var bufferString = buffer.toString().replace(/\u0003/g, ''); // remove END OF TEXT char (because of the ncr simulator)
+    var bufferString = buffer.toString().replace(/\\u0003/g, ''); // remove END OF TEXT char (because of the ncr simulator)
 
     if (buffer.length > 0) {
         var tokens = bufferString.split(this.fieldSeparator);
