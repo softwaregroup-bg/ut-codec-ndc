@@ -4,7 +4,7 @@ const errorApi = { getError: get, fetchErrors: fetch, defineError: define };
 const config = require('../config/test')();
 
 const NDC = require('../../../index');
-const ndc = new NDC({messageFormat: config.messageFormat, ...errorApi});
+const ndc = new NDC(Object.assign({}, {messageFormat: config.messageFormat}, errorApi));
 
 const solicited = config.test.solicited;
 const customisation = config.test.customisation;
