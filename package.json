@@ -12,7 +12,7 @@
     "blue-tape": "1.0.0",
     "ut-tools": "^6.2.3",
     "ut-unittest": "^1.0.2",
-    "tap": "^10.7.3"
+    "tap": "^12.0.1"
   },
   "scripts": {
     "lint": "ut-lint .",
