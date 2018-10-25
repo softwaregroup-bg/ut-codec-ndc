@@ -1,4 +1,4 @@
-module.exports = (errors) => ({
+module.exports = () => ({
     messageFormat: {
         solicitedFault: {
             mtid: 'response',

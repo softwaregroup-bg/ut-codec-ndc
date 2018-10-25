@@ -1,17 +1,20 @@
 const tap = require('tap');
+const {define, get, fetch} = require('ut-unittest/errorApi.js')();
+const errorApi = { getError: get, fetchErrors: fetch, defineError: define };
+const config = require('../config/test')();
 
-module.exports = (lib) => {
-    const instance = lib.init();
-    const balance = instance.config.test.balance;
+const NDC = require('../../../index');
+const ndc = new NDC({messageFormat: config.messageFormat, ...errorApi});
 
-    tap.test('balance', (t) => {
-        t.same(instance.NDC.decode(balance.transactionBuffer, {}, {}), balance.transactionMessage, 'test transaction request');
-        t.same(instance.NDC.encode(balance.transactionReply, {opcode: 'transactionReply'}, {transactionRequestId: 1, transactionReplyTime: process.hrtime()[0] + 1000}), balance.transactionReplyBuffer, 'test transaction reply');
-        t.same(instance.NDC.decode(balance.solicitedBuffer, {}, {}), balance.solicitedMessage, 'test solicited status transaction ready');
-        t.same(instance.NDC.decode(balance.ejBuffer, {}, {}), balance.ejMessage, 'test ej upload');
-        t.same(instance.NDC.encode(balance.ejAckMessage, {opcode: 'ejAck'}, {}), balance.ejAckBuffer, 'test ej ack');
-        t.same(instance.NDC.encode(balance.sendConfig, {opcode: 'sendConfiguration'}, {}), balance.sendConfigBuffer, 'test send configuration');
-        t.same(instance.NDC.decode(balance.solicitedSendConfig, {}, {}), balance.solicitedSendConfigMessage, 'test send configuration solicited status');
-        t.end();
-    });
-};
+const balance = config.test.balance;
+
+tap.test('balance', (t) => {
+    t.same(ndc.decode(balance.transactionBuffer, {}, {}), balance.transactionMessage, 'test transaction request');
+    t.same(ndc.encode(balance.transactionReply, {opcode: 'transactionReply'}, {transactionRequestId: 1, transactionReplyTime: process.hrtime()[0] + 1000}), balance.transactionReplyBuffer, 'test transaction reply');
+    t.same(ndc.decode(balance.solicitedBuffer, {}, {}), balance.solicitedMessage, 'test solicited status transaction ready');
+    t.same(ndc.decode(balance.ejBuffer, {}, {}), balance.ejMessage, 'test ej upload');
+    t.same(ndc.encode(balance.ejAckMessage, {opcode: 'ejAck'}, {}), balance.ejAckBuffer, 'test ej ack');
+    t.same(ndc.encode(balance.sendConfig, {opcode: 'sendConfiguration'}, {}), balance.sendConfigBuffer, 'test send configuration');
+    t.same(ndc.decode(balance.solicitedSendConfig, {}, {}), balance.solicitedSendConfigMessage, 'test send configuration solicited status');
+    t.end();
+});

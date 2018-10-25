@@ -1,13 +1,16 @@
 const tap = require('tap');
+const {define, get, fetch} = require('ut-unittest/errorApi.js')();
+const errorApi = { getError: get, fetchErrors: fetch, defineError: define };
+const config = require('../config/test')();
 
-module.exports = (lib) => {
-    const instance = lib.init();
-    const changePin = instance.config.test.changePin;
+const NDC = require('../../../index');
+const ndc = new NDC({messageFormat: config.messageFormat, ...errorApi});
 
-    tap.test('changePin', (t) => {
-        t.same(instance.NDC.decode(changePin.transactionChangePinBuffer, {}, {}), changePin.transactionChangePinMessage, 'test transaction request');
-        t.same(instance.NDC.encode(changePin.transactionReplyChangePin, {opcode: 'transactionReply'}, {transactionRequestId: 3, transactionReplyTime: process.hrtime()[0] + 1000}), changePin.transactionReplyChangePinBuffer, 'test transaction reply');
-        t.throws(() => instance.NDC.encode(changePin.transactionReplyChangePin, {opcode: 'transactionReply'}, {transactionRequestId: 2, transactionReplyTime: process.hrtime()[0] + 1000}), instance.NDC.errors['aptra.timeout']({}), 'should fail - timeout');
-        t.end();
-    });
-};
+const changePin = config.test.changePin;
+
+tap.test('changePin', (t) => {
+    t.same(ndc.decode(changePin.transactionChangePinBuffer, {}, {}), changePin.transactionChangePinMessage, 'test transaction request');
+    t.same(ndc.encode(changePin.transactionReplyChangePin, {opcode: 'transactionReply'}, {transactionRequestId: 3, transactionReplyTime: process.hrtime()[0] + 1000}), changePin.transactionReplyChangePinBuffer, 'test transaction reply');
+    t.throws(() => ndc.encode(changePin.transactionReplyChangePin, {opcode: 'transactionReply'}, {transactionRequestId: 2, transactionReplyTime: process.hrtime()[0] + 1000}), ndc.errors['aptra.timeout']({}), 'should fail - timeout');
+    t.end();
+});
