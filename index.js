@@ -59,7 +59,7 @@ function NDC(config, validator, logger) {
     this.val = validator || null;
     this.log = logger || {};
     this.codes = {};
-    this.decodeBufferMask = decodeBufferMask(['track2', 'track2Clean', 'track2EquivalentData', 'pinBlockRaw']);
+    this.decodeBufferMask = decodeBufferMask(['track2', 'track2Clean', 'track2EquivalentData', 'pinBlockRaw', 'pinBlockNewRaw']);
     this.encodeBufferMask = encodeBufferMask(['track2', 'track2Clean', 'track2EquivalentData']);
     this.init(config);
     return this;
@@ -429,6 +429,7 @@ var parsers = {
             pinBlock: parsers.pinBlock(pinBlock),
             pinBlockRaw: pinBlock,
             pinBlockNew: parsers.pinBlockNew(args1),
+            pinBlockNewRaw: args1,
             bufferB,
             bufferC,
             lastTransactionData: parsers.lastTransaction(args1)
