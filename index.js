@@ -59,8 +59,8 @@ function NDC(config, validator, logger) {
     this.val = validator || null;
     this.log = logger || {};
     this.codes = {};
-    this.decodeBufferMask = decodeBufferMask(['track2', 'track2Clean', 'pinBlockRaw']);
-    this.encodeBufferMask = encodeBufferMask(['track2', 'track2Clean']);
+    this.decodeBufferMask = decodeBufferMask(['track2', 'track2Clean', 'track2EquivalentData', 'pinBlockRaw']);
+    this.encodeBufferMask = encodeBufferMask(['track2', 'track2Clean', 'track2EquivalentData']);
     this.init(config);
     return this;
 }
@@ -574,7 +574,7 @@ NDC.prototype.decode = function(buffer, $meta, context, log) {
         }
     }
     if (log && log.trace) {
-        let bufferMasked = this.decodeBufferMask(buffer, Object.assign({}, message, {track2Clean: message.track2 && message.track2.split(';').join('').split('=').shift()}));
+        let bufferMasked = this.decodeBufferMask(buffer, Object.assign({}, message, {track2Clean: message.track2 && message.track2.split(';').join('').split('=').shift(), track2EquivalentData: message.track2 && message.track2.replace('=', 'D')}));
         log.trace({$meta: {mtid: 'frame', opcode: 'in'}, message: bufferMasked, log: context && context.session && context.session.log});
     }
     return message;
@@ -674,7 +674,7 @@ NDC.prototype.encode = function(message, $meta, context, log) {
         }
         let buffer = Buffer.from(bufferString, 'ascii');
         if (log && log.trace) {
-            let bufferMasked = this.encodeBufferMask(buffer, Object.assign({}, message, {track2Clean: message.track2 && message.track2.split(';').join('').split('=').shift()}));
+            let bufferMasked = this.encodeBufferMask(buffer, Object.assign({}, message, {track2Clean: message.track2 && message.track2.split(';').join('').split('=').shift(), track2EquivalentData: message.track2 && message.track2.replace('=', 'D')}));
             log.trace({$meta: {mtid: 'frame', opcode: 'out'}, message: bufferMasked, log: context && context.session && context.session.log});
         }
         return buffer;
