@@ -1,6 +1,6 @@
 {
   "name": "ut-codec-ndc",
-  "version": "6.3.0",
+  "version": "6.3.1-accu.0",
   "main": "./index.js",
   "dependencies": {
     "browser-process-hrtime": "0.1.2",
