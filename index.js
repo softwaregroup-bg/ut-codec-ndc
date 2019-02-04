@@ -59,8 +59,8 @@ function NDC(config, validator, logger) {
     this.val = validator || null;
     this.log = logger || {};
     this.codes = {};
-    this.decodeBufferMask = decodeBufferMask(['track2', 'track2Clean', 'track2EquivalentData', 'pinBlockRaw', 'pinBlockNewRaw']);
-    this.encodeBufferMask = encodeBufferMask(['track2', 'track2Clean', 'track2EquivalentData']);
+    this.decodeBufferMask = decodeBufferMask(['track2', 'track2EquivalentData', 'track2Clean', 'pinBlockRaw', 'pinBlockNewRaw']);
+    this.encodeBufferMask = encodeBufferMask(['track2', 'track2EquivalentData', 'track2Clean']);
     this.init(config);
     return this;
 }
@@ -429,7 +429,7 @@ var parsers = {
             pinBlock: parsers.pinBlock(pinBlock),
             pinBlockRaw: pinBlock,
             pinBlockNew: parsers.pinBlockNew(args1),
-            pinBlockNewRaw: args1,
+            pinBlockNewRaw: (args1.find(field => field.substring(0, 1) === 'U') || '').substr(1, 16),
             bufferB,
             bufferC,
             lastTransactionData: parsers.lastTransaction(args1)
@@ -575,7 +575,7 @@ NDC.prototype.decode = function(buffer, $meta, context, log) {
         }
     }
     if (log && log.trace) {
-        let bufferMasked = this.decodeBufferMask(buffer, Object.assign({}, message, {track2Clean: message.track2 && message.track2.split(';').join('').split('=').shift(), track2EquivalentData: message.track2 && message.track2.replace('=', 'D')}));
+        let bufferMasked = this.decodeBufferMask(buffer, Object.assign({}, message, {track2Clean: message.track2 && message.track2.split(';').join('').split('=').shift(), track2EquivalentData: message.track2 && message.track2.replace('=', 'D').replace(';', '').replace('?', '')}));
         log.trace({$meta: {mtid: 'frame', opcode: 'in'}, message: bufferMasked, log: context && context.session && context.session.log});
     }
     return message;
