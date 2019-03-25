@@ -1,6 +1,6 @@
 {
   "name": "ut-codec-ndc",
-  "version": "7.0.0-rc-dss.3",
+  "version": "7.0.0-rc-dss.4",
   "main": "./index.js",
   "dependencies": {
     "browser-process-hrtime": "1.0.0",
