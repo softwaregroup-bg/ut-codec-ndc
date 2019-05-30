@@ -59,7 +59,7 @@ function NDC(config, validator, logger) {
     this.val = validator || null;
     this.log = logger || {};
     this.codes = {};
-    this.decodeBufferMask = decodeBufferMask(['track2', 'track2EquivalentData', 'track2Clean', 'pinBlockRaw', 'pinBlockNewRaw']);
+    this.decodeBufferMask = decodeBufferMask(['track2', 'track2EquivalentData', 'track2Clean', 'pinBlockRaw', 'pinBlockNewRaw', 'cardData']);
     this.encodeBufferMask = encodeBufferMask(['track2', 'track2EquivalentData', 'track2Clean']);
     this.init(config);
     return this;
@@ -82,13 +82,13 @@ var parsers = {
         transactionSerialNumber,
         transactionData
     }),
-    specificReject: (status) => {
+    specificReject: function(status) {
         throw this.errors.customReject(status);
     },
-    reject: () => {
+    reject: function() {
         throw this.errors.commandReject();
     },
-    fault: (deviceIdentifierAndStatus, severities, diagnosticStatus, suppliesStatus) => {
+    fault: (deviceIdentifierAndStatus, severities, diagnosticStatus, suppliesStatus, cardData) => {
         var deviceStatus = deviceIdentifierAndStatus && deviceIdentifierAndStatus.substring && deviceIdentifierAndStatus.substring(1);
         var device =
             deviceIdentifierAndStatus &&
@@ -98,8 +98,9 @@ var parsers = {
             device,
             deviceStatus,
             severities: severities && severities.split && severities.split('').map((severity) => map.severities[severity]),
-            diagnosticStatus,
-            supplies: suppliesStatus && suppliesStatus.split && suppliesStatus.split('').map((status) => map.supplies[status])
+            diagnosticStatus: diagnosticStatus && diagnosticStatus.replace(/\u001d/g, '_gs_'),
+            supplies: suppliesStatus && suppliesStatus.split && suppliesStatus.split('').map((status) => map.supplies[status]),
+            cardData
         };
         if (device && device.length > 1 && typeof parsers[device] === 'function') {
             merge(result, parsers[device](deviceStatus));
@@ -109,7 +110,7 @@ var parsers = {
     ready: () => ({}),
     state: function(status) { // do not change to arrow function as proper this and arguments are needed
         var g1 = status.substring(0, 1);
-        var fn = g1 && map.statuses[g1] && this[map.statuses[g1]];
+        var fn = g1 && map.statuses[g1] && parsers[map.statuses[g1]];
         if (typeof fn === 'function') {
             return merge({
                 statusType: map.statuses[g1]
@@ -318,10 +319,10 @@ var parsers = {
 
     // message classes
     unsolicitedStatus: function(type, luno, reserved, deviceIdentifierAndStatus, errorSeverity, diagnosticStatus, suppliesStatus) {
-        return this.fault(deviceIdentifierAndStatus, errorSeverity, diagnosticStatus, suppliesStatus);
+        return parsers.fault(deviceIdentifierAndStatus, errorSeverity, diagnosticStatus, suppliesStatus);
     },
     solicitedStatus: function(type, luno, reserved, descriptor, status) {
-        var fn = descriptor && map.descriptors[descriptor] && this[map.descriptors[descriptor]];
+        var fn = descriptor && map.descriptors[descriptor] && parsers[map.descriptors[descriptor]];
         if (typeof fn === 'function') {
             return merge({
                 luno,
@@ -349,9 +350,9 @@ var parsers = {
     }),
     lastTransaction: fields => {
         var field2 = fields.find(field => field.substring(0, 1) === '2');
-        field2 = field2 && field2.match(/^2(\d{4})(\d)(\d{5})(\d{5})(\d{5})(\d{5})/);
+        field2 = field2 && field2.match(/^2([\d ]{4})(\d)(\d{5})(\d{5})(\d{5})(\d{5})/);
         return field2 && {
-            sernum: field2[1],
+            sernum: field2[1].replace(/ /g, '0'), // ncr atms send spances when being used for 1st time
             status: field2[2],
             notes1: parseInt(field2[3]),
             notes2: parseInt(field2[4]),
@@ -485,7 +486,6 @@ var parsers = {
 NDC.prototype.decode = function(buffer, $meta, context, log) {
     var message = {};
     var bufferString = buffer.toString().replace(/\u0003/g, ''); // remove END OF TEXT char (because of the ncr simulator)
-
     if (buffer.length > 0) {
         var tokens = bufferString.split(this.fieldSeparator);
         var command;
@@ -564,7 +564,7 @@ NDC.prototype.decode = function(buffer, $meta, context, log) {
 
             var fn = parsers[command.method];
             if (typeof fn === 'function') {
-                merge(message, fn.apply(parsers, tokens));
+                merge(message, fn.apply(this, tokens));
             } else {
                 throw this.errors.decode({'command.method': command.method});
             }
@@ -578,6 +578,10 @@ NDC.prototype.decode = function(buffer, $meta, context, log) {
         let bufferMasked = this.decodeBufferMask(buffer, Object.assign({}, message, {track2Clean: message.track2 && message.track2.split(';').join('').split('=').shift(), track2EquivalentData: message.track2 && message.track2.replace('=', 'D').replace(';', '').replace('?', '')}));
         log.trace({$meta: {mtid: 'frame', opcode: 'in'}, message: bufferMasked, log: context && context.session && context.session.log});
     }
+    // NCR ATMs send card data containing track2 in solicited status with defice fault
+    // We don't need this data anyway, hence we remove it here to eliminate the need to
+    // mask this field further in the wire
+    delete message.cardData;
     return message;
 };
 
