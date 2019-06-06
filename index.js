@@ -157,7 +157,7 @@ var parsers = {
     }),
     configuration: (config, hwFitness, hwConfig, supplies, sensors, release, softwareId) => {
         var sensorValues = parsers.sensors(' ' + sensors, true);
-        return {cofigId: config.substring(1),
+        return {cofigId: config.substring(1), // typo ???
             session: {
                 cassettes: [
                     {sensor: sensorValues.cassette1, fitness: map.severities[hwFitness.substring(15, 16)], supplies: map.suppliesStatus[supplies.substring(15, 16)]},
