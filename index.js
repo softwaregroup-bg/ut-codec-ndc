@@ -239,7 +239,7 @@ var parsers = {
     optionDigits: (optionDigits) => ({
         optionDigits: optionDigits && optionDigits.substring && optionDigits.substring(2).split('')
     }),
-    depositDefition: (acceptedCashItems) => ({
+    depositDefition: (acceptedCashItems) => ({ // typo ???
         acceptedCashItems: acceptedCashItems && acceptedCashItems.substring && acceptedCashItems.substring(2).match(/.{11}/g)
     }),
 
@@ -361,7 +361,8 @@ var parsers = {
         };
     },
     smartCardData: (fields) => {
-        // There are 16 available CAM flags.These are encoded as the bits in two bytes, and are converted to ASCII hex(four bytes) for transmission. Each can have the value 0x0 or 0x1
+        /* There are 16 available CAM flags.These are encoded as the bits in two bytes, and are
+        converted to ASCII hex(four bytes) for transmission. Each can have the value 0x0 or 0x1 */
         var smartCardData = fields.find(field => field.substring(0, 4) === '5CAM');
         smartCardData = (smartCardData && smartCardData.substring(4)) || '';
         var camFlags = Buffer.from(smartCardData.substring(0, 4), 'hex');
