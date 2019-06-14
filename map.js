@@ -61,7 +61,7 @@ module.exports = {
         '3': 'mediaOut',
         '4': 'overfill'
     },
-    //device fitness (hardware health severity level)
+    // device fitness (hardware health severity level)
     severities: {
         '0': 'noError',
         '1': 'routine',
