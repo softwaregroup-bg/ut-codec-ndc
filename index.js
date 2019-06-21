@@ -575,7 +575,14 @@ NDC.prototype.decode = function(buffer, $meta, context, log) {
         }
     }
     if (log && log.trace) {
-        let bufferMasked = this.decodeBufferMask(buffer, Object.assign({}, message, {track2Clean: message.track2 && message.track2.split(';').join('').split('=').shift(), track2EquivalentData: message.track2 && message.track2.replace('=', 'D').replace(';', '').replace('?', '')}));
+        let bufferMasked = this.decodeBufferMask(buffer, Object.assign(
+            {},
+            message,
+            {
+                track2Clean: message.track2 && message.track2.split(';').join('').split('=').shift(),
+                track2EquivalentData: message.emvTags && message.emvTags.track2EquivalentData
+            }
+        ));
         log.trace({$meta: {mtid: 'frame', opcode: 'in'}, message: bufferMasked, log: context && context.session && context.session.log});
     }
     // NCR ATMs send card data containing track2 in solicited status with defice fault
@@ -679,7 +686,7 @@ NDC.prototype.encode = function(message, $meta, context, log) {
         }
         let buffer = Buffer.from(bufferString, 'ascii');
         if (log && log.trace) {
-            let bufferMasked = this.encodeBufferMask(buffer, Object.assign({}, message, {track2Clean: message.track2 && message.track2.split(';').join('').split('=').shift(), track2EquivalentData: message.track2 && message.track2.replace('=', 'D')}));
+            let bufferMasked = this.encodeBufferMask(buffer, Object.assign({}, message, {track2Clean: message.track2 && message.track2.split(';').join('').split('=').shift()}));
             log.trace({$meta: {mtid: 'frame', opcode: 'out'}, message: bufferMasked, log: context && context.session && context.session.log});
         }
         return buffer;
