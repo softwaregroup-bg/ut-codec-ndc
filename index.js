@@ -580,7 +580,7 @@ NDC.prototype.decode = function(buffer, $meta, context, log) {
             message,
             {
                 track2Clean: message.track2 && message.track2.split(';').join('').split('=').shift(),
-                track2EquivalentData: message.emvTags && message.emvTags.track2EquivalentData
+                track2EquivalentData: message.emvTags && message.emvTags.track2EquivalentData && message.emvTags.track2EquivalentData.val
             }
         ));
         log.trace({$meta: {mtid: 'frame', opcode: 'in'}, message: bufferMasked, log: context && context.session && context.session.log});
