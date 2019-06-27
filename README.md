@@ -59,12 +59,12 @@ result (object) - content depends on the message type, but always contains the
   - _customization_ (string) - customization from DB
   - _identificationCode_ (string) - identification code from DB
   - _institutionCode_ (string) - institution code from DB
-  - _log_ (string) - terminal ID from the database
+  - _log_ (string) - terminal ID from DB
   - _merchantId_ (string) - merchant ID from DB
   - _merchantType_ (string) - merchant type from DB
   - _tak_ (string) - Terminal Authentication Key under LMK
-  - _terminalId_ (string) - terminal ID from the database
-  - _terminalName_ (string) - terminal name from the DB
+  - _terminalId_ (string) - terminal ID from DB
+  - _terminalName_ (string) - terminal name from DB
   - _tpk_ (string) - Terminal PIN Key under LMK
   - _transactionTimeout_ (integer) - transaction timeout in seconds
 - _tokens_ (array) - NDC message fields as defined by _APTRA Advance NDC,
@@ -311,58 +311,16 @@ result (object)
 - _cofigId_ (string) - configuration ID number; typo ???
 - _fitness_ (object) - contains the hardware health severity level for each
  device; **NOTE: for more information on _severities_, please check
- _Dictionaries_ below**
-  - _camera_ (string)
-  - _cardReader_ (string)
-  - _cashHandler_ (string)
-  - _cassette1_ (string)
-  - _cassette2_ (string)
-  - _cassette3_ (string)
-  - _cassette4_ (string)
-  - _chequeProcessor_ (string)
-  - _clock_ (string)
-  - _coinDispenser_ (string)
-  - _comms_ (string)
-  - _depository_ (string)
-  - _disk_ (string)
-  - _documentProcessing_ (string)
-  - _doorAccess_ (string)
-  - _encryptor_ (string)
-  - _envelopeDispenser_ (string)
-  - _flexDisk_ (string)
-  - _journalPrinter_ (string)
-  - _mediaEntry_ (string)
-  - _nightDepository_ (string)
-  - _noteAcceptor_ (string)
-  - _receiptPrinter_ (string)
-  - _signageDisplay_ (string)
-  - _statementPrinter_ (string)
-  - _systemDisplay_ (string)
-  - _voiceGuidance_ (string)
+ _Dictionaries_ below**; each _key: value_ pair contains the following:
+  - _key_ - device
+  - _value_ (string) - device severity level
 - _hwConfig_ (string) - hardware configuration data
 - _release_ (string) - release number data
 - _sensors_ (object) - sensors data; **NOTE: for more information on
- _sensors_, please check _Dictionaries_ below**
-  - _cardBin_ (bool)
-  - _cassette1_ (bool)
-  - _cassette2_ (bool)
-  - _cassette3_ (bool)
-  - _cassette4_ (bool)
-  - _coinDispenser_ (bool)
-  - _coinHopper1_ (bool)
-  - _coinHopper2_ (bool)
-  - _coinHopper3_ (bool)
-  - _coinHopper4_ (bool)
-  - _cpmPockets_ (bool)
-  - _depositBin_ (bool)
-  - _deviceStatusDescription_ (bool)
-  - _door_ (bool)
-  - _electronicsEnclosure_ (bool)
-  - _rejectBin_ (bool)
-  - _session_ (bool)
-  - _silentSignal_ (bool)
-  - _supervisorMode_ (bool)
-  - _vibration_ (bool)
+ _sensors_, please check _Dictionaries_ below**; each _key: value_ pair
+ contains the following:
+  - _key_ - device
+  - _value_ (bool) - device sensor ???
 - _session_ (object) - ???
   - _cassettes_ (array) - the following object for each cassette:
     - _fitness_ (string) - hardware health severity level; **NOTE: for more
@@ -813,8 +771,8 @@ result
   - _sernum_ (string) - transaction serial number
   - _status_ (string) - transaction status
 - _luno_ (string) - _luno_ from _params_
-- _opcode_ (array) - operation code data (sequence of function display keys
- pressed)
+- _opcode_ (string) - operation code data as defined in _APTRA Advance NDC,
+ Reference Manual_
   - (string) - function display key pressed
 - _pinBlock_ (string) - the result from the _pinBlock_ parser
 - _pinBlockNew_ (string) - PIN block for new PIN; **NOTE: available only if PIN
