@@ -182,11 +182,24 @@ Each parser performs data processing specific to the corresponding command
 
 ### specificReject
 
-???
+(status)
+
+params
+
+- _status_ (string) - device identifier and status, as defined in _APTRA
+ Advance NDC, Reference Manual_
+
+result (error) - _aptra.customReject_
 
 ### reject
 
-???
+()
+
+params
+
+NONE
+
+result (error) - _aptra.commandReject_
 
 ### fault
 
@@ -440,7 +453,16 @@ result (object)
 
 ### clock
 
-???
+(status)
+
+params
+
+- _status_ (string) - clock status; **NOTE: for more information on
+ _clockStatuses_, please check _Dictionaries_ below**
+
+result (object)
+
+- _deviceStatusDescription_ (string) - description of _status_
 
 ### power
 
@@ -457,11 +479,34 @@ result (object)
 
 ### cardReader
 
-???
+(status)
+
+params
+
+- _status_ (string) - card reader status; **NOTE: for more information on
+_cardReaderStatuses_, please check _Dictionaries_ below**
+
+result (object)
+
+- _deviceStatusDescription_ (string) - description of _status_
 
 ### cashHandler
 
-???
+(status)
+
+params
+
+- _status_ (string) - cash handler status including notes dispensed counts;
+ **NOTE: for more information on _cashHandlerStatuses_, please check
+ _Dictionaries_ below**
+
+result (object)
+
+- _deviceStatusDescription_ (string) - description of _status_
+- _dispensed1_ (string) - count of dispensed notes from casette type 1
+- _dispensed2_ (string) - count of dispensed notes from casette type 2
+- _dispensed3_ (string) - count of dispensed notes from casette type 3
+- _dispensed4_ (string) - count of dispensed notes from casette type 4
 
 ### depository
 
@@ -469,11 +514,29 @@ result (object)
 
 ### receiptPrinter
 
-???
+(status)
+
+params
+
+- _status_ (string) - receipt printer status; **NOTE: for more information on
+ _receiptPrinterStatuses_, please check _Dictionaries_ below**
+
+result (object)
+
+- _deviceStatusDescription_ (string) - description of _status_
 
 ### journalPrinter
 
-???
+(status)
+
+params
+
+- _status_ (string) - journal printer status; **NOTE: for more information on
+ _journalPrinterStatuses_, please check _Dictionaries_ below**
+
+result (object)
+
+- _deviceStatusDescription_ (string) - description of _status_
 
 ### encryptor
 
@@ -523,7 +586,16 @@ result (object)
 
 ### supervisorKeys
 
-???
+(status)
+
+params
+
+- _status_ (string) - number of selected supervisor menu item as defined in
+ _APTRA Advance NDC, Reference Manual_
+
+result (object)
+
+- _menu_ (string) - value of _status_
 
 ### statementPrinter
 
@@ -618,7 +690,25 @@ OR
 
 ### uploadEjData
 
-???
+(type, luno, reserved1, reserved2, journalData)
+
+params
+
+- _type_ (string) - message class and message sub-class as defined in _APTRA
+ Advance NDC, Reference Manual_
+- _luno_ (string) - logical unit number as defined in _APTRA Advance NDC,
+ Reference Manual_
+- _reserved1_ (string) - ???
+- _reserved2_ (string) - ???
+- _journalData_ (string) - data to be recorded to journal file
+
+result (object)
+
+- _type_ (string) - message class and message sub-class as defined in _APTRA
+ Advance NDC, Reference Manual_
+- _luno_ (string) - logical unit number as defined in _APTRA Advance NDC,
+ Reference Manual_
+- _journalData_ (string) - data to be recorded to journal file
 
 ### lastTransaction
 
