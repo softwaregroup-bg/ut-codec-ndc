@@ -345,11 +345,11 @@ params
 
 result (object)
 
--_clockStatus_ - clock status;
+-_clockStatus_ (string)- clock status;
 **NOTE: for more information on
  _clockStatuses_, please check _Dictionaries_ below**
--_datetime_ - The actual date and time returned by the terminal clock,
-The ten character field format is YYMMDDHHMM,
+-_datetime_ (string)- The actual date and time returned by the terminal clock,
+The twelve character field format is YYMMDDHHMMSS,
 as defined in _APTRA Advance NDC, Reference Manual_
 
 ### configurationId
