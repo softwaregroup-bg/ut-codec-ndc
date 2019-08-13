@@ -103,12 +103,16 @@ Converted CAM flags to ASCII hex (four bytes) buffer for transmission
 
 params
 
--_data_(array) - CAM flags, encoded as the bits in two bytes.
-Each can have the value 0x0 or 0x1.
+- _data_ (array[2]) - CAM flags as defined in _APTRA Advance NDC and NDC+,
+ EMV ICC Reference Manual_
+  - (array) - CAM flags byte 1
+    - (integer) - CAM flag
+  - (array) - CAM flags byte 2
+    - (integer) - CAM flag
 
 result
 
-- (result) - NDC encoded smart card data
+- (string) - NDC encoded smart card data
 
 ### packSmartCardData
 
@@ -118,8 +122,12 @@ Encodes CAM and EMV tag data in NDC format
 
 params
 
-- _camFlags_ (array) - 16 available CAM flags,encoded as the bits in two bytes,
-and are converted to ASCII hex (four bytes) for transmission.
+- _camFlags_ (array[2]) - CAM flags as defined in _APTRA Advance NDC and NDC+,
+ EMV ICC Reference Manual_
+  - (array) - CAM flags byte 1
+    - (integer) - CAM flag
+  - (array) - CAM flags byte 2
+    - (integer) - CAM flag
 - _emvTags_ (object) - EMV  tags to be encoded in NDC format; each _key: value_
  pair has the following structure:
   - _key_ - EMV tag key
@@ -193,14 +201,15 @@ successfully completed.
 
 params
 
-- _transactionSerialNumber_ - the TSN of the last transaction processed by the ATM
-- _transactionData_ - contains Cash Deposit Recycle Data or
-Recycle Cassette Dispense Data
+- _transactionSerialNumber_ (string) - transaction serial number, as defined
+ in _APTRA Advance NDC, Reference Manual_
+- _transactionData_ (string)- transaction data, as defined
+ in _APTRA Advance NDC, Reference Manual_
 
 result
 
-- _transactionSerialNumber_ - the TSN of the last transaction processed by the ATM
-- _transactionData_ - contains Recycle Cassette Deposit/Dispense Data
+- _transactionSerialNumber_ (string) - _transactionSerialNumber_ from params
+- _transactionData_ (string)- _transactionData_ from params
 
 ### specificReject
 
@@ -232,15 +241,15 @@ Device Fault - 8, which identifies that a device fault has occurred
 
 params
 
-- _deviceIdentifierAndStatus_ (string) - device fault status information field,
+- _deviceIdentifierAndStatus_ (string) - device identifier and status, a part
+ of status information field as defined in _APTRA Advance NDC, Reference
+ Manual_
+- _severities_ (string) - severity levels, a part of status information field
  as defined in _APTRA Advance NDC, Reference Manual_
-- _severities_ (string) - contains information required to decide whether to
-shut down or continue to use the ATM, please check _Dictionaries_ below**
-- _diagnosticStatus_ (string) - used for logging errors,
-please check _Dictionaries_ below**
-- _suppliesStatus_ (string) - Contains information about the state of supplies
-(paper, currency, magnetic cards, envelopes, inkwells, documents) in the terminal,
-please check _Dictionaries_ below**
+- _diagnosticStatus_ (string) - diagnostic status, a part of status information
+ field as defined in _APTRA Advance NDC, Reference Manual_
+- _suppliesStatus_ (string) - supplies status, a part of status information
+ field as defined in _APTRA Advance NDC, Reference Manual_
 
 result (object)
 
@@ -251,8 +260,12 @@ result (object)
 - _deviceStatus_ (string) - device status as defined in _APTRA Advance NDC,
  Reference Manual_
 - _diagnosticStatus_ (string) - _diagnosticStatus_ from params
-- _severities_ (array) - map severity code to description
-- _supplies_ (array) - map suppliesStatus code to description
+- _severities_ (array) - array of severity levels (fitness) descriptions,
+**NOTE: for more information on _severities_, please check
+ _Dictionaries_ below**;
+- _supplies_ (array) - array of supplies status descriptions,
+**NOTE: for more information on _supplies_, please check
+ _Dictionaries_ below**;
 
 ### ready
 
@@ -261,7 +274,7 @@ result (object)
 Performs data processing specific to the Solicited Status Message with status descriptor
 Ready - B, indicates that the instruction was completed successfully
 
-result (empty object)
+result (object)
 
 ### state
 
@@ -327,12 +340,17 @@ Send Date/Time Information Response
 
 params
 
--_status_ (string) - Date/Time information
+-_status_ (string) - Date/Time information as defined in
+ _APTRA Advance NDC, Reference Manual_
 
 result (object)
 
--_clockStatus_ - ToD Clock Status, as defined in _APTRA Advance NDC, Reference Manual_
--_datetime_ - The actual date and time returned by the terminal clock
+-_clockStatus_ - clock status;
+**NOTE: for more information on
+ _clockStatuses_, please check _Dictionaries_ below**
+-_datetime_ - The actual date and time returned by the terminal clock,
+The ten character field format is YYMMDDHHMM,
+as defined in _APTRA Advance NDC, Reference Manual_
 
 ### configurationId
 
@@ -340,8 +358,8 @@ result (object)
 
 params
 
-- _config_ (string) - configuration ID number, including the Message Identifier
-, as defined in _APTRA Advance NDC, Reference Manual_
+- _config_ (string) - configuration ID number, including the Message Identifier,
+as defined in _APTRA Advance NDC, Reference Manual_
 
 result (object)
 
@@ -483,17 +501,15 @@ result (object) - contains _sensors_ parser response
 
 params
 
-- _release_ (string) - NDC Release Number
+- _release_ (string) - release data, a part of status information field
 as defined in _APTRA Advance NDC, Reference Manual_
-- _software_ (string) - NDC Software ID
-as  defined in _APTRA Advance NDC, Reference Manual_
+- _software_ (string) - software data, a part of status information field
+as defined in _APTRA Advance NDC, Reference Manual_
 
 result (object)
 
--_release_ - Contains a six‐digit decimal number
-as defined in _APTRA Advance NDC, Reference Manual_
--_software_ - Contains the software ID of the Advance NDC product
-currently running on the ATM
+-_release_ (string) - NDC Release Number
+-_software_ (string) - NDC Software ID
 
 ### optionDigits
 
