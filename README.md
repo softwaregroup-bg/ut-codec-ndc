@@ -99,7 +99,20 @@ result (string) - _message_ in NDC format
 
 (data)
 
-???
+Converted CAM flags to ASCII hex (four bytes) buffer for transmission
+
+params
+
+- _data_ (array[2]) - CAM flags as defined in _APTRA Advance NDC and NDC+,
+ EMV ICC Reference Manual_
+  - (array) - CAM flags byte 1
+    - (integer) - CAM flag
+  - (array) - CAM flags byte 2
+    - (integer) - CAM flag
+
+result
+
+- (string) - NDC encoded smart card data
 
 ### packSmartCardData
 
@@ -109,7 +122,12 @@ Encodes CAM and EMV tag data in NDC format
 
 params
 
-- _camFlags_ (array) - ???
+- _camFlags_ (array[2]) - CAM flags as defined in _APTRA Advance NDC and NDC+,
+ EMV ICC Reference Manual_
+  - (array) - CAM flags byte 1
+    - (integer) - CAM flag
+  - (array) - CAM flags byte 2
+    - (integer) - CAM flag
 - _emvTags_ (object) - EMV  tags to be encoded in NDC format; each _key: value_
  pair has the following structure:
   - _key_ - EMV tag key
@@ -177,8 +195,21 @@ Each parser performs data processing specific to the corresponding command
 
 (transactionSerialNumber, transactionData)
 
-- _transactionSerialNumber_ - undefined ???
-- _transactionData_ - undefined ???
+Performs data processing specific to the Solicited Status Message with status
+descriptor - 9 Ready, which indicates that the Transaction Reply was
+successfully completed.
+
+params
+
+- _transactionSerialNumber_ (string) - transaction serial number, as defined
+ in _APTRA Advance NDC, Reference Manual_
+- _transactionData_ (string)- transaction data, as defined
+ in _APTRA Advance NDC, Reference Manual_
+
+result
+
+- _transactionSerialNumber_ (string) - _transactionSerialNumber_ from params
+- _transactionData_ (string)- _transactionData_ from params
 
 ### specificReject
 
@@ -205,13 +236,20 @@ result (error) - _aptra.commandReject_
 
 (deviceIdentifierAndStatus, severities, diagnosticStatus, suppliesStatus)
 
+Set Status Information field in Solicited Status Message with status descriptor
+Device Fault - 8, which identifies that a device fault has occurred
+
 params
 
-- _deviceIdentifierAndStatus_ (string) - device fault status information field,
+- _deviceIdentifierAndStatus_ (string) - device identifier and status, a part
+ of status information field as defined in _APTRA Advance NDC, Reference
+ Manual_
+- _severities_ (string) - severity levels, a part of status information field
  as defined in _APTRA Advance NDC, Reference Manual_
-- _severities_ (???) - ???
-- _diagnosticStatus_ (???) - ???
-- _suppliesStatus_ (???) - ???
+- _diagnosticStatus_ (string) - diagnostic status, a part of status information
+ field as defined in _APTRA Advance NDC, Reference Manual_
+- _suppliesStatus_ (string) - supplies status, a part of status information
+ field as defined in _APTRA Advance NDC, Reference Manual_
 
 result (object)
 
@@ -221,17 +259,30 @@ result (object)
  please check _Dictionaries_ below**
 - _deviceStatus_ (string) - device status as defined in _APTRA Advance NDC,
  Reference Manual_
-- _diagnosticStatus_ (???) - _diagnosticStatus_ from params
-- _severities_ (array) - ???
-- _supplies_ (array) - ???
+- _diagnosticStatus_ (string) - _diagnosticStatus_ from params
+- _severities_ (array) - array of severity levels (fitness) descriptions,
+**NOTE: for more information on _severities_, please check
+ _Dictionaries_ below**;
+- _supplies_ (array) - array of supplies status descriptions,
+**NOTE: for more information on _supplies_, please check
+ _Dictionaries_ below**;
 
 ### ready
 
-result ({})
+()
+
+Performs data processing specific to the Solicited Status Message with status descriptor
+Ready - B, indicates that the instruction was completed successfully
+
+result (object)
 
 ### state
 
 (status)
+
+Set Status Information field in Solicited Status Message with status descriptor
+Terminal State - F, in response to Terminal Commands requesting supply counters,
+ATM configuration information, or the date and time
 
 params
 
@@ -283,7 +334,23 @@ result (object)
 
 ### datetime
 
-???
+(status)
+
+Send Date/Time Information Response
+
+params
+
+-_status_ (string) - Date/Time information as defined in
+ _APTRA Advance NDC, Reference Manual_
+
+result (object)
+
+-_clockStatus_ (string)- clock status;
+**NOTE: for more information on
+ _clockStatuses_, please check _Dictionaries_ below**
+-_datetime_ (string)- The actual date and time returned by the terminal clock,
+The twelve character field format is YYMMDDHHMMSS,
+as defined in _APTRA Advance NDC, Reference Manual_
 
 ### configurationId
 
@@ -291,8 +358,8 @@ result (object)
 
 params
 
-- _config_ (string) - configuration ID number, including the Message Identifier
-, as defined in _APTRA Advance NDC, Reference Manual_
+- _config_ (string) - configuration ID number, including the Message Identifier,
+as defined in _APTRA Advance NDC, Reference Manual_
 
 result (object)
 
@@ -430,7 +497,19 @@ result (object) - contains _sensors_ parser response
 
 ### release
 
-???
+(release, software)
+
+params
+
+- _release_ (string) - release data, a part of status information field
+as defined in _APTRA Advance NDC, Reference Manual_
+- _software_ (string) - software data, a part of status information field
+as defined in _APTRA Advance NDC, Reference Manual_
+
+result (object)
+
+-_release_ (string) - NDC Release Number
+-_software_ (string) - NDC Software ID
 
 ### optionDigits
 
