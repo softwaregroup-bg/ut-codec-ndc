@@ -527,8 +527,17 @@ result (object)
 
 ### depositDefition
 
-// typo ???
-???
+(acceptedCashItems)
+
+params
+
+-_acceptedCashItems_ (string) - cash deposit definition data, a part of status
+information field as defined in _APTRA Advance NDC, Reference Manual_
+
+result (object)
+
+-_acceptedCashItems_ (array) - array of cash type items, as defined in _APTRA
+ Advance NDC, Supervisor's Guide_
 
 ### clock
 
@@ -536,12 +545,13 @@ result (object)
 
 params
 
-- _status_ (string) - clock status; **NOTE: for more information on
- _clockStatuses_, please check _Dictionaries_ below**
+- _status_ (string) - clock status data, a part of device status
+information field as defined in _APTRA Advance NDC, Reference Manual_
 
 result (object)
 
-- _deviceStatusDescription_ (string) - description of _status_
+- _deviceStatusDescription_ (string) - clock status; **NOTE: for more information
+on _clockStatuses_, please check _Dictionaries_ below**
 
 ### power
 
@@ -589,7 +599,17 @@ result (object)
 
 ### depository
 
-???
+(status)
+
+params
+
+- _status_ (string) - depository status data, a part of device status
+information field as defined in _APTRA Advance NDC, Reference Manual_
+
+result (object)
+
+- _deviceStatusDescription_ (string) - depository status; **NOTE: for more information
+on _depositoryStatuses_, please check _Dictionaries_ below**
 
 ### receiptPrinter
 
@@ -619,11 +639,28 @@ result (object)
 
 ### encryptor
 
-???
+(status)
+
+params
+
+- _status_ (string) - encryptor status data, a part of device status
+information field as defined in _APTRA Advance NDC, Reference Manual_
+
+result (object)
+
+- _deviceStatusDescription_ (string) - encryptor status; **NOTE: for more information
+on _encryptorStatuses_, please check _Dictionaries_ below**
 
 ### camera
 
-???
+(status)
+
+params
+
+- _status_ (string) - camera status data, a part of device status
+information field as defined in _APTRA Advance NDC, Reference Manual_
+
+result ({})
 
 ### sensors
 
@@ -678,19 +715,60 @@ result (object)
 
 ### statementPrinter
 
-???
+(status)
+
+params
+
+- _status_ (string) - statement printer status data, a part of device status
+information field as defined in _APTRA Advance NDC, Reference Manual_
+
+result (object)
+
+- _deviceStatusDescription_ (string) - statement printer status;
+**NOTE: for more information
+on _statementPrinterStatuses_, please check _Dictionaries_ below**
 
 ### coinDispenser
 
-???
+(status)
+
+params
+
+- _status_ (string) - coin dispenser status data, a part of device status
+information field as defined in _APTRA Advance NDC, Reference Manual_
+
+result (object)
+
+- _deviceStatusDescription_ (string) - coin dispenser status;
+**NOTE: for more information
+on _coinDispenserStatuses_, please check _Dictionaries_ below**
+- _coinsDispensed_ (array) - array of coins dispensed from different hopper types
 
 ### voiceGuidance
 
-???
+(status)
+
+params
+
+- _status_ (string) - voice guidance status data, a part of device status
+information field as defined in _APTRA Advance NDC, Reference Manual_
+
+result ({})
 
 ### noteAcceptor
 
-???
+(status)
+
+params
+
+- _status_ (string) - note acceptor status data, a part of device status
+information field as defined in _APTRA Advance NDC, Reference Manual_
+
+result (object)
+
+- _deviceStatusDescription_ (string) - note acceptor status;
+**NOTE: for more information
+on _noteAcceptorStatuses_, please check _Dictionaries_ below**
 
 ### unsolicitedStatus
 
@@ -956,7 +1034,50 @@ result
 
 ### transactionReply
 
-???
+(type, luno, timeVariantNumber, nextState, notes, sernumFunction, coordinationCardPrinter)
+
+params
+
+- _type_ (string) - message class and message sub-class as defined in _APTRA
+ Advance NDC, Reference Manual_
+- _luno_ (string) - logical unit number as defined in _APTRA Advance NDC,
+ Reference Manual_
+- _timeVariantNumber_ (string) - time variant number as defined in _APTRA
+ Advance NDC, Reference Manual_
+- _nextState_ (string) - Next State ID Data as defined in _APTRA
+ Advance NDC, Reference Manual_
+- _notes_ (string) - number of different types notes to dispense as defined in _APTRA
+ Advance NDC, Reference Manual_
+- _sernumFunction_ (string) - transaction serial number, function identifier,
+screen number and screen display update as defined in _APTRA
+ Advance NDC, Reference Manual_
+- _coordinationCardPrinter_ - message co‐ordination number, card return/retain flag,
+printer flag and printer data as defined in _APTRA
+ Advance NDC, Reference Manual_
+
+ result(object)
+
+- _type_ (string) - _type_ from _params_
+- _luno_ (string) - _luno_ from _params_
+- _timeVariantNumber_ (string) - _timeVariantNumber_ from _params_
+- _nextState_ (string) - _nextState_ from _params_
+- _notes_ (string) - _notes_ from _params_
+- _sernum_ (string) - transaction serial number as defined in _APTRA
+ Advance NDC, Reference Manual_
+- _function_ (string) - function identifier as defined in _APTRA
+ Advance NDC, Reference Manual_
+- _screen_ (string) - screen number as defined in _APTRA
+ Advance NDC, Reference Manual_
+- _screenUpdate_ (string) - screen display update as defined in _APTRA
+ Advance NDC, Reference Manual_
+- _coordination_ (string) - message co‐ordination number as defined in _APTRA
+ Advance NDC, Reference Manual_
+- _cardReturn_ (string) - card return/retain flag as defined in _APTRA
+ Advance NDC, Reference Manual_
+- _printer_ (string) - printer flag as defined in _APTRA
+ Advance NDC, Reference Manual_
+- _printerData_ (string) - printer data as defined in _APTRA
+ Advance NDC, Reference Manual_
 
 ### keyReadKvv
 
