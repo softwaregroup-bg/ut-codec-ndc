@@ -203,13 +203,13 @@ params
 
 - _transactionSerialNumber_ (string) - transaction serial number, as defined
  in _APTRA Advance NDC, Reference Manual_
-- _transactionData_ (string)- transaction data, as defined
+- _transactionData_ (string) - transaction data, as defined
  in _APTRA Advance NDC, Reference Manual_
 
 result
 
 - _transactionSerialNumber_ (string) - _transactionSerialNumber_ from params
-- _transactionData_ (string)- _transactionData_ from params
+- _transactionData_ (string) - _transactionData_ from params
 
 ### specificReject
 
@@ -323,7 +323,7 @@ result (object)
 - _rejected2_ (integer) - number of rejected notes from cassette 2
 - _rejected3_ (integer) - number of rejected notes from cassette 3
 - _rejected4_ (integer) - number of rejected notes from cassette 4
-- _session_ (object) - ???
+- _session_ (object)
   - _cassettes_ (array) - contains number of notes in each cassette
     - (object)
       - _count_ (integer) - number of notes in the cassette
@@ -340,17 +340,16 @@ Send Date/Time Information Response
 
 params
 
--_status_ (string) - Date/Time information as defined in
+- _status_ (string) - Date/Time information as defined in
  _APTRA Advance NDC, Reference Manual_
 
 result (object)
 
--_clockStatus_ (string)- clock status;
-**NOTE: for more information on
+- _clockStatus_ (string) - clock status; **NOTE: for more information on
  _clockStatuses_, please check _Dictionaries_ below**
--_datetime_ (string)- The actual date and time returned by the terminal clock,
-The twelve character field format is YYMMDDHHMMSS,
-as defined in _APTRA Advance NDC, Reference Manual_
+- _datetime_ (string) - The actual date and time returned by the terminal clock,
+ The twelve character field format is YYMMDDHHMMSS, as defined in _APTRA Advance
+ NDC, Reference Manual_
 
 ### configurationId
 
@@ -401,7 +400,7 @@ result (object)
  contains the following:
   - _key_ - device
   - _value_ (bool) - device sensor ???
-- _session_ (object) - ???
+- _session_ (object)
   - _cassettes_ (array) - the following object for each cassette:
     - _fitness_ (string) - hardware health severity level; **NOTE: for more
      information on _severities_, please check _Dictionaries_ below**
@@ -508,8 +507,8 @@ as defined in _APTRA Advance NDC, Reference Manual_
 
 result (object)
 
--_release_ (string) - NDC Release Number
--_software_ (string) - NDC Software ID
+- _release_ (string) - NDC Release Number
+- _software_ (string) - NDC Software ID
 
 ### optionDigits
 
@@ -531,12 +530,12 @@ result (object)
 
 params
 
--_acceptedCashItems_ (string) - cash deposit definition data, a part of status
+- _acceptedCashItems_ (string) - cash deposit definition data, a part of status
 information field as defined in _APTRA Advance NDC, Reference Manual_
 
 result (object)
 
--_acceptedCashItems_ (array) - array of cash type items, as defined in _APTRA
+- _acceptedCashItems_ (array) - array of cash type items, as defined in _APTRA
  Advance NDC, Supervisor's Guide_
 
 ### clock
