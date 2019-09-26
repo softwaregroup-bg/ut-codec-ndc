@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "blue-tape": "1.0.0",
-    "ut-tools": "6.24.3",
+    "ut-tools": "6.25.2",
     "ut-unittest": "1.1.0",
     "tap": "^12.5.2"
   },
