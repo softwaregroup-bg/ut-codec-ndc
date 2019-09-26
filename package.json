@@ -4,14 +4,14 @@
   "main": "./index.js",
   "dependencies": {
     "browser-process-hrtime": "1.0.0",
-    "lodash.merge": "4.6.1",
+    "lodash.merge": "4.6.2",
     "ut-emv": ">=7.0.0-rc-dss.3 <=7.0.0-rc-dss.9999",
     "uuid": "3.3.2"
   },
   "devDependencies": {
     "blue-tape": "1.0.0",
-    "ut-tools": "^6.2.3",
-    "ut-unittest": "^1.0.2",
+    "ut-tools": "6.24.3",
+    "ut-unittest": "1.1.0",
     "tap": "^12.5.2"
   },
   "scripts": {

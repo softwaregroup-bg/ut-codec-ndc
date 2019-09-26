@@ -872,7 +872,7 @@ module.exports = () => ({
                 severities: null,
                 diagnosticStatus: null,
                 supplies: null,
-                deviceStatusDescription: 'Tampler indicator sensor change',
+                deviceStatusDescription: 'Tamper indicator sensor change',
                 supervisorMode: false,
                 vibration: true,
                 door: false,

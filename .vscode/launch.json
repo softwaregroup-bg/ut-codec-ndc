@@ -5,23 +5,32 @@
     "version": "0.2.0",
     "configurations": [
       {
+        "name": "Unit tests",
         "type": "node",
         "request": "launch",
-        "name": "unit test",
-        "program": "${workspaceFolder}/test/unit/index.js",
-        "runtimeArgs": [
-            "--preserve-symlinks",
-            "--nolazy",
-            "--max_old_space_size=500000"
+        "program": "${workspaceRoot}/node_modules/tap/bin/run.js",
+        "stopOnEntry": false,
+        "args": [
+            "-J",
+            "-T",
+            "--node-arg=--preserve-symlinks",
+            "test/unit/cases"
         ],
-        "linux": {
-            "outputCapture": "std",
-            "protocol": "inspector"
+        "cwd": "${workspaceRoot}",
+        "preLaunchTask": null,
+        "runtimeExecutable": null,
+        "runtimeArgs": [
+            "--nolazy"
+        ],
+        "env": {
+            "UT_ENV": "test",
+            "NODE_PATH": "${workspaceRoot}/dev"
         },
-        "windows": {
-          "outputCapture": "std",
-          "protocol": "inspector"
+        "sourceMaps": false,
+        "outputCapture": "std",
+        "linux": {
+            "protocol": "inspector"
         }
-      }
+    }
     ]
   }

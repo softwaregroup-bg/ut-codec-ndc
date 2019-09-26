@@ -61,7 +61,7 @@ module.exports = {
         '3': 'mediaOut',
         '4': 'overfill'
     },
-
+    // device fitness (hardware health severity level)
     severities: {
         '0': 'noError',
         '1': 'routine',
@@ -132,9 +132,9 @@ module.exports = {
         '1': 'Encryptor error',
         '2': 'Encryptor not configured'
     },
-
+    // type of reported sensor status change
     sensorStatuses: {
-        '1': 'Tampler indicator sensor change',
+        '1': 'Tamper indicator sensor change',
         '2': 'Mode change',
         '3': 'Alarm state change',
         '5': 'Full tamper indicator and full alarms change detected',
