@@ -1,3 +1,7 @@
+# [7.0.0](https://github.com/softwaregroup-bg/ut-codec-ndc/compare/v6.3.0...v7.0.0) (2019-09-27)
+
+
+
 <a name="6.3.0"></a>
 # [6.3.0](https://github.com/softwaregroup-bg/ut-codec-ndc/compare/v6.3.0-rc-einstein.4...v6.3.0) (2018-09-17)
 
