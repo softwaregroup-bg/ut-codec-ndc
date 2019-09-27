@@ -1,22 +1,25 @@
 {
   "name": "ut-codec-ndc",
-  "version": "6.3.0",
+  "version": "7.0.0-rc-dss.6",
   "main": "./index.js",
   "dependencies": {
-    "browser-process-hrtime": "0.1.2",
-    "lodash.merge": "4.6.0",
-    "ut-emv": "^6.1.2"
+    "browser-process-hrtime": "1.0.0",
+    "lodash.merge": "4.6.2",
+    "ut-emv": ">=7.0.0-rc-dss.3 <=7.0.0-rc-dss.9999",
+    "uuid": "3.3.2"
   },
   "devDependencies": {
     "blue-tape": "1.0.0",
-    "ut-tools": "^5.29.14"
+    "ut-tools": "6.25.2",
+    "ut-unittest": "1.1.0",
+    "tap": "^12.5.2"
   },
   "scripts": {
     "lint": "ut-lint .",
     "release": "ut-release",
     "changelog": "ut-changelog",
     "check": "ut-check",
-    "cover": "ut-cover",
+    "cover": "ut-cover-parallel",
     "lint-js": "ut-lint-js .",
     "postpublish": "ut-postpublish",
     "postversion": "ut-postversion",
@@ -26,7 +29,7 @@
     "pretest": "ut-pretest",
     "precover": "ut-precover",
     "preversion": "ut-preversion",
-    "test": "ut-test",
+    "test": "ut-test-parallel",
     "version": "ut-version",
     "jenkins": "ut-jenkins",
     "gitlab": "ut-gitlab"

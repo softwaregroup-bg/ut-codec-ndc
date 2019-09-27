@@ -1,3 +1,4 @@
+const uuid = require('uuid/v4');
 var merge = require('lodash.merge');
 var map = require('./map');
 var defaultFormat = require('./messages');
@@ -12,7 +13,7 @@ function packCamFlags(data) {
             return (b << 1) | bit;
         }, buf[idx]);
         return buf;
-    }, new Buffer([0, 0])).toString('hex');
+    }, Buffer.from([0, 0])).toString('hex');
 }
 
 function packSmartCardData(camFlags, emvTags) {
@@ -31,7 +32,7 @@ const getMaskList = (arr, objArr) => {
         .filter((v) => objArr[v])
         .map((v) =>
             Buffer.from(objArr[v], 'ascii')
-            .toString('hex')
+                .toString('hex')
         );
 };
 
@@ -53,7 +54,7 @@ const encodeBufferMask = (maskFields) => (buffer, message) => {
 };
 
 function NDC(config, validator, logger) {
-    this.errors = require('./errors')(config.defineError);
+    this.errors = require('./errors')(config);
     this.fieldSeparator = config.fieldSeparator || '\u001c';
     this.groupSeparator = config.groupSeparator || '\u001d';
     this.val = validator || null;
@@ -82,11 +83,11 @@ var parsers = {
         transactionSerialNumber,
         transactionData
     }),
-    specificReject: (status) => {
-        throw this.errors.customReject(status);
+    specificReject: function(status) {
+        throw this.errors['aptra.customReject'](status);
     },
-    reject: () => {
-        throw this.errors.commandReject();
+    reject: function() {
+        throw this.errors['aptra.commandReject']();
     },
     fault: (deviceIdentifierAndStatus, severities, diagnosticStatus, suppliesStatus) => {
         var deviceStatus = deviceIdentifierAndStatus && deviceIdentifierAndStatus.substring && deviceIdentifierAndStatus.substring(1);
@@ -109,7 +110,7 @@ var parsers = {
     ready: () => ({}),
     state: function(status) { // do not change to arrow function as proper this and arguments are needed
         var g1 = status.substring(0, 1);
-        var fn = g1 && map.statuses[g1] && this[map.statuses[g1]];
+        var fn = g1 && map.statuses[g1] && parsers[map.statuses[g1]];
         if (typeof fn === 'function') {
             return merge({
                 statusType: map.statuses[g1]
@@ -156,7 +157,7 @@ var parsers = {
     }),
     configuration: (config, hwFitness, hwConfig, supplies, sensors, release, softwareId) => {
         var sensorValues = parsers.sensors(' ' + sensors, true);
-        return {cofigId: config.substring(1),
+        return {cofigId: config.substring(1), // typo ???
             session: {
                 cassettes: [
                     {sensor: sensorValues.cassette1, fitness: map.severities[hwFitness.substring(15, 16)], supplies: map.suppliesStatus[supplies.substring(15, 16)]},
@@ -238,7 +239,7 @@ var parsers = {
     optionDigits: (optionDigits) => ({
         optionDigits: optionDigits && optionDigits.substring && optionDigits.substring(2).split('')
     }),
-    depositDefition: (acceptedCashItems) => ({
+    depositDefition: (acceptedCashItems) => ({ // typo ???
         acceptedCashItems: acceptedCashItems && acceptedCashItems.substring && acceptedCashItems.substring(2).match(/.{11}/g)
     }),
 
@@ -318,10 +319,10 @@ var parsers = {
 
     // message classes
     unsolicitedStatus: function(type, luno, reserved, deviceIdentifierAndStatus, errorSeverity, diagnosticStatus, suppliesStatus) {
-        return this.fault(deviceIdentifierAndStatus, errorSeverity, diagnosticStatus, suppliesStatus);
+        return parsers.fault(deviceIdentifierAndStatus, errorSeverity, diagnosticStatus, suppliesStatus);
     },
     solicitedStatus: function(type, luno, reserved, descriptor, status) {
-        var fn = descriptor && map.descriptors[descriptor] && this[map.descriptors[descriptor]];
+        var fn = descriptor && map.descriptors[descriptor] && parsers[map.descriptors[descriptor]];
         if (typeof fn === 'function') {
             return merge({
                 luno,
@@ -360,10 +361,11 @@ var parsers = {
         };
     },
     smartCardData: (fields) => {
-        // There are 16 available CAM flags.These are encoded as the bits in two bytes, and are converted to ASCII hex(four bytes) for transmission. Each can have the value 0x0 or 0x1
+        /* There are 16 available CAM flags.These are encoded as the bits in two bytes, and are
+        converted to ASCII hex(four bytes) for transmission. Each can have the value 0x0 or 0x1 */
         var smartCardData = fields.find(field => field.substring(0, 4) === '5CAM');
         smartCardData = (smartCardData && smartCardData.substring(4)) || '';
-        var camFlags = new Buffer(smartCardData.substring(0, 4), 'hex');
+        var camFlags = Buffer.from(smartCardData.substring(0, 4), 'hex');
         var emvTags = smartCardData.substring(4);
         return Object.assign(
             {},
@@ -483,7 +485,7 @@ var parsers = {
 
 NDC.prototype.decode = function(buffer, $meta, context, log) {
     var message = {};
-    var bufferString = buffer.toString().replace(/\u0003/g, ''); // remove END OF TEXT char (because of the ncr simulator)
+    var bufferString = buffer.toString().replace(/\\u0003/g, ''); // remove END OF TEXT char (because of the ncr simulator)
 
     if (buffer.length > 0) {
         var tokens = bufferString.split(this.fieldSeparator);
@@ -563,19 +565,33 @@ NDC.prototype.decode = function(buffer, $meta, context, log) {
 
             var fn = parsers[command.method];
             if (typeof fn === 'function') {
-                merge(message, fn.apply(parsers, tokens));
+                merge(message, fn.apply(this, tokens));
             } else {
-                throw this.errors.decode({'command.method': command.method});
+                throw this.errors['aptra.decode']({'command.method': command.method});
+            }
+            switch ($meta.method) {
+                case 'aptra.transaction':
+                    $meta.forward = $meta.forward || {};
+                    $meta.forward['x-client-trace-id'] = message.luno + '/tx-' + message.transactionRequestId + '/' + uuid();
+                    break;
+                case 'aptra.unsolicitedStatus':
+                    $meta.forward = $meta.forward || {};
+                    $meta.forward['x-client-trace-id'] = message.luno + '/us/' + uuid();
+                    break;
+                case 'aptra.uploadEjData':
+                    $meta.forward = $meta.forward || {};
+                    $meta.forward['x-client-trace-id'] = message.luno + '/ej/' + uuid();
+                    break;
             }
             message.tokens = tokens;
         } else {
             $meta.mtid = 'error';
-            throw this.errors.unknownMessageClass({'message class': tokens[0]});
+            throw this.errors['aptra.unknownMessageClass']({params: {'message class': tokens[0]}});
         }
     }
     if (log && log.trace) {
         let bufferMasked = this.decodeBufferMask(buffer, Object.assign({}, message, {track2Clean: message.track2 && message.track2.split(';').join('').split('=').shift()}));
-        log.trace({$meta: {mtid: 'frame', opcode: 'in'}, message: bufferMasked, log: context && context.session && context.session.log});
+        log.trace({$meta: {mtid: 'frame', method: 'ndc.decode'}, message: bufferMasked, log: context && context.session && context.session.log});
     }
     return message;
 };
@@ -636,7 +652,7 @@ NDC.prototype.encode = function(message, $meta, context, log) {
                 $meta.trace = 'trn:' + context.traceTransaction;
                 context.traceTransaction += 1;
             } else {
-                throw this.errors.timeout();
+                throw this.errors['aptra.timeout']({});
             }
             break;
     }
@@ -675,7 +691,7 @@ NDC.prototype.encode = function(message, $meta, context, log) {
         let buffer = Buffer.from(bufferString, 'ascii');
         if (log && log.trace) {
             let bufferMasked = this.encodeBufferMask(buffer, Object.assign({}, message, {track2Clean: message.track2 && message.track2.split(';').join('').split('=').shift()}));
-            log.trace({$meta: {mtid: 'frame', opcode: 'out'}, message: bufferMasked, log: context && context.session && context.session.log});
+            log.trace({$meta: {mtid: 'frame', method: 'ndc.encode'}, message: bufferMasked, log: context && context.session && context.session.log});
         }
         return buffer;
     }

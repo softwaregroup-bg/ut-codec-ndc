@@ -118,11 +118,11 @@ function testme(bdd, assert, expect, BitSyntax, NDC, validators, samples) {
                 var pattern = BitSyntax.parse('size:16, bin:size/binary');
                 var out1 = BitSyntax.build(pattern, {
                     size: buffer.length,
-                    bin: new Buffer(buffer)
+                    bin: Buffer.from(buffer)
                 });
                 var out2 = BitSyntax.build(pattern, {
                     size: samples.opCodeAResp.length,
-                    bin: new Buffer(samples.opCodeAResp)
+                    bin: Buffer.from(samples.opCodeAResp)
                 });
                 expect(out1.length).to.be.equal(out2.length);
                 assert.deepEqual(out1.toString(), out2.toString());
@@ -173,11 +173,11 @@ function testme(bdd, assert, expect, BitSyntax, NDC, validators, samples) {
                     var pattern = BitSyntax.parse('size:16, something is wrong with the pattern :)');
                     var out1 = BitSyntax.build(pattern, {
                         size: buffer.length,
-                        bin: new Buffer(buffer)
+                        bin: Buffer.from(buffer)
                     });
                     var out2 = BitSyntax.build(pattern, {
                         size: samples.opCodeAResp.length,
-                        bin: new Buffer(samples.opCodeAResp)
+                        bin: Buffer.from(samples.opCodeAResp)
                     });
                     expect(out1.length).to.be.equal(out2.length);
                     assert.deepEqual(out1.toString(), out2.toString());
@@ -230,11 +230,11 @@ function testme(bdd, assert, expect, BitSyntax, NDC, validators, samples) {
                 var pattern = BitSyntax.parse('size:16, bin:size/binary');
                 var out1 = BitSyntax.build(pattern, {
                     size: buffer.length,
-                    bin: new Buffer(buffer)
+                    bin: Buffer.from(buffer)
                 });
                 var out2 = BitSyntax.build(pattern, {
                     size: samples.opCodeBResp.length,
-                    bin: new Buffer(samples.opCodeBResp)
+                    bin: Buffer.from(samples.opCodeBResp)
                 });
                 expect(out1.length).to.be.equal(out2.length);
                 assert.deepEqual(out1.toString(), out2.toString());
@@ -285,11 +285,11 @@ function testme(bdd, assert, expect, BitSyntax, NDC, validators, samples) {
                     var pattern = BitSyntax.parse('size:16, bin:size/binary');
                     var out1 = BitSyntax.build(pattern, {
                         size: buffer.length,
-                        bin: new Buffer(buffer)
+                        bin: Buffer.from(buffer)
                     });
                     var out2 = BitSyntax.build(pattern, {
                         size: samples.opCodeBResp.length,
-                        bin: new Buffer(samples.opCodeBResp)
+                        bin: Buffer.from(samples.opCodeBResp)
                     });
                     expect(out1.length).to.be.equal(out2.length);
                     assert.deepEqual(out1.toString(), out2.toString());
@@ -343,11 +343,11 @@ function testme(bdd, assert, expect, BitSyntax, NDC, validators, samples) {
                 var pattern = BitSyntax.parse('size:16, bin:size/binary');
                 var out1 = BitSyntax.build(pattern, {
                     size: buffer.length,
-                    bin: new Buffer(buffer)
+                    bin: Buffer.from(buffer)
                 });
                 var out2 = BitSyntax.build(pattern, {
                     size: samples.opCodeDResp.length,
-                    bin: new Buffer(samples.opCodeDResp)
+                    bin: Buffer.from(samples.opCodeDResp)
                 });
                 expect(out1.length).to.be.equal(out2.length);
                 assert.deepEqual(out1.toString(), out2.toString());
@@ -397,11 +397,11 @@ function testme(bdd, assert, expect, BitSyntax, NDC, validators, samples) {
                 var pattern = BitSyntax.parse('size:16, bin:size/binary');
                 var out1 = BitSyntax.build(pattern, {
                     size: buffer.length,
-                    bin: new Buffer(buffer)
+                    bin: Buffer.from(buffer)
                 });
                 var out2 = BitSyntax.build(pattern, {
                     size: samples.opCodeDResp.length,
-                    bin: new Buffer(samples.opCodeDResp)
+                    bin: Buffer.from(samples.opCodeDResp)
                 });
                 expect(out1.length).to.be.equal(out2.length);
                 assert.deepEqual(out1.toString(), out2.toString());
