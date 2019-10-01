@@ -1,3 +1,12 @@
+## [7.0.1](https://github.com/softwaregroup-bg/ut-codec-ndc/compare/v7.0.0...v7.0.1) (2019-10-01)
+
+
+### Bug Fixes
+
+* deps ([088d0cc](https://github.com/softwaregroup-bg/ut-codec-ndc/commit/088d0cc))
+
+
+
 # [7.0.0](https://github.com/softwaregroup-bg/ut-codec-ndc/compare/v6.3.0...v7.0.0) (2019-09-27)
 
 
