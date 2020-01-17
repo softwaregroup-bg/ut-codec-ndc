@@ -9,7 +9,6 @@
     "uuid": "3.3.2"
   },
   "devDependencies": {
-    "blue-tape": "1.0.0",
     "ut-tools": "6.30.5",
     "ut-unittest": "1.1.0",
     "tap": "^14.10.6"
