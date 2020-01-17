@@ -1,9 +1,9 @@
 const tap = require('tap');
 const {define, get, fetch} = require('ut-unittest/errorApi.js')();
 const errorApi = { getError: get, fetchErrors: fetch, defineError: define };
-const config = require('../config/test')();
+const config = require('./config/test')();
 
-const NDC = require('../../../index');
+const NDC = require('../index');
 const ndc = new NDC(Object.assign({}, {messageFormat: config.messageFormat}, errorApi));
 
 const transfer = config.test.transfer;
