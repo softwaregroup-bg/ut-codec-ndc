@@ -1,3 +1,12 @@
+## [7.0.3](https://github.com/softwaregroup-bg/ut-codec-ndc/compare/v7.0.2...v7.0.3) (2020-02-24)
+
+
+### Bug Fixes
+
+* lint ([7017ffa](https://github.com/softwaregroup-bg/ut-codec-ndc/commit/7017ffade1f705c9147ba63ce834776f269169e0))
+
+
+
 ## [7.0.2](https://github.com/softwaregroup-bg/ut-codec-ndc/compare/v7.0.1...v7.0.2) (2020-01-17)
 
 
