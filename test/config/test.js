@@ -26,7 +26,7 @@ module.exports = () => ({
                 coordination: '2',
                 track2: ';502265400089000092=2708620951?',
                 track3: '',
-                opcode: [ ' ', 'D', 'B', ' ', ' ', ' ', 'A', 'D' ],
+                opcode: [' ', 'D', 'B', ' ', ' ', ' ', 'A', 'D'],
                 amount: '000000000000',
                 pinBlock: '0B60C78E44D77241',
                 pinBlockRaw: '0;60<78>44=77241',
@@ -34,10 +34,11 @@ module.exports = () => ({
                 bufferB: '',
                 bufferC: '',
                 lastTransactionData: { sernum: '1639', status: '1', notes1: 0, notes2: 0, notes3: 0, notes4: 0 },
-                camFlags: [ [ 0, 0, 0, 0, 0, 0, 0, 0 ], [ 0, 0, 0, 0, 0, 0, 0, 0 ] ],
+                camFlags: [[0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]],
                 emvTagsRaw: '8C159F02069F03069F1A0295055F2A029A039C019F37049F02060000000000009F0306000000000000820218005A095022654000890000925F3401019F360209B79F2608B2746052B28B64139F34030200009F2701809F1E0830303030303030319F100706010A03A0A0009F090200969F33036040E89F1A0206089F35011495058000040000570F502265400089000092D2708620951F5F2A0206089F080200969A031810019F4104000038169B0260009C01309F3704039690459F53015A9F0607A000000635101050105068696C697070696E652044656269745F201A4544204241524741444F2F2020202020202020202020202020205F2403270831',
                 emvTags: { CDOL1: { tag: '8C', len: 21, val: { amountAuthorised: { tag: '9F02', idx: 0, len: 6, val: '' }, amountOther: { tag: '9F03', idx: 1, len: 6, val: '' }, terminalCountryCode: { tag: '9F1A', idx: 2, len: 2, val: '' }, terminalVerificationResults: { tag: '95', idx: 3, len: 5, val: '' }, transactionCurrencyCode: { tag: '5F2A', idx: 4, len: 2, val: '' }, transactionDate: { tag: '9A', idx: 5, len: 3, val: '' }, transactionType: { tag: '9C', idx: 6, len: 1, val: '' }, unpredictableNumber: { tag: '9F37', idx: 7, len: 4, val: '' } } }, amountAuthorised: { tag: '9F02', len: 6, val: '000000000000' }, amountOther: { tag: '9F03', len: 6, val: '000000000000' }, applicationInterchangeProfile: { tag: '82', len: 2, val: '1800' }, pan: { tag: '5A', len: 9, val: '502265400089000092' }, panSeqNum: { tag: '5F34', len: 1, val: '01' }, atc: { tag: '9F36', len: 2, val: '09B7' }, applicationCryptogram: { tag: '9F26', len: 8, val: 'B2746052B28B6413' }, cvmResults: { tag: '9F34', len: 3, val: '020000' }, cryptogramInformationData: { tag: '9F27', len: 1, val: '80' }, interfaceDeviceIFDSerialNumber: { tag: '9F1E', len: 8, val: '3030303030303031' }, issuerApplicationData: { tag: '9F10', len: 7, val: '06010A03A0A000' }, terminalApplicationVersionNumber: { tag: '9F09', len: 2, val: '0096' }, terminalCapabilities: { tag: '9F33', len: 3, val: '6040E8' }, terminalCountryCode: { tag: '9F1A', len: 2, val: '0608' }, terminalType: { tag: '9F35', len: 1, val: '14' }, terminalVerificationResults: { tag: '95', len: 5, val: '8000040000' }, track2EquivalentData: { tag: '57', len: 15, val: '502265400089000092D2708620951F' }, transactionCurrencyCode: { tag: '5F2A', len: 2, val: '0608' }, applicationVersionNumber: { tag: '9F08', len: 2, val: '0096' }, transactionDate: { tag: '9A', len: 3, val: '181001' }, transactionSequenceCounter: { tag: '9F41', len: 4, val: '00003816' }, transactionStatusInformation: { tag: '9B', len: 2, val: '6000' }, transactionType: { tag: '9C', len: 1, val: '30' }, unpredictableNumber: { tag: '9F37', len: 4, val: '03969045' }, emv9F53: { tag: '9F53', len: 1, val: '5A' }, applicationIdentifierAIDTerminal: { tag: '9F06', len: 7, val: 'A0000006351010' }, applicationLabel: { tag: '50', len: 16, val: '5068696C697070696E65204465626974' }, cardholderName: { tag: '5F20', len: 26, val: '4544204241524741444F2F202020202020202020202020202020' }, applicationExpirationDate: { tag: '5F24', len: 3, val: '270831' } },
-                tokens: [ '11', '001000001', '', '01A2E166', '12', ';502265400089000092=2708620951?', '', ' DB   AD', '000000000000', '0;60<78>44=77241', '', '', '', '21639100000000000000000000', 'U', '5CAM00008C159F02069F03069F1A0295055F2A029A039C019F37049F02060000000000009F0306000000000000820218005A095022654000890000925F3401019F360209B79F2608B2746052B28B64139F34030200009F2701809F1E0830303030303030319F100706010A03A0A0009F090200969F33036040E89F1A0206089F35011495058000040000570F502265400089000092D2708620951F5F2A0206089F080200969A031810019F4104000038169B0260009C01309F3704039690459F53015A9F0607A000000635101050105068696C697070696E652044656269745F201A4544204241524741444F2F2020202020202020202020202020205F2403270831', '3FF7AA85' ] },
+                tokens: ['11', '001000001', '', '01A2E166', '12', ';502265400089000092=2708620951?', '', ' DB   AD', '000000000000', '0;60<78>44=77241', '', '', '', '21639100000000000000000000', 'U', '5CAM00008C159F02069F03069F1A0295055F2A029A039C019F37049F02060000000000009F0306000000000000820218005A095022654000890000925F3401019F360209B79F2608B2746052B28B64139F34030200009F2701809F1E0830303030303030319F100706010A03A0A0009F090200969F33036040E89F1A0206089F35011495058000040000570F502265400089000092D2708620951F5F2A0206089F080200969A031810019F4104000038169B0260009C01309F3704039690459F53015A9F0607A000000635101050105068696C697070696E652044656269745F201A4544204241524741444F2F2020202020202020202020202020205F2403270831', '3FF7AA85']
+            },
 
             transactionReply: {
                 luno: '001000001',
@@ -102,7 +103,7 @@ module.exports = () => ({
                 type: '61',
                 luno: '',
                 journalData: '000001181001142259274493275186693Card Inserted (502265XXXXXX0092)\r\nATR RECEIVED T=0\r\n\r\nCANDIDATE LIST  1 APPS\r\n\r\nAPPLICATION SELECTED A0000006351010\r\n\r\nEight FDK selected [  B    A]\r\nFour FDK selected [  B   AA]\r\nFour FDK selected [ DB   AA]\r\nGENAC 1 : ARQC\r\n\r\nTransaction Request [ DB   AD]\r\nGENAC 2 : TC\r\n\r\nTransaction Reply [Host Seq.No.: 1640]\r\nNext State [055] Function [SetNextStateAndPrint]\r\n\r\n *****START*****\r\n DATE/TIME : 2018-10-1 17:25:13\r\n SEQ NO    : 2640\r\n TRACE     : 024789\r\n CARD NO   : 502265****0092\r\n FR ACCT   : *****************\r\n RESP CODE : 00 \r\n TRN TYPE  : ATM BALANCE\r\n AMT AUTH  : 0\r\n SWCT DATE : 2018-10-1\r\n \r\n *****END*****\r\n\r\n\r\nEight FDK selected [DDB   AD]\r\nCard is being eject\r\nCard Ejected\r\n',
-                tokens: [ '61', '', '', '', '000001181001142259274493275186693Card Inserted (502265XXXXXX0092)\r\nATR RECEIVED T=0\r\n\r\nCANDIDATE LIST  1 APPS\r\n\r\nAPPLICATION SELECTED A0000006351010\r\n\r\nEight FDK selected [  B    A]\r\nFour FDK selected [  B   AA]\r\nFour FDK selected [ DB   AA]\r\nGENAC 1 : ARQC\r\n\r\nTransaction Request [ DB   AD]\r\nGENAC 2 : TC\r\n\r\nTransaction Reply [Host Seq.No.: 1640]\r\nNext State [055] Function [SetNextStateAndPrint]\r\n\r\n *****START*****\r\n DATE/TIME : 2018-10-1 17:25:13\r\n SEQ NO    : 2640\r\n TRACE     : 024789\r\n CARD NO   : 502265****0092\r\n FR ACCT   : *****************\r\n RESP CODE : 00 \r\n TRN TYPE  : ATM BALANCE\r\n AMT AUTH  : 0\r\n SWCT DATE : 2018-10-1\r\n \r\n *****END*****\r\n\r\n\r\nEight FDK selected [DDB   AD]\r\nCard is being eject\r\nCard Ejected\r\n' ]
+                tokens: ['61', '', '', '', '000001181001142259274493275186693Card Inserted (502265XXXXXX0092)\r\nATR RECEIVED T=0\r\n\r\nCANDIDATE LIST  1 APPS\r\n\r\nAPPLICATION SELECTED A0000006351010\r\n\r\nEight FDK selected [  B    A]\r\nFour FDK selected [  B   AA]\r\nFour FDK selected [ DB   AA]\r\nGENAC 1 : ARQC\r\n\r\nTransaction Request [ DB   AD]\r\nGENAC 2 : TC\r\n\r\nTransaction Reply [Host Seq.No.: 1640]\r\nNext State [055] Function [SetNextStateAndPrint]\r\n\r\n *****START*****\r\n DATE/TIME : 2018-10-1 17:25:13\r\n SEQ NO    : 2640\r\n TRACE     : 024789\r\n CARD NO   : 502265****0092\r\n FR ACCT   : *****************\r\n RESP CODE : 00 \r\n TRN TYPE  : ATM BALANCE\r\n AMT AUTH  : 0\r\n SWCT DATE : 2018-10-1\r\n \r\n *****END*****\r\n\r\n\r\nEight FDK selected [DDB   AD]\r\nCard is being eject\r\nCard Ejected\r\n']
             },
 
             ejAckMessage: {
@@ -135,7 +136,7 @@ module.exports = () => ({
                 sensors: { deviceStatusDescription: undefined, supervisorMode: false, vibration: false, door: false, silentSignal: false, electronicsEnclosure: true, depositBin: false, cardBin: true, rejectBin: true, cassette1: true, cassette2: true, cassette3: true, cassette4: false, session: undefined, coinDispenser: undefined, coinHopper1: undefined, coinHopper2: undefined, coinHopper3: undefined, coinHopper4: undefined, cpmPockets: undefined },
                 release: '62BFE468',
                 softwareId: undefined,
-                tokens: [ '22', '001000001', '', 'F', '10022', '0001000000000004224000', '147F000901000580000000D8000001030200007F7F00', '00011011000000032230000', '000010111110', '62BFE468' ]
+                tokens: ['22', '001000001', '', 'F', '10022', '0001000000000004224000', '147F000901000580000000D8000001030200007F7F00', '00011011000000032230000', '000010111110', '62BFE468']
             }
         },
         withdraw: {
@@ -155,7 +156,7 @@ module.exports = () => ({
                 coordination: '4',
                 track2: ';502265400089000092=2708620951?',
                 track3: '',
-                opcode: [ ' ', 'D', 'A', ' ', ' ', ' ', 'A', 'D' ],
+                opcode: [' ', 'D', 'A', ' ', ' ', ' ', 'A', 'D'],
                 amount: '000000010000',
                 pinBlock: '84163AD3395289B7',
                 pinBlockRaw: '84163:=3395289;7',
@@ -163,10 +164,11 @@ module.exports = () => ({
                 bufferB: '',
                 bufferC: '',
                 lastTransactionData: { sernum: '1641', status: '1', notes1: 0, notes2: 0, notes3: 0, notes4: 0 },
-                camFlags: [ [ 0, 0, 0, 0, 0, 0, 0, 0 ], [ 0, 0, 0, 0, 0, 0, 0, 0 ] ],
+                camFlags: [[0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]],
                 emvTagsRaw: '8C159F02069F03069F1A0295055F2A029A039C019F37049F02060000000100009F0306000000000000820218005A095022654000890000925F3401019F360209B89F2608EB29226DF22C47B89F34030200009F2701809F1E0830303030303030319F100706010A03A020009F090200969F33036040E89F1A0206089F35011495058000040000570F502265400089000092D2708620951F5F2A0206089F080200969A031810029F4104000038189B0260009C01019F3704A1A855D49F53015A9F0607A000000635101050105068696C697070696E652044656269745F201A4544204241524741444F2F2020202020202020202020202020205F2403270831',
                 emvTags: { CDOL1: { tag: '8C', len: 21, val: { amountAuthorised: { tag: '9F02', idx: 0, len: 6, val: '' }, amountOther: { tag: '9F03', idx: 1, len: 6, val: '' }, terminalCountryCode: { tag: '9F1A', idx: 2, len: 2, val: '' }, terminalVerificationResults: { tag: '95', idx: 3, len: 5, val: '' }, transactionCurrencyCode: { tag: '5F2A', idx: 4, len: 2, val: '' }, transactionDate: { tag: '9A', idx: 5, len: 3, val: '' }, transactionType: { tag: '9C', idx: 6, len: 1, val: '' }, unpredictableNumber: { tag: '9F37', idx: 7, len: 4, val: '' } } }, amountAuthorised: { tag: '9F02', len: 6, val: '000000010000' }, amountOther: { tag: '9F03', len: 6, val: '000000000000' }, applicationInterchangeProfile: { tag: '82', len: 2, val: '1800' }, pan: { tag: '5A', len: 9, val: '502265400089000092' }, panSeqNum: { tag: '5F34', len: 1, val: '01' }, atc: { tag: '9F36', len: 2, val: '09B8' }, applicationCryptogram: { tag: '9F26', len: 8, val: 'EB29226DF22C47B8' }, cvmResults: { tag: '9F34', len: 3, val: '020000' }, cryptogramInformationData: { tag: '9F27', len: 1, val: '80' }, interfaceDeviceIFDSerialNumber: { tag: '9F1E', len: 8, val: '3030303030303031' }, issuerApplicationData: { tag: '9F10', len: 7, val: '06010A03A02000' }, terminalApplicationVersionNumber: { tag: '9F09', len: 2, val: '0096' }, terminalCapabilities: { tag: '9F33', len: 3, val: '6040E8' }, terminalCountryCode: { tag: '9F1A', len: 2, val: '0608' }, terminalType: { tag: '9F35', len: 1, val: '14' }, terminalVerificationResults: { tag: '95', len: 5, val: '8000040000' }, track2EquivalentData: { tag: '57', len: 15, val: '502265400089000092D2708620951F' }, transactionCurrencyCode: { tag: '5F2A', len: 2, val: '0608' }, applicationVersionNumber: { tag: '9F08', len: 2, val: '0096' }, transactionDate: { tag: '9A', len: 3, val: '181002' }, transactionSequenceCounter: { tag: '9F41', len: 4, val: '00003818' }, transactionStatusInformation: { tag: '9B', len: 2, val: '6000' }, transactionType: { tag: '9C', len: 1, val: '01' }, unpredictableNumber: { tag: '9F37', len: 4, val: 'A1A855D4' }, emv9F53: { tag: '9F53', len: 1, val: '5A' }, applicationIdentifierAIDTerminal: { tag: '9F06', len: 7, val: 'A0000006351010' }, applicationLabel: { tag: '50', len: 16, val: '5068696C697070696E65204465626974' }, cardholderName: { tag: '5F20', len: 26, val: '4544204241524741444F2F202020202020202020202020202020' }, applicationExpirationDate: { tag: '5F24', len: 3, val: '270831' } },
-                tokens: [ '11', '001000001', '', '01A468E4', '14', ';502265400089000092=2708620951?', '', ' DA   AD', '000000010000', '84163:=3395289;7', '', '', '', '21641100000000000000000000\x1dCAM\x1d9B026000', 'U', '5CAM00008C159F02069F03069F1A0295055F2A029A039C019F37049F02060000000100009F0306000000000000820218005A095022654000890000925F3401019F360209B89F2608EB29226DF22C47B89F34030200009F2701809F1E0830303030303030319F100706010A03A020009F090200969F33036040E89F1A0206089F35011495058000040000570F502265400089000092D2708620951F5F2A0206089F080200969A031810029F4104000038189B0260009C01019F3704A1A855D49F53015A9F0607A000000635101050105068696C697070696E652044656269745F201A4544204241524741444F2F2020202020202020202020202020205F2403270831', '766A0E2F' ] },
+                tokens: ['11', '001000001', '', '01A468E4', '14', ';502265400089000092=2708620951?', '', ' DA   AD', '000000010000', '84163:=3395289;7', '', '', '', '21641100000000000000000000\x1dCAM\x1d9B026000', 'U', '5CAM00008C159F02069F03069F1A0295055F2A029A039C019F37049F02060000000100009F0306000000000000820218005A095022654000890000925F3401019F360209B89F2608EB29226DF22C47B89F34030200009F2701809F1E0830303030303030319F100706010A03A020009F090200969F33036040E89F1A0206089F35011495058000040000570F502265400089000092D2708620951F5F2A0206089F080200969A031810029F4104000038189B0260009C01019F3704A1A855D49F53015A9F0607A000000635101050105068696C697070696E652044656269745F201A4544204241524741444F2F2020202020202020202020202020205F2403270831', '766A0E2F']
+            },
 
             transactionReply: {
                 luno: '001000001',
@@ -199,8 +201,9 @@ module.exports = () => ({
                     transferId: '24791'
                 },
                 emvTags: {
-                    authorisationResponseCode: {'idx': 1, 'val': '3030'},
-                    issuerAuthenticationData: {'idx': 0, 'val': 'DA317DE32A9436203030'}},
+                    authorisationResponseCode: {idx: 1, val: '3030'},
+                    issuerAuthenticationData: {idx: 0, val: 'DA317DE32A9436203030'}
+                },
                 messageClass: '4',
                 messageSubclass: '',
                 mac: '06E356AF'
@@ -223,15 +226,15 @@ module.exports = () => ({
                 session: undefined,
                 device: 'cashHandler',
                 deviceStatus: '000000100',
-                severities: [ 'noError', 'fatal', 'warning', 'warning', 'fatal' ],
+                severities: ['noError', 'fatal', 'warning', 'warning', 'fatal'],
                 diagnosticStatus: '0301080400000000',
-                supplies: [ 'good', 'mediaOut', 'mediaLow', 'mediaLow', 'unchanged' ],
+                supplies: ['good', 'mediaOut', 'mediaLow', 'mediaLow', 'unchanged'],
                 deviceStatusDescription: 'Successful operation, but an exception has occurred as detailed in subsequent fields',
                 dispensed1: '00',
                 dispensed2: '00',
                 dispensed3: '01',
                 dispensed4: '00',
-                tokens: [ '12', '001000001', '', 'E000000100', '04224', '0301080400000000', '13220' ]
+                tokens: ['12', '001000001', '', 'E000000100', '04224', '0301080400000000', '13220']
             },
 
             requestCountersBuffer: Buffer.from('31311C3030313030303030311C1C30314134363846381C31351C3B3530323236353430303038393030303039323D323730383632303935313F1C1C43434343434343431C1C1C1C1C1C32313634323130303030303030303030303030303130303030301D43414D1D39423032363030301C4430343131364339', 'hex'),
@@ -249,7 +252,7 @@ module.exports = () => ({
                 coordination: '5',
                 track2: ';502265400089000092=2708620951?',
                 track3: '',
-                opcode: [ 'C', 'C', 'C', 'C', 'C', 'C', 'C', 'C' ],
+                opcode: ['C', 'C', 'C', 'C', 'C', 'C', 'C', 'C'],
                 amount: '',
                 pinBlock: '',
                 pinBlockRaw: '',
@@ -257,7 +260,7 @@ module.exports = () => ({
                 bufferB: '',
                 bufferC: '',
                 lastTransactionData: { sernum: '1642', status: '1', notes1: 0, notes2: 0, notes3: 1, notes4: 0 },
-                tokens: [ '11', '001000001', '', '01A468F8', '15', ';502265400089000092=2708620951?', '', 'CCCCCCCC', '', '', '', '', '', '21642100000000000000100000\x1dCAM\x1d9B026000', 'D04116C9' ]
+                tokens: ['11', '001000001', '', '01A468F8', '15', ';502265400089000092=2708620951?', '', 'CCCCCCCC', '', '', '', '', '', '21642100000000000000100000\x1dCAM\x1d9B026000', 'D04116C9']
             },
 
             requestCountersReplyMessage: {
@@ -296,7 +299,7 @@ module.exports = () => ({
                 type: '61',
                 luno: '',
                 journalData: '000001181002142640276382277282900Card Inserted (502265XXXXXX0092)\r\nATR RECEIVED T=0\r\n\r\nCANDIDATE LIST  1 APPS\r\n\r\nAPPLICATION SELECTED A0000006351010\r\n\r\nEight FDK selected [  A    A]\r\nFour FDK selected [  A   AA]\r\nFour FDK selected [ DA   AA]\r\nGENAC 1 : ARQC\r\n\r\nTransaction Request [ DA   AD]\r\nGENAC 2 : TC\r\n\r\nTransaction Reply [Host Seq.No.: 1642]\r\nNext State [125] Function [EjectCardAndDispenseAndPrint]\r\nDispense Type3 = 1 notes\r\nCard is being eject\r\nCard Ejected\r\nCash Present\r\nPresent\r\nCash Taken\r\n\r\n *****START*****\r\n DATE/TIME : 2018-10-2 17:28:53\r\n SEQ NO    : 2642\r\n TRACE     : 024791\r\n CARD NO   : 502265****0092\r\n FR ACCT   : *****************\r\n RESP CODE : 00 \r\n TRN TYPE  : CASH WITHDRAWAL\r\n AMT AUTH  : 100.00\r\n SWCT DATE : 2018-10-2\r\n \r\n DISPENSED : 1:00 2:00 3:01 4:00\r\n *****END*****\r\n\r\n\r\n*1642*1*E*000000100,M-03,R-13220,Mdata-01080400000000\r\nTransaction Request [CCCCCCCC]\r\nTransaction Reply [Host Seq.No.: 0000]\r',
-                tokens: [ '61', '', '', '', '000001181002142640276382277282900Card Inserted (502265XXXXXX0092)\r\nATR RECEIVED T=0\r\n\r\nCANDIDATE LIST  1 APPS\r\n\r\nAPPLICATION SELECTED A0000006351010\r\n\r\nEight FDK selected [  A    A]\r\nFour FDK selected [  A   AA]\r\nFour FDK selected [ DA   AA]\r\nGENAC 1 : ARQC\r\n\r\nTransaction Request [ DA   AD]\r\nGENAC 2 : TC\r\n\r\nTransaction Reply [Host Seq.No.: 1642]\r\nNext State [125] Function [EjectCardAndDispenseAndPrint]\r\nDispense Type3 = 1 notes\r\nCard is being eject\r\nCard Ejected\r\nCash Present\r\nPresent\r\nCash Taken\r\n\r\n *****START*****\r\n DATE/TIME : 2018-10-2 17:28:53\r\n SEQ NO    : 2642\r\n TRACE     : 024791\r\n CARD NO   : 502265****0092\r\n FR ACCT   : *****************\r\n RESP CODE : 00 \r\n TRN TYPE  : CASH WITHDRAWAL\r\n AMT AUTH  : 100.00\r\n SWCT DATE : 2018-10-2\r\n \r\n DISPENSED : 1:00 2:00 3:01 4:00\r\n *****END*****\r\n\r\n\r\n*1642*1*E*000000100,M-03,R-13220,Mdata-01080400000000\r\nTransaction Request [CCCCCCCC]\r\nTransaction Reply [Host Seq.No.: 0000]\r' ]
+                tokens: ['61', '', '', '', '000001181002142640276382277282900Card Inserted (502265XXXXXX0092)\r\nATR RECEIVED T=0\r\n\r\nCANDIDATE LIST  1 APPS\r\n\r\nAPPLICATION SELECTED A0000006351010\r\n\r\nEight FDK selected [  A    A]\r\nFour FDK selected [  A   AA]\r\nFour FDK selected [ DA   AA]\r\nGENAC 1 : ARQC\r\n\r\nTransaction Request [ DA   AD]\r\nGENAC 2 : TC\r\n\r\nTransaction Reply [Host Seq.No.: 1642]\r\nNext State [125] Function [EjectCardAndDispenseAndPrint]\r\nDispense Type3 = 1 notes\r\nCard is being eject\r\nCard Ejected\r\nCash Present\r\nPresent\r\nCash Taken\r\n\r\n *****START*****\r\n DATE/TIME : 2018-10-2 17:28:53\r\n SEQ NO    : 2642\r\n TRACE     : 024791\r\n CARD NO   : 502265****0092\r\n FR ACCT   : *****************\r\n RESP CODE : 00 \r\n TRN TYPE  : CASH WITHDRAWAL\r\n AMT AUTH  : 100.00\r\n SWCT DATE : 2018-10-2\r\n \r\n DISPENSED : 1:00 2:00 3:01 4:00\r\n *****END*****\r\n\r\n\r\n*1642*1*E*000000100,M-03,R-13220,Mdata-01080400000000\r\nTransaction Request [CCCCCCCC]\r\nTransaction Reply [Host Seq.No.: 0000]\r']
             },
 
             ejAckMessage1: {
@@ -310,7 +313,7 @@ module.exports = () => ({
                 type: '61',
                 luno: '',
                 journalData: '000001181002142640277282277328046\nNext State [078] Function [DisplayAndPrint]\r\n',
-                tokens: [ '61', '', '', '', '000001181002142640277282277328046\nNext State [078] Function [DisplayAndPrint]\r\n' ]
+                tokens: ['61', '', '', '', '000001181002142640277282277328046\nNext State [078] Function [DisplayAndPrint]\r\n']
             },
 
             ejAckMessage2: {
@@ -326,7 +329,7 @@ module.exports = () => ({
 
             sendSupplyCountersResBuffer: Buffer.from('32321C3030313030303030311C1C30314134363930361C461C323030303030303033363830303030323030303030303030303131303030303030303030383030303135303030323730303030303030303030303030303130303030383030303030303030303030303030303030303030303030303030303030303030303030303030303030303030301C4445344331433336', 'hex'),
             sendSupplyCountersRes: {
-                session: { cassettes: [ { count: 20 }, { count: 0 }, { count: 11 }, { count: 0 } ] },
+                session: { cassettes: [{ count: 20 }, { count: 0 }, { count: 11 }, { count: 0 }] },
                 mac: 'DE4C1C36',
                 raw: '22\x1c001000001\x1c\x1c01A46906\x1cF\x1c2000000036800002000000000110000000008000150002700000000000000100008000000000000000000000000000000000000000000000',
                 timeVariantNumber: '01A46906',
@@ -401,50 +404,54 @@ module.exports = () => ({
                     notes3: 0,
                     notes4: 0
                 },
-                camFlags: [ [ 0, 0, 0, 0, 0, 0, 0, 0 ], [ 0, 0, 0, 0, 0, 0, 0, 0 ] ],
+                camFlags: [[0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]],
                 emvTagsRaw: '8C159F02069F03069F1A0295055F2A029A039C019F37049F02060000000050009F0306000000000000820218005A095022654000890000925F3401019F360209D39F2608CE319347519E06049F34030200009F2701809F1E0830303030303030319F100706010A03A020009F090200969F33036040E89F1A0206089F35011495058000040000570F502265400089000092D2708620951F5F2A0206089F080200969A031810179F4104000038469B0260009C01409F370412A528A79F53015A9F0607A000000635101050105068696C697070696E652044656269745F201A4544204241524741444F2F2020202020202020202020202020205F2403270831',
-                emvTags: {CDOL1: {
-                    tag: '8C',
-                    len: 21,
-                    val: {
-                        amountAuthorised:
+                emvTags: {
+                    CDOL1: {
+                        tag: '8C',
+                        len: 21,
+                        val: {
+                            amountAuthorised:
                         {tag: '9F02', idx: 0, len: 6, val: ''},
-                        amountOther: {tag: '9F03', idx: 1, len: 6, val: ''},
-                        terminalCountryCode: {tag: '9F1A', idx: 2, len: 2, val: ''},
-                        terminalVerificationResults: {tag: '95', idx: 3, len: 5, val: ''},
-                        transactionCurrencyCode: {tag: '5F2A', idx: 4, len: 2, val: ''},
-                        transactionDate: {tag: '9A', idx: 5, len: 3, val: ''},
-                        transactionType: {tag: '9C', idx: 6, len: 1, val: ''},
-                        unpredictableNumber: {tag: '9F37', idx: 7, len: 4, val: ''}}},
-                amountAuthorised: {tag: '9F02', len: 6, val: '000000005000'},
-                amountOther: {tag: '9F03', len: 6, val: '000000000000'},
-                applicationInterchangeProfile: {tag: '82', len: 2, val: '1800'},
-                pan: {tag: '5A', len: 9, val: '502265400089000092'},
-                panSeqNum: {tag: '5F34', len: 1, val: '01'},
-                atc: {tag: '9F36', len: 2, val: '09D3'},
-                applicationCryptogram: {tag: '9F26', len: 8, val: 'CE319347519E0604'},
-                cvmResults: {tag: '9F34', len: 3, val: '020000'},
-                cryptogramInformationData: {tag: '9F27', len: 1, val: '80'},
-                interfaceDeviceIFDSerialNumber: {tag: '9F1E', len: 8, val: '3030303030303031'},
-                issuerApplicationData: {tag: '9F10', len: 7, val: '06010A03A02000'},
-                terminalApplicationVersionNumber: {tag: '9F09', len: 2, val: '0096'},
-                terminalCapabilities: {tag: '9F33', len: 3, val: '6040E8'},
-                terminalCountryCode: {tag: '9F1A', len: 2, val: '0608'},
-                terminalType: {tag: '9F35', len: 1, val: '14'},
-                terminalVerificationResults: {tag: '95', len: 5, val: '8000040000'},
-                track2EquivalentData: {tag: '57', len: 15, val: '502265400089000092D2708620951F'},
-                transactionCurrencyCode: {tag: '5F2A', len: 2, val: '0608'},
-                applicationVersionNumber: {tag: '9F08', len: 2, val: '0096'},
-                transactionDate: {tag: '9A', len: 3, val: '181017'},
-                transactionSequenceCounter: {tag: '9F41', len: 4, val: '00003846'},
-                transactionStatusInformation: {tag: '9B', len: 2, val: '6000'},
-                transactionType: {tag: '9C', len: 1, val: '40'},
-                unpredictableNumber: {tag: '9F37', len: 4, val: '12A528A7'},
-                emv9F53: {tag: '9F53', len: 1, val: '5A'},
-                applicationIdentifierAIDTerminal: {tag: '9F06', len: 7, val: 'A0000006351010'},
-                applicationLabel: {tag: '50', len: 16, val: '5068696C697070696E65204465626974'},
-                cardholderName: {tag: '5F20', len: 26, val: '4544204241524741444F2F202020202020202020202020202020'},
-                applicationExpirationDate: {tag: '5F24', len: 3, val: '270831'}},
+                            amountOther: {tag: '9F03', idx: 1, len: 6, val: ''},
+                            terminalCountryCode: {tag: '9F1A', idx: 2, len: 2, val: ''},
+                            terminalVerificationResults: {tag: '95', idx: 3, len: 5, val: ''},
+                            transactionCurrencyCode: {tag: '5F2A', idx: 4, len: 2, val: ''},
+                            transactionDate: {tag: '9A', idx: 5, len: 3, val: ''},
+                            transactionType: {tag: '9C', idx: 6, len: 1, val: ''},
+                            unpredictableNumber: {tag: '9F37', idx: 7, len: 4, val: ''}
+                        }
+                    },
+                    amountAuthorised: {tag: '9F02', len: 6, val: '000000005000'},
+                    amountOther: {tag: '9F03', len: 6, val: '000000000000'},
+                    applicationInterchangeProfile: {tag: '82', len: 2, val: '1800'},
+                    pan: {tag: '5A', len: 9, val: '502265400089000092'},
+                    panSeqNum: {tag: '5F34', len: 1, val: '01'},
+                    atc: {tag: '9F36', len: 2, val: '09D3'},
+                    applicationCryptogram: {tag: '9F26', len: 8, val: 'CE319347519E0604'},
+                    cvmResults: {tag: '9F34', len: 3, val: '020000'},
+                    cryptogramInformationData: {tag: '9F27', len: 1, val: '80'},
+                    interfaceDeviceIFDSerialNumber: {tag: '9F1E', len: 8, val: '3030303030303031'},
+                    issuerApplicationData: {tag: '9F10', len: 7, val: '06010A03A02000'},
+                    terminalApplicationVersionNumber: {tag: '9F09', len: 2, val: '0096'},
+                    terminalCapabilities: {tag: '9F33', len: 3, val: '6040E8'},
+                    terminalCountryCode: {tag: '9F1A', len: 2, val: '0608'},
+                    terminalType: {tag: '9F35', len: 1, val: '14'},
+                    terminalVerificationResults: {tag: '95', len: 5, val: '8000040000'},
+                    track2EquivalentData: {tag: '57', len: 15, val: '502265400089000092D2708620951F'},
+                    transactionCurrencyCode: {tag: '5F2A', len: 2, val: '0608'},
+                    applicationVersionNumber: {tag: '9F08', len: 2, val: '0096'},
+                    transactionDate: {tag: '9A', len: 3, val: '181017'},
+                    transactionSequenceCounter: {tag: '9F41', len: 4, val: '00003846'},
+                    transactionStatusInformation: {tag: '9B', len: 2, val: '6000'},
+                    transactionType: {tag: '9C', len: 1, val: '40'},
+                    unpredictableNumber: {tag: '9F37', len: 4, val: '12A528A7'},
+                    emv9F53: {tag: '9F53', len: 1, val: '5A'},
+                    applicationIdentifierAIDTerminal: {tag: '9F06', len: 7, val: 'A0000006351010'},
+                    applicationLabel: {tag: '50', len: 16, val: '5068696C697070696E65204465626974'},
+                    cardholderName: {tag: '5F20', len: 26, val: '4544204241524741444F2F202020202020202020202020202020'},
+                    applicationExpirationDate: {tag: '5F24', len: 3, val: '270831'}
+                },
                 tokens: ['11', '001000001', '', '01BAFD8F', '15', ';502265400089000092=2708620951?', '', 'CDI   AD', '000000005000', '8:6;0787252;<=?<', '11400420000001904', '', '', '21656100000000000000000000\x1DCAM\x1D9B026000', 'U', '5CAM00008C159F02069F03069F1A0295055F2A029A039C019F37049F02060000000050009F0306000000000000820218005A095022654000890000925F3401019F360209D39F2608CE319347519E06049F34030200009F2701809F1E0830303030303030319F100706010A03A020009F090200969F33036040E89F1A0206089F35011495058000040000570F502265400089000092D2708620951F5F2A0206089F080200969A031810179F4104000038469B0260009C01409F370412A528A79F53015A9F0607A000000635101050105068696C697070696E652044656269745F201A4544204241524741444F2F2020202020202020202020202020205F2403270831', '3FB4D6AE']
             },
             transactionReplyTransfer: {
@@ -478,8 +485,9 @@ module.exports = () => ({
                     transferId: '24818'
                 },
                 emvTags: {
-                    authorisationResponseCode: {'idx': 1, 'val': '3030'},
-                    issuerAuthenticationData: {'idx': 0, 'val': '05C5A6A8C7396DC03030'}},
+                    authorisationResponseCode: {idx: 1, val: '3030'},
+                    issuerAuthenticationData: {idx: 0, val: '05C5A6A8C7396DC03030'}
+                },
                 messageClass: '4',
                 messageSubclass: '',
                 mac: 'C6BE09B2'
@@ -502,7 +510,7 @@ module.exports = () => ({
                 coordination: '3',
                 track2: ';502265400089000092=2708620951?',
                 track3: '',
-                opcode: [ 'C', 'D', 'D', ' ', ' ', ' ', 'A', 'D' ],
+                opcode: ['C', 'D', 'D', ' ', ' ', ' ', 'A', 'D'],
                 amount: '000000000000',
                 pinBlock: '8A6B0787252BCDFC',
                 pinBlockRaw: '8:6;0787252;<=?<',
@@ -510,10 +518,11 @@ module.exports = () => ({
                 bufferB: '',
                 bufferC: '',
                 lastTransactionData: { sernum: '1654', status: '1', notes1: 0, notes2: 0, notes3: 0, notes4: 0 },
-                camFlags: [ [ 0, 0, 0, 0, 0, 0, 0, 0 ], [ 0, 0, 0, 1, 0, 0, 0, 0 ] ],
+                camFlags: [[0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 1, 0, 0, 0, 0]],
                 emvTagsRaw: '8C159F02069F03069F1A0295055F2A029A039C019F37049F02060000000000009F0306000000000000820218005A095022654000890000925F3401019F360209D09F2608154CC04AAC8BD8B09F34030200009F2701809F1E0830303030303030319F100706010A03A020009F090200969F33036040E89F1A0206089F35011495058000040000570F502265400089000092D2708620951F5F2A0206089F080200969A031810179F4104000038449B0260009C01019F370429B5F5799F53015A9F0607A000000635101050105068696C697070696E652044656269745F201A4544204241524741444F2F2020202020202020202020202020205F2403270831',
                 emvTags: { CDOL1: { tag: '8C', len: 21, val: { amountAuthorised: { tag: '9F02', idx: 0, len: 6, val: '' }, amountOther: { tag: '9F03', idx: 1, len: 6, val: '' }, terminalCountryCode: { tag: '9F1A', idx: 2, len: 2, val: '' }, terminalVerificationResults: { tag: '95', idx: 3, len: 5, val: '' }, transactionCurrencyCode: { tag: '5F2A', idx: 4, len: 2, val: '' }, transactionDate: { tag: '9A', idx: 5, len: 3, val: '' }, transactionType: { tag: '9C', idx: 6, len: 1, val: '' }, unpredictableNumber: { tag: '9F37', idx: 7, len: 4, val: '' } } }, amountAuthorised: { tag: '9F02', len: 6, val: '000000000000' }, amountOther: { tag: '9F03', len: 6, val: '000000000000' }, applicationInterchangeProfile: { tag: '82', len: 2, val: '1800' }, pan: { tag: '5A', len: 9, val: '502265400089000092' }, panSeqNum: { tag: '5F34', len: 1, val: '01' }, atc: { tag: '9F36', len: 2, val: '09D0' }, applicationCryptogram: { tag: '9F26', len: 8, val: '154CC04AAC8BD8B0' }, cvmResults: { tag: '9F34', len: 3, val: '020000' }, cryptogramInformationData: { tag: '9F27', len: 1, val: '80' }, interfaceDeviceIFDSerialNumber: { tag: '9F1E', len: 8, val: '3030303030303031' }, issuerApplicationData: { tag: '9F10', len: 7, val: '06010A03A02000' }, terminalApplicationVersionNumber: { tag: '9F09', len: 2, val: '0096' }, terminalCapabilities: { tag: '9F33', len: 3, val: '6040E8' }, terminalCountryCode: { tag: '9F1A', len: 2, val: '0608' }, terminalType: { tag: '9F35', len: 1, val: '14' }, terminalVerificationResults: { tag: '95', len: 5, val: '8000040000' }, track2EquivalentData: { tag: '57', len: 15, val: '502265400089000092D2708620951F' }, transactionCurrencyCode: { tag: '5F2A', len: 2, val: '0608' }, applicationVersionNumber: { tag: '9F08', len: 2, val: '0096' }, transactionDate: { tag: '9A', len: 3, val: '181017' }, transactionSequenceCounter: { tag: '9F41', len: 4, val: '00003844' }, transactionStatusInformation: { tag: '9B', len: 2, val: '6000' }, transactionType: { tag: '9C', len: 1, val: '01' }, unpredictableNumber: { tag: '9F37', len: 4, val: '29B5F579' }, emv9F53: { tag: '9F53', len: 1, val: '5A' }, applicationIdentifierAIDTerminal: { tag: '9F06', len: 7, val: 'A0000006351010' }, applicationLabel: { tag: '50', len: 16, val: '5068696C697070696E65204465626974' }, cardholderName: { tag: '5F20', len: 26, val: '4544204241524741444F2F202020202020202020202020202020' }, applicationExpirationDate: { tag: '5F24', len: 3, val: '270831' } },
-                tokens: ['11', '001000001', '', '01BAFC14', '13', ';502265400089000092=2708620951?', '', 'CDD   AD', '000000000000', '8:6;0787252;<=?<', '', '', '', '21654100000000000000000000\x1DCAM\x1D9B026000', 'U=711=61<:<:26?76', '5CAM00088C159F02069F03069F1A0295055F2A029A039C019F37049F02060000000000009F0306000000000000820218005A095022654000890000925F3401019F360209D09F2608154CC04AAC8BD8B09F34030200009F2701809F1E0830303030303030319F100706010A03A020009F090200969F33036040E89F1A0206089F35011495058000040000570F502265400089000092D2708620951F5F2A0206089F080200969A031810179F4104000038449B0260009C01019F370429B5F5799F53015A9F0607A000000635101050105068696C697070696E652044656269745F201A4544204241524741444F2F2020202020202020202020202020205F2403270831', '8D1D9F32'] },
+                tokens: ['11', '001000001', '', '01BAFC14', '13', ';502265400089000092=2708620951?', '', 'CDD   AD', '000000000000', '8:6;0787252;<=?<', '', '', '', '21654100000000000000000000\x1DCAM\x1D9B026000', 'U=711=61<:<:26?76', '5CAM00088C159F02069F03069F1A0295055F2A029A039C019F37049F02060000000000009F0306000000000000820218005A095022654000890000925F3401019F360209D09F2608154CC04AAC8BD8B09F34030200009F2701809F1E0830303030303030319F100706010A03A020009F090200969F33036040E89F1A0206089F35011495058000040000570F502265400089000092D2708620951F5F2A0206089F080200969A031810179F4104000038449B0260009C01019F370429B5F5799F53015A9F0607A000000635101050105068696C697070696E652044656269745F201A4544204241524741444F2F2020202020202020202020202020205F2403270831', '8D1D9F32']
+            },
             transactionReplyChangePin: {
                 luno: '001000001',
                 coordination: '3',
@@ -544,8 +553,9 @@ module.exports = () => ({
                     transferId: '24816'
                 },
                 emvTags: {
-                    authorisationResponseCode: {'idx': 1, 'val': '3030'},
-                    issuerAuthenticationData: {'idx': 0, 'val': '93F01EE9310C8DBD3030'}},
+                    authorisationResponseCode: {idx: 1, val: '3030'},
+                    issuerAuthenticationData: {idx: 0, val: '93F01EE9310C8DBD3030'}
+                },
                 messageClass: '4',
                 messageSubclass: '',
                 mac: 'D33C87B3'
@@ -1204,7 +1214,7 @@ module.exports = () => ({
             },
             unsolicitedSupervisorModeEnter: Buffer.from('31321C3030313030303030311C1C503231', 'hex'), // 12 001000001  P21
             unsolicitedSupervisorModeEnterMessage: {
-                session: { cassettes: [ {sensor: null}, {sensor: null}, {sensor: null}, {sensor: null} ] },
+                session: { cassettes: [{sensor: null}, {sensor: null}, {sensor: null}, {sensor: null}] },
                 device: 'sensors',
                 deviceStatus: '21',
                 severities: null,
@@ -1233,7 +1243,7 @@ module.exports = () => ({
             },
             unsolicitedSupervisorModeExit: Buffer.from('31321C3030313030303030311C1C503230', 'hex'), // 12 001000001  P20
             unsolicitedSupervisorModeExitMessage: {
-                session: { cassettes: [ {sensor: null}, {sensor: null}, {sensor: null}, {sensor: null} ] },
+                session: { cassettes: [{sensor: null}, {sensor: null}, {sensor: null}, {sensor: null}] },
                 device: 'sensors',
                 deviceStatus: '20',
                 severities: null,

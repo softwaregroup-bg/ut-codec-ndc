@@ -1,9 +1,9 @@
 const uuid = require('uuid/v4');
-var merge = require('lodash.merge');
-var map = require('./map');
-var defaultFormat = require('./messages');
-var hrtime = require('browser-process-hrtime');
-var emv = require('ut-emv');
+const merge = require('lodash.merge');
+const map = require('./map');
+const defaultFormat = require('./messages');
+const hrtime = require('browser-process-hrtime');
+const emv = require('ut-emv');
 
 const maskSymbol = Buffer.from('*', 'ascii').toString('hex');
 
@@ -37,10 +37,10 @@ const getMaskList = (arr, objArr) => {
 };
 
 const decodeBufferMask = (maskFields) => (buffer, messageParsed) => {
-    var maskList = getMaskList(maskFields, messageParsed);
+    const maskList = getMaskList(maskFields, messageParsed);
 
     if (maskList.length) {
-        var newBuffer = maskList.reduce((a, cur) => {
+        const newBuffer = maskList.reduce((a, cur) => {
             return a.split(cur).join((new Array(cur.length / 2)).fill(maskSymbol).join(''));
         }, buffer.toString('hex'));
 
@@ -69,15 +69,15 @@ function NDC(config, validator, logger) {
 NDC.prototype.init = function(config) {
     this.messageFormat = merge({}, defaultFormat, config.messageFormat);
     Object.keys(this.messageFormat).forEach((name) => {
-        var mf = this.messageFormat[name];
+        const mf = this.messageFormat[name];
         mf.fieldsSplit = mf.fields.split(',');
         mf.method = name;
-        var code = (mf.values.messageClass || '') + (mf.values.messageSubclass || '') + '|' + (mf.values.commandCode || '') + (mf.values.commandModifier || '');
+        const code = (mf.values.messageClass || '') + (mf.values.messageSubclass || '') + '|' + (mf.values.commandCode || '') + (mf.values.commandModifier || '');
         this.codes[code] = mf;
     });
 };
 
-var parsers = {
+const parsers = {
     // solicited descriptors
     transactionReady: (transactionSerialNumber, transactionData) => ({
         transactionSerialNumber,
@@ -90,12 +90,12 @@ var parsers = {
         throw this.errors['aptra.commandReject']();
     },
     fault: (deviceIdentifierAndStatus, severities, diagnosticStatus, suppliesStatus) => {
-        var deviceStatus = deviceIdentifierAndStatus && deviceIdentifierAndStatus.substring && deviceIdentifierAndStatus.substring(1);
-        var device =
+        const deviceStatus = deviceIdentifierAndStatus && deviceIdentifierAndStatus.substring && deviceIdentifierAndStatus.substring(1);
+        const device =
             deviceIdentifierAndStatus &&
             deviceIdentifierAndStatus.substring &&
             (map.devices[deviceIdentifierAndStatus.substring(0, 1)] || deviceIdentifierAndStatus.substring(0, 1));
-        var result = {
+        const result = {
             device,
             deviceStatus,
             severities: severities && severities.split && severities.split('').map((severity) => map.severities[severity]),
@@ -109,8 +109,8 @@ var parsers = {
     },
     ready: () => ({}),
     state: function(status) { // do not change to arrow function as proper this and arguments are needed
-        var g1 = status.substring(0, 1);
-        var fn = g1 && map.statuses[g1] && parsers[map.statuses[g1]];
+        const g1 = status.substring(0, 1);
+        const fn = g1 && map.statuses[g1] && parsers[map.statuses[g1]];
         if (typeof fn === 'function') {
             return merge({
                 statusType: map.statuses[g1]
@@ -156,8 +156,9 @@ var parsers = {
         configId: config.substring(1)
     }),
     configuration: (config, hwFitness, hwConfig, supplies, sensors, release, softwareId) => {
-        var sensorValues = parsers.sensors(' ' + sensors, true);
-        return {cofigId: config.substring(1), // typo ???
+        const sensorValues = parsers.sensors(' ' + sensors, true);
+        return {
+            cofigId: config.substring(1), // typo ???
             session: {
                 cassettes: [
                     {sensor: sensorValues.cassette1, fitness: map.severities[hwFitness.substring(15, 16)], supplies: map.suppliesStatus[supplies.substring(15, 16)]},
@@ -219,14 +220,14 @@ var parsers = {
     }),
     supplies: (statuses) => (statuses && statuses.substring && {
         suppliesStatus: statuses.substring(2).split('\u001d').reduce((prev, cur) => {
-            var device = cur && cur.substring && map.devices[cur.substring(0, 1)];
+            const device = cur && cur.substring && map.devices[cur.substring(0, 1)];
             device && (prev[device] = cur.substring(1).split('').map((status) => map.suppliesStatus[status]));
             return prev;
         }, {})
     }),
     fitness: (statuses) => (statuses && statuses.substring && {
         fitnessStatus: statuses.substring(2).split('\u001d').reduce((prev, cur) => {
-            var device = cur && cur.substring && map.devices[cur.substring(0, 1)];
+            const device = cur && cur.substring && map.devices[cur.substring(0, 1)];
             device && (prev[device] = cur.substring(1).split('').map((status) => map.severities[status]));
             return prev;
         }, {})
@@ -322,7 +323,7 @@ var parsers = {
         return parsers.fault(deviceIdentifierAndStatus, errorSeverity, diagnosticStatus, suppliesStatus);
     },
     solicitedStatus: function(type, luno, reserved, descriptor, status) {
-        var fn = descriptor && map.descriptors[descriptor] && parsers[map.descriptors[descriptor]];
+        const fn = descriptor && map.descriptors[descriptor] && parsers[map.descriptors[descriptor]];
         if (typeof fn === 'function') {
             return merge({
                 luno,
@@ -349,7 +350,7 @@ var parsers = {
         journalData
     }),
     lastTransaction: fields => {
-        var field2 = fields.find(field => field.substring(0, 1) === '2');
+        let field2 = fields.find(field => field.substring(0, 1) === '2');
         field2 = field2 && field2.match(/^2(\d{4})(\d)(\d{5})(\d{5})(\d{5})(\d{5})/);
         return field2 && {
             sernum: field2[1],
@@ -363,10 +364,10 @@ var parsers = {
     smartCardData: (fields) => {
         /* There are 16 available CAM flags.These are encoded as the bits in two bytes, and are
         converted to ASCII hex(four bytes) for transmission. Each can have the value 0x0 or 0x1 */
-        var smartCardData = fields.find(field => field.substring(0, 4) === '5CAM');
+        let smartCardData = fields.find(field => field.substring(0, 4) === '5CAM');
         smartCardData = (smartCardData && smartCardData.substring(4)) || '';
-        var camFlags = Buffer.from(smartCardData.substring(0, 4), 'hex');
-        var emvTags = smartCardData.substring(4);
+        const camFlags = Buffer.from(smartCardData.substring(0, 4), 'hex');
+        const emvTags = smartCardData.substring(4);
         return Object.assign(
             {},
             (!camFlags.length ? {} : parsers.camFlagsDecode(camFlags)),
@@ -374,8 +375,8 @@ var parsers = {
         );
     },
     camFlagsDecode: (buffer) => {
-        var b1 = buffer.slice(0, 1);
-        var a = [];
+        let b1 = buffer.slice(0, 1);
+        const a = [];
         if (b1.length) {
             b1 = b1.readInt8();
             a.push(0);
@@ -387,8 +388,8 @@ var parsers = {
             a.push(0);
             a.push(0);
         }
-        var b2 = buffer.slice(1, 2);
-        var b = [];
+        let b2 = buffer.slice(1, 2);
+        const b = [];
         if (b2.length) {
             b2 = b2.readInt8();
             b.push(0);
@@ -412,11 +413,11 @@ var parsers = {
         '?': 'F'
     }[c] || c)).join(''),
     pinBlockNew: fields => {
-        var result = fields.find(field => field.substring(0, 1) === 'U');
+        const result = fields.find(field => field.substring(0, 1) === 'U');
         return result && parsers.pinBlock(result.substr(1, 16));
     },
     transaction: function(type, luno, reserved, timeVariantNumber, trtfmcn, track2, track3, opcode, amount, pinBlock, bufferB, bufferC) {
-        var args1 = Array.prototype.slice.call(arguments, 12);
+        const args1 = Array.prototype.slice.call(arguments, 12);
         return Object.assign({
             type,
             luno,
@@ -484,12 +485,12 @@ var parsers = {
 };
 
 NDC.prototype.decode = function(buffer, $meta, context, log) {
-    var message = {};
-    var bufferString = buffer.toString().replace(/\\u0003/g, ''); // remove END OF TEXT char (because of the ncr simulator)
+    let message = {};
+    const bufferString = buffer.toString().replace(/\\u0003/g, ''); // remove END OF TEXT char (because of the ncr simulator)
 
     if (buffer.length > 0) {
-        var tokens = bufferString.split(this.fieldSeparator);
-        var command;
+        const tokens = bufferString.split(this.fieldSeparator);
+        let command;
         switch (tokens[0]) {
             case '1':
             case '3':
@@ -563,7 +564,7 @@ NDC.prototype.decode = function(buffer, $meta, context, log) {
                     break;
             }
 
-            var fn = parsers[command.method];
+            const fn = parsers[command.method];
             if (typeof fn === 'function') {
                 merge(message, fn.apply(this, tokens));
             } else {
@@ -590,7 +591,7 @@ NDC.prototype.decode = function(buffer, $meta, context, log) {
         }
     }
     if (log && log.trace) {
-        let bufferMasked = this.decodeBufferMask(buffer, Object.assign({}, message, {track2Clean: message.track2 && message.track2.split(';').join('').split('=').shift()}));
+        const bufferMasked = this.decodeBufferMask(buffer, Object.assign({}, message, {track2Clean: message.track2 && message.track2.split(';').join('').split('=').shift()}));
         log.trace({$meta: {mtid: 'frame', method: 'ndc.decode'}, message: bufferMasked, log: context && context.session && context.session.log});
     }
     return message;
@@ -600,7 +601,7 @@ NDC.prototype.encode = function(message, $meta, context, log) {
     if (typeof this.val === 'function') {
         this.val(message);
     }
-    var bufferString = '';
+    let bufferString = '';
 
     switch ($meta.opcode) {
         case 'terminalCommand':
@@ -659,7 +660,7 @@ NDC.prototype.encode = function(message, $meta, context, log) {
 
     message.session && merge(context, {session: message.session});
 
-    var command = this.messageFormat[$meta.opcode];
+    const command = this.messageFormat[$meta.opcode];
     if (command) {
         merge(message, command.values);
         // bufferString += command.messageClass;
@@ -688,9 +689,9 @@ NDC.prototype.encode = function(message, $meta, context, log) {
         if (message.mac) {
             bufferString += this.fieldSeparator + message.mac;
         }
-        let buffer = Buffer.from(bufferString, 'ascii');
+        const buffer = Buffer.from(bufferString, 'ascii');
         if (log && log.trace) {
-            let bufferMasked = this.encodeBufferMask(buffer, Object.assign({}, message, {track2Clean: message.track2 && message.track2.split(';').join('').split('=').shift()}));
+            const bufferMasked = this.encodeBufferMask(buffer, Object.assign({}, message, {track2Clean: message.track2 && message.track2.split(';').join('').split('=').shift()}));
             log.trace({$meta: {mtid: 'frame', method: 'ndc.encode'}, message: bufferMasked, log: context && context.session && context.session.log});
         }
         return buffer;
