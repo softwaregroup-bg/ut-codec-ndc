@@ -9,9 +9,9 @@
     "uuid": "3.3.2"
   },
   "devDependencies": {
-    "ut-tools": "6.33.2",
+    "ut-tools": "6.33.4",
     "ut-unittest": "1.1.0",
-    "tap": "^14.10.6"
+    "tap": "^14.10.7"
   },
   "scripts": {
     "lint": "ut-lint .",
