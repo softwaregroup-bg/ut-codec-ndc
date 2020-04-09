@@ -1,3 +1,12 @@
+## [7.0.4](https://github.com/softwaregroup-bg/ut-codec-ndc/compare/v7.0.3...v7.0.4) (2020-04-09)
+
+
+### Bug Fixes
+
+* TAP upgrade ([fee45a7](https://github.com/softwaregroup-bg/ut-codec-ndc/commit/fee45a71da24630920b4c6c077c7a45ca6ed05d7))
+
+
+
 ## [7.0.3](https://github.com/softwaregroup-bg/ut-codec-ndc/compare/v7.0.2...v7.0.3) (2020-02-24)
 
 
