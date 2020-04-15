@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Single test",
-            "program": "${workspaceFolder}/test/unit/cases/withdraw.js",
+            "program": "${workspaceFolder}/test/${input:unitTest}",
             "runtimeArgs": [
                 "--preserve-symlinks",
                 "--nolazy",
@@ -51,5 +51,20 @@
                 "protocol": "inspector"
             }
         }
-    ]
+    ],
+    "inputs": [{
+        "id": "unitTest",
+        "type": "pickString",
+        "description": "Pick test to run",
+        "options": [
+            "balance.test",
+            "changePin.test",
+            "customisation.test",
+            "init.test",
+            "solicited.test",
+            "transfer.test",
+            "unsolicited.test",
+            "withdraw.test"
+        ]
+    }]
   }
