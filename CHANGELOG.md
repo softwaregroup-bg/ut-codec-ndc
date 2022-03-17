@@ -1,3 +1,7 @@
+## [7.0.6](https://github.com/softwaregroup-bg/ut-codec-ndc/compare/v7.0.5...v7.0.6) (2022-03-17)
+
+
+
 ## [7.0.5](https://github.com/softwaregroup-bg/ut-codec-ndc/compare/v7.0.4...v7.0.5) (2020-04-27)
 
 
