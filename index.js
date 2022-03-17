@@ -1,4 +1,4 @@
-const uuid = require('uuid/v4');
+const uuid = require('uuid').v4;
 const merge = require('lodash.merge');
 const map = require('./map');
 const defaultFormat = require('./messages');
