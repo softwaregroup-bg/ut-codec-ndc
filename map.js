@@ -259,7 +259,7 @@ module.exports = {
         B08: 'Data field value out of range',
         B09: 'Invalid Message Coordination number',
         B10: 'Illegal FIT number',
-        B11: 'Invalid dispense mix specified. No notes or coins were specified or too many notes or coins were specified in a dispense function',
+        B11: 'Invalid dispense mix. Please specify the correct notes or coins in the dispense function.',
         B12: 'Reserved',
         B13: 'Unrecognised Document Destination',
         B14: 'Reserved',
@@ -289,10 +289,8 @@ module.exports = {
         C06: 'Message not allowed while SST is configured for Diebold status message mode',
         C10: 'Message not accepted while processing a Transaction Reply',
         C11: 'Cheque not present in cheque processor transport while processing a Transaction Reply',
-        C15: 'Encryption Key Change or Extended Encryption Key Change message not accepted during a cardholder transaction, ' +
-            'or while the SST is in suspend mode, or while the operator is initiating the execution of supervisory/ settlement transactions',
-        C17: 'Key change operation cannot be accepted in restricted encryption mode. ' +
-            'This applies when an Extended Encryption Key Change message with modifier "3", "4", "6" or "7" is received in restricted mode',
+        C15: 'Encryption Key Change or Extended Encryption Key Change message not accepted during a cardholder transaction.',
+        C17: 'Key change operation cannot be accepted in restricted encryption mode with modifier "3", "4", "6" or "7" ',
         C18: 'Key entry mode not authorised',
         D01: 'Encryption failure during Encryption Key Change or Extended Encryption Key Change message',
         D02: 'Time-of-Day Clock failure or invalid data sent during Date/Time Set command',
@@ -300,8 +298,7 @@ module.exports = {
         D07: 'File IO error',
         D08: 'File not found',
         E01: 'Function not supported by software. For example, a DLL required to complete the transaction reply processing is missing',
-        E02: 'Required device not configured. Also, sideways print on the receipt is requested, ' +
-            'but either the printer does not have the capability or has not been configured for sideways printing',
+        E02: 'Required print device not configured correctly',
         E05: 'Journal printer backup inactive',
         E06: 'The data requested is not compatible with the required response message'
     }
