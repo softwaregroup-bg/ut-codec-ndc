@@ -298,7 +298,7 @@ module.exports = {
         D07: 'File IO error',
         D08: 'File not found',
         E01: 'Function not supported by software. For example, a DLL required to complete the transaction reply processing is missing',
-        E02: 'Required print device not configured correctly' ,
+        E02: 'Required print device not configured correctly',
         E05: 'Journal printer backup inactive',
         E06: 'The data requested is not compatible with the required response message'
     }
