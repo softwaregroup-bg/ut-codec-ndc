@@ -22,7 +22,7 @@ module.exports = {
 
 ## Public API
 
-The module exposes _NDC_ class.
+The module exposes _NDC_ class. This module provides a class called NDC.
 
 ### decode
 
@@ -503,3 +503,4 @@ Each message is defined by the following _key: value_ pair structure:
  encoded messages; __Default__: _u001c_
 - _groupSeparator_ (string) - group separator (GS) Unicode character in NDC
  encoded messages; __Default__: _u001d_
+
