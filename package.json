@@ -6,7 +6,7 @@
     "browser-process-hrtime": "1.0.0",
     "lodash.merge": "4.6.2",
     "ut-emv": "^7.0.4",
-    "uuid": "8.3.2"
+    "uuid": "14.0.0"
   },
   "devDependencies": {
     "tap": "^16.0.0",
